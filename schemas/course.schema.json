@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "students": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string"
+          },
+          "middle_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "first_name",
+          "last_name",
+          "id"
+        ]
+      }
+    },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "grades": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "student": {
+                  "type": "string"
+                },
+                "grade": {
+                  "type": "string"
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "time_remaining": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "student"
+              ]
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ]
+}
