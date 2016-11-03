@@ -1,0 +1,25 @@
+{
+    "id": "3baf11b0-a1ec-11e6-80f5-76304dec7eb7",
+    "name": "ENWR 1506 - 10597",
+    "students": [
+        {
+            "first_name": "John",
+            "middle_name": null,
+            "last_name": "Doe",
+            "id": "f3311ba2-a1ed-11e6-80f5-76304dec7eb7"
+        }
+    ],
+    "assignments": [
+        {
+            "name": "Paper 1",
+            "grades": [
+                {
+                    "student": "f3311ba2-a1ed-11e6-80f5-76304dec7eb7",
+                    "grade": "B-",
+                    "notes": null,
+                    "time_remaining": 22
+                }
+            ]
+        }
+    ]
+}
