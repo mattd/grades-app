@@ -41,7 +41,7 @@
     "build:webpack": "NODE_ENV=production webpack --config webpack.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "clean": "rm -rf ./src/static",
-    "start": "node server.js",
+    "start": "PORT=3000 node server.js",
     "test": "NODE_PATH=src/js ava",
     "test:watch": "npm test -- --watch"
   },
