@@ -2,6 +2,9 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
+    "id": {
+      "type": "string"
+    },
     "first_name": {
       "type": "string"
     },
@@ -39,6 +42,7 @@
     }
   },
   "required": [
+    "id",
     "first_name",
     "last_name"
   ]
