@@ -1,3 +1,6 @@
 node_modules
+npm-debug.log
+config/firebase/dev.js
+config/firebase/prod.js
 .DS_Store
 .screenrc
