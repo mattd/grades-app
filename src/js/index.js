@@ -17,7 +17,7 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 provider.addScope('https://www.googleapis.com/auth/plus.login');
 
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(user => {
     if (user) {
         console.log('User:', user);
     } else {
@@ -25,9 +25,9 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-firebase.auth().signInWithPopup(provider).then(function(result) {
+firebase.auth().signInWithPopup(provider).then(result => {
     console.log('Result:', result);
-}).catch(function(error) {
+}).catch(error => {
     console.log('Error:', error);
 });
 
