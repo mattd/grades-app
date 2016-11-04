@@ -17,9 +17,22 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 provider.addScope('https://www.googleapis.com/auth/plus.login');
 
-firebase.auth().signInWithPopup(provider).then(function(result) {
-    console.log('Token:', result.credential.accessToken);
-    console.log('User:', result.user);
-}).catch(function(error) {
-    console.log(error);
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log('User:', user);
+    } else {
+        console.log('No user is logged in');
+    }
 });
+
+firebase.auth().signInWithPopup(provider).then(function(result) {
+    console.log('Result:', result);
+}).catch(function(error) {
+    console.log('Error:', error);
+});
+
+setInterval(() => {
+    console.log(
+        `User ${firebase.auth().currentUser.displayName} is here.`
+    )
+}, 1000);
