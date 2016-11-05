@@ -2,6 +2,8 @@
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
+const appRootPath = require('app-root-path').toString();
+
 const webpackConfig = require('./config/webpack/dev');
 
 const app = express();
@@ -21,7 +23,7 @@ app.use(require('webpack-dev-middleware')(compiler, config.devMiddleware));
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'src', 'index.html'));
+    res.sendFile(path.resolve(appRootPath, 'src/index.html'));
 });
 
 app.listen(config.port.app, 'localhost', (error) => {

@@ -1,4 +1,5 @@
 const path = require('path');
+const appRootPath = require('app-root-path').toString();
 
 module.exports = {
     entry: ['babel-polyfill', './src/js/index.js'],
@@ -6,7 +7,7 @@ module.exports = {
         loaders: [{
             test: /\.js?$/,
             loaders: ['babel'],
-            include: path.join(__dirname, 'src', 'js')
+            include: path.resolve(appRootPath, 'src/js')
         },
         {
             test: /\.scss$/,
@@ -15,11 +16,10 @@ module.exports = {
     },
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'src/static'),
+        path: path.resolve(appRootPath, 'src/static'),
         publicPath: '/static/'
     },
     resolve: {
-        root: [path.resolve('src')],
         extensions: ['', '.jsx', '.js']
     }
 }
