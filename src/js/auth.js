@@ -1,7 +1,9 @@
-import { browserHistory } from 'react-router';
+import { push } from 'react-router-redux';
+
+import store from './store';
 
 const requireAuth = () => {
-    browserHistory.push('/authenticate');
+    store.dispatch(push('/authenticate'));
 };
 
 export { requireAuth };
