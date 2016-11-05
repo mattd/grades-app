@@ -3,7 +3,7 @@ const auth = (state = { isAuthenticated: false }, action) => {
         case 'AUTH_STATUS_UPDATED':
             return {
                 ...state,
-                isAuthenticated: action.status === 'authenticated'
+                isAuthenticated: action.authenticated
             };
         default:
             return state;
