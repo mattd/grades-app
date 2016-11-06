@@ -1,5 +1,5 @@
 const command = (
-    state = { type: undefined, success: undefined },
+    state = { type: undefined, success: undefined, next: undefined },
     action
 ) => {
     switch (action.type) {
@@ -14,13 +14,18 @@ const command = (
                 ...state,
                 success: action.success
             };
+        case 'AUTH_COMMAND_NEXT_PATH':
+            return {
+                ...state,
+                next: action.next
+            }
         default:
             return state;
     }
 };
 
 const auth = (
-    state = { isAuthenticated: false, ready: true, command: {}},
+    state = { isAuthenticated: false, ready: true, command: {} },
     action
 ) => {
     switch (action.type) {
@@ -36,6 +41,7 @@ const auth = (
             };
         case 'AUTH_COMMAND':
         case 'AUTH_COMMAND_COMPLETED':
+        case 'AUTH_COMMAND_NEXT_PATH':
             return {
                 ...state,
                 command: command(state.command, action)

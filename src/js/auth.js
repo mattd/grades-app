@@ -9,7 +9,6 @@ let provider;
 const signIn = () => {
     firebase.auth().signInWithPopup(provider).then(result => {
         store.dispatch({type: 'AUTH_COMMAND_COMPLETED', success: true});
-        store.dispatch(goBack());
     }).catch(error => {
         store.dispatch({type: 'AUTH_COMMAND_COMPLETED', success: false});
     });
@@ -18,7 +17,6 @@ const signIn = () => {
 const signOut = () => {
     firebase.auth().signOut().then(() => {
         store.dispatch({type: 'AUTH_COMMAND_COMPLETED', success: true});
-        store.dispatch(push('/authenticate'));
     }).catch(error => {
         store.dispatch({type: 'AUTH_COMMAND_COMPLETED', success: false});
     });
@@ -36,7 +34,17 @@ const handleAuthCommands = () => {
     }
 };
 
-const updateAuthState = (user) => {
+const navigate = () => {
+    const state = store.getState().auth;
+    const destination = (
+        state.isAuthenticated ?
+        state.command.next || '/courses' :
+        '/authenticate'
+    );
+    store.dispatch(push(destination));
+};
+
+const respondToAuthChange = (user) => {
     store.dispatch({
         type: 'AUTH_STATUS_UPDATED',
         authenticated: !!user
@@ -48,6 +56,7 @@ const updateAuthState = (user) => {
         });
     }
     store.dispatch({type: 'AUTH_STATUS_READY', ready: true});
+    navigate();
 };
 
 const init = () => {
@@ -56,12 +65,20 @@ const init = () => {
     provider = new firebase.auth.GoogleAuthProvider();
 
     store.subscribe(handleAuthCommands);
-    firebase.auth().onAuthStateChanged(updateAuthState);
+    firebase.auth().onAuthStateChanged(respondToAuthChange);
 };
 
-const requireAuthentication = () => {
-    const authenticated = store.getState().auth.isAuthenticated;
-    if (!authenticated) store.dispatch(push('/authenticate'));
+const requireAuthentication = (nextState) => {
+    const state = store.getState().auth;
+
+    if (!state.isAuthenticated) {
+        store.dispatch(push('/authenticate'))
+        store.dispatch({
+            type: 'AUTH_COMMAND_NEXT_PATH',
+            next: nextState.location.pathname
+        });
+    };
+
 };
 
 export default { init, requireAuthentication };
