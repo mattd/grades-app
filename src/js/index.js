@@ -1,38 +1,33 @@
 require('../scss/style.scss');
 
-//require('./firebase');
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 
-import store from './store';
 import firebase from './firebase';
 import auth from './auth';
-
-import App from './controllers/app';
-import Authenticate from './controllers/authenticate';
-import Courses from './controllers/courses';
+import store from './store';
+import routes from './routes';
 
 firebase.start();
 auth.init();
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router history={browserHistory}>
-            <Route name="app"
-                   path="/"
-                   component={App}>
-                <Route name="authenticate"
-                       path="authenticate"
-                       component={Authenticate} />
-                <Route name="courses"
-                       path="courses"
-                       component={Courses}
-                       onEnter={auth.requireAuth} />
-            </Route>
-        </Router>
-    </Provider>,
-    document.getElementById('root')
-);
+const mount = (callback) => {
+    ReactDOM.render(
+        <Provider store={store}>
+            <Router history={browserHistory}>
+                {routes}
+            </Router>
+        </Provider>,
+        document.getElementById('root')
+    );
+    callback();
+};
+
+const unsubscribe = store.subscribe(() => {
+    const ready = store.getState().auth.ready;
+    if (ready) mount(unsubscribe);
+});
+
+window.store = store;
