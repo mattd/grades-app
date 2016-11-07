@@ -25,7 +25,7 @@ const signOut = () => {
 const handleAuthCommands = () => {
     const state = store.getState().auth;
 
-    if (!state.transitioning) return;
+    if (state.transitioned) return;
 
     if (state.command.type === 'sign-in') {
         signIn();
@@ -38,7 +38,7 @@ const navigateAfterAuthChange = () => {
     const state = store.getState().auth;
     let destination;
 
-    if (!state.transitioning) {
+    if (state.transitioned) {
         destination = (
             state.isAuthenticated ?
             state.command.next || '/courses' :

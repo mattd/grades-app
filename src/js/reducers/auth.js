@@ -29,7 +29,7 @@ const auth = (
         isAuthenticated: false,
         ready: true,
         command: {},
-        transitioning: true
+        transitioned: false
     },
     action
 ) => {
@@ -48,13 +48,13 @@ const auth = (
             return {
                 ...state,
                 command: command(state.command, action),
-                transitioning: true
+                transitioned: false
             };
         case 'AUTH_COMMAND_COMPLETED':
             return {
                 ...state,
                 command: command(state.command, action),
-                transitioning: false
+                transitioned: true
             };
         case 'AUTH_COMMAND_NEXT_PATH':
             return {
