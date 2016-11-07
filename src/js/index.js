@@ -29,3 +29,5 @@ const unsubscribe = store.subscribe(() => {
     const ready = store.getState().auth.ready;
     if (ready) mount(unsubscribe);
 });
+
+window.store = store;

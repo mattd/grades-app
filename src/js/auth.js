@@ -36,12 +36,16 @@ const handleAuthCommands = () => {
 
 const navigate = () => {
     const state = store.getState().auth;
-    const destination = (
-        state.isAuthenticated ?
-        state.command.next || '/courses' :
-        '/authenticate'
-    );
-    store.dispatch(push(destination));
+    let destination;
+
+    if (!R.isNil(state.command.success)) {
+        destination = (
+            state.isAuthenticated ?
+            state.command.next || '/courses' :
+            '/authenticate'
+        );
+        store.dispatch(push(destination));
+    }
 };
 
 const respondToAuthChange = (user) => {
