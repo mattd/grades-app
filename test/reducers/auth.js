@@ -15,11 +15,11 @@ test(
 );
 
 test(
-    'isAuthenticated is true after a status of authenticated is sent',
+    'isAuthenticated is true after authenticated true is sent',
     t => {
         const action = {
             type: 'AUTH_STATUS_UPDATED',
-            status: 'authenticated'
+            authenticated: true
         };
         const stateBefore = {isAuthenticated: false};
 
@@ -31,11 +31,11 @@ test(
 );
 
 test(
-    'isAuthenticated is false after a non-authenticated status is sent',
+    'isAuthenticated is false after authenticated false is sent',
     t => {
         const action = {
             type: 'AUTH_STATUS_UPDATED',
-            status: 'unauthenticated'
+            authenticated: false
         };
         const stateBefore = {isAuthenticated: true};
 
