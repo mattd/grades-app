@@ -25,7 +25,12 @@ const command = (
 };
 
 const auth = (
-    state = { isAuthenticated: false, ready: true, command: {} },
+    state = {
+        isAuthenticated: false,
+        ready: true,
+        command: {},
+        transitioning: true
+    },
     action
 ) => {
     switch (action.type) {
@@ -40,7 +45,17 @@ const auth = (
                 ready: true
             };
         case 'AUTH_COMMAND':
+            return {
+                ...state,
+                command: command(state.command, action),
+                transitioning: true
+            };
         case 'AUTH_COMMAND_COMPLETED':
+            return {
+                ...state,
+                command: command(state.command, action),
+                transitioning: false
+            };
         case 'AUTH_COMMAND_NEXT_PATH':
             return {
                 ...state,

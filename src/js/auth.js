@@ -25,7 +25,7 @@ const signOut = () => {
 const handleAuthCommands = () => {
     const state = store.getState().auth;
 
-    if (!R.isNil(state.command.success)) return;
+    if (!state.transitioning) return;
 
     if (state.command.type === 'sign-in') {
         signIn();
@@ -34,11 +34,11 @@ const handleAuthCommands = () => {
     }
 };
 
-const navigate = () => {
+const navigateAfterAuthChange = () => {
     const state = store.getState().auth;
     let destination;
 
-    if (!R.isNil(state.command.success)) {
+    if (!state.transitioning) {
         destination = (
             state.isAuthenticated ?
             state.command.next || '/courses' :
@@ -60,7 +60,7 @@ const respondToAuthChange = (user) => {
         });
     }
     store.dispatch({type: 'AUTH_STATUS_READY', ready: true});
-    navigate();
+    navigateAfterAuthChange();
 };
 
 const init = () => {
