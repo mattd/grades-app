@@ -1,5 +1,4 @@
-import * as R from 'ramda';
-import { goBack, push } from 'react-router-redux';
+import { push } from 'react-router-redux';
 import firebase from 'firebase';
 
 import store from './store';

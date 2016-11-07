@@ -1,5 +1,9 @@
 const command = (
-    state = { type: undefined, success: undefined, next: undefined },
+    state = {
+        type: undefined,
+        success: undefined,
+        next: undefined
+    },
     action
 ) => {
     switch (action.type) {
