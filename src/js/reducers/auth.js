@@ -31,7 +31,7 @@ const command = (
 const auth = (
     state = {
         isAuthenticated: false,
-        ready: true,
+        ready: false,
         command: {},
         transitioned: false
     },

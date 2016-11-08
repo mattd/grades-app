@@ -1,4 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+const mapStateToProps = function (state) {
+    return {
+        auth: state.auth,
+        profile: state.profile
+    };
+};
 
 class App extends React.Component {
     render() {
@@ -8,7 +16,7 @@ class App extends React.Component {
                 {this.props.children}
             </div>
         );
-    };
+    }
 };
 
-export default App;
+export default connect(mapStateToProps)(App);

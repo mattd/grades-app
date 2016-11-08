@@ -1,10 +1,24 @@
 import React from 'react';
 import { Route } from 'react-router';
+import { push } from 'react-router-redux';
 
-import auth from './auth';
+import store from './store';
 import App from './controllers/app';
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
+
+const requireAuthentication = (nextState) => {
+    const state = store.getState().auth;
+    const dispatch = store.dispatch.bind(store);
+
+    if (!state.isAuthenticated) {
+        dispatch(push('/authenticate'))
+        dispatch({
+            type: 'AUTH_COMMAND_NEXT_PATH',
+            next: nextState.location.pathname
+        });
+    };
+};
 
 export default (
     <Route name="app" path="/" component={App}>
@@ -14,6 +28,6 @@ export default (
         <Route name="courses"
                path="courses"
                component={Courses}
-               onEnter={auth.requireAuthentication} />
+               onEnter={requireAuthentication} />
     </Route>
 );

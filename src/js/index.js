@@ -6,28 +6,21 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 
 import firebase from './firebase';
-import auth from './auth';
 import store from './store';
+import Auth from './controllers/auth';
 import routes from './routes';
 
 firebase.start();
-auth.init();
 
-const mount = (callback) => {
-    ReactDOM.render(
-        <Provider store={store}>
+ReactDOM.render(
+    <Provider store={store}>
+        <Auth>
             <Router history={browserHistory}>
                 {routes}
             </Router>
-        </Provider>,
-        document.getElementById('root')
-    );
-    callback();
-};
-
-const unsubscribe = store.subscribe(() => {
-    const ready = store.getState().auth.ready;
-    if (ready) mount(unsubscribe);
-});
+        </Auth>
+    </Provider>,
+    document.getElementById('root')
+);
 
 window.store = store;
