@@ -7,6 +7,7 @@ import App from './controllers/app';
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
 
+// TODO: See if there's a logical way to put this on the Auth controller.
 const requireAuthentication = (nextState) => {
     const state = store.getState().auth;
     const dispatch = store.dispatch.bind(store);
