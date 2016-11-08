@@ -6,7 +6,7 @@ import _ from 'firebase/auth';
 
 import Loading from '../components/loading';
 
-const mapStateToProps = function (state) {
+const mapStateToProps = (state) => {
     return {
         auth: state.auth
     };

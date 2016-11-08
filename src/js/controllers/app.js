@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = function (state) {
+const mapStateToProps = (state) => {
     return {
         auth: state.auth,
         profile: state.profile
