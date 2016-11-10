@@ -6,11 +6,10 @@ import _ from 'firebase/auth';
 
 import {
     authStatusUpdated,
-    profileUpdated,
     authStatusReady,
     authCommandSuccessful
 } from '../action-creators/auth';
-
+import { profileUpdated } from '../action-creators/profile';
 import Loading from '../components/loading';
 
 const mapStateToProps = (state) => {

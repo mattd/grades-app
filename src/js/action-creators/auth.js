@@ -5,13 +5,6 @@ export const authStatusUpdated = (user) => {
     };
 };
 
-export const profileUpdated = (profile) => {
-    return {
-        type: 'PROFILE_UPDATED',
-        profile
-    };
-};
-
 export const authStatusReady = () => {
     return {
         type: 'AUTH_STATUS_READY',
