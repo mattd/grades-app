@@ -3,6 +3,7 @@ import { Route } from 'react-router';
 import { push } from 'react-router-redux';
 
 import store from './store';
+import { setLoginDestination } from './action-creators/auth';
 import App from './controllers/app';
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
@@ -14,10 +15,7 @@ const requireAuthentication = (nextState) => {
 
     if (!state.isAuthenticated) {
         dispatch(push('/authenticate'))
-        dispatch({
-            type: 'AUTH_COMMAND_NEXT_PATH',
-            next: nextState.location.pathname
-        });
+        dispatch(setLoginDestination(nextState.location.pathname));
     };
 };
 

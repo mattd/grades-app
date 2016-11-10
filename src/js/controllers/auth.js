@@ -4,6 +4,13 @@ import { push } from 'react-router-redux';
 import firebase from 'firebase';
 import _ from 'firebase/auth';
 
+import {
+    userIsAuthenticated,
+    profileUpdated,
+    authStatusReady,
+    authCommandSuccessful
+} from '../action-creators/auth';
+
 import Loading from '../components/loading';
 
 const mapStateToProps = (state) => {
@@ -25,17 +32,11 @@ class Auth extends React.Component {
     respondToAuthChange(user) {
         const dispatch = this.props.dispatch;
 
-        dispatch({
-            type: 'AUTH_STATUS_UPDATED',
-            authenticated: !!user
-        });
+        dispatch(userIsAuthenticated(!!user));
         if (user) {
-            dispatch({
-                type: 'PROFILE_UPDATED',
-                profile: user
-            });
+            dispatch(profileUpdated(user));
         }
-        dispatch({type: 'AUTH_STATUS_READY', ready: true});
+        dispatch(authStatusReady());
         this.navigateAfterAuthChange();
     }
 
