@@ -1,7 +1,7 @@
-export const userIsAuthenticated = (answer) => {
+export const authStatusUpdated = (user) => {
     return {
         type: 'AUTH_STATUS_UPDATED',
-        authenticated: answer
+        authenticated: !!user
     };
 };
 
@@ -30,5 +30,19 @@ export const setLoginDestination = (destination) => {
     return {
         type: 'AUTH_COMMAND_NEXT_PATH',
         next: destination
+    };
+};
+
+export const signIn = () => {
+    return {
+        type: 'AUTH_COMMAND',
+        command: 'sign-in'
+    };
+};
+
+export const signOut = () => {
+    return {
+        type: 'AUTH_COMMAND',
+        command: 'sign-out'
     };
 };

@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import _ from 'firebase/auth';
 
 import {
-    userIsAuthenticated,
+    authStatusUpdated,
     profileUpdated,
     authStatusReady,
     authCommandSuccessful
@@ -33,7 +33,7 @@ class Auth extends React.Component {
     respondToAuthChange(user) {
         const dispatch = this.props.dispatch;
 
-        dispatch(userIsAuthenticated(!!user));
+        dispatch(authStatusUpdated(user));
         if (user) {
             dispatch(profileUpdated(user));
         }
