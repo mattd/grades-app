@@ -24,6 +24,7 @@ class Auth extends React.Component {
         super(props);
 
         this.provider = new firebase.auth.GoogleAuthProvider();
+
         firebase.auth().onAuthStateChanged(
             this.respondToAuthChange.bind(this)
         );
@@ -55,24 +56,26 @@ class Auth extends React.Component {
         }
     }
 
-    signIn() {
+    handleAuthCommandResult(promise) {
         const dispatch = this.props.dispatch;
 
-        firebase.auth().signInWithPopup(this.provider).then(result => {
-            dispatch({type: 'AUTH_COMMAND_COMPLETED', success: true});
+        promise.then(() => {
+            dispatch(authCommandSuccessful(true));
         }).catch(error => {
-            dispatch({type: 'AUTH_COMMAND_COMPLETED', success: false});
+            dispatch(authCommandSuccessful(false));
         });
     }
 
-    signOut() {
-        const dispatch = this.props.dispatch;
+    signIn() {
+        this.handleAuthCommandResult(
+            firebase.auth().signInWithPopup(this.provider)
+        );
+    }
 
-        firebase.auth().signOut().then(() => {
-            dispatch({type: 'AUTH_COMMAND_COMPLETED', success: true});
-        }).catch(error => {
-            dispatch({type: 'AUTH_COMMAND_COMPLETED', success: false});
-        });
+    signOut() {
+        this.handleAuthCommandResult(
+            firebase.auth().signOut()
+        );
     }
 
     componentDidUpdate() {
