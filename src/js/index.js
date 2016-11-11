@@ -6,16 +6,16 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Match } from 'react-router';
 
 import firebase from './firebase';
-import store from './store';
+import StoreFactory from './store-factory';
 import App from './controllers/app';
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
-import MatchWhenAuthenticated from './components/match-when-authenticated';
+import { MatchWhenAuthenticated } from './routing'
 
 firebase.start();
 
 ReactDOM.render(
-    <Provider store={store}>
+    <Provider store={StoreFactory()}>
         <BrowserRouter>
             {({ router }) => (
                 <App router={router}>
@@ -31,5 +31,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
-
-window.store = store;
