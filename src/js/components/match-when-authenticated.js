@@ -1,4 +1,3 @@
-import * as R from 'ramda';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Match, Redirect } from 'react-router';
@@ -9,7 +8,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const getComponentOrRedirect = (Component, props) => {
+const chooseComponentOrRedirect = (Component, props) => {
     const state = props.auth;
     const ComponentOrRedirect = (
         state.isAuthenticated ?
@@ -33,7 +32,7 @@ const MatchWhenAuthenticated = ({
     return (
         <Match
             {...rest}
-            component={() => getComponentOrRedirect(Component, rest)}
+            component={() => chooseComponentOrRedirect(Component, rest)}
         />
     );
 };

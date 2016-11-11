@@ -44,15 +44,9 @@ class App extends React.Component {
     navigateAfterAuthChange() {
         const state = this.props.auth;
         const router = this.props.router;
-        let destination;
 
-        if (state.transitioned) {
-            destination = (
-                state.isAuthenticated ?
-                state.command.next || '/courses' :
-                '/authenticate'
-            );
-            router.transitionTo(destination);
+        if (state.transitioned && state.isAuthenticated) {
+            router.transitionTo(state.command.next || '/courses');
         }
     }
 
