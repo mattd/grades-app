@@ -25,7 +25,7 @@ const chooseComponentOrRedirect = (Component, props) => {
     return ComponentOrRedirect;
 };
 
-let MatchWhenAuthenticated = ({
+const MatchWhenAuthenticated = ({
     component: Component,
     ...rest
 }) => {
@@ -37,6 +37,4 @@ let MatchWhenAuthenticated = ({
     );
 };
 
-MatchWhenAuthenticated = connect(mapStateToProps)(MatchWhenAuthenticated);
-
-export { MatchWhenAuthenticated };
+export default connect(mapStateToProps)(MatchWhenAuthenticated);

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { signOut, signIn } from '../action-creators/auth';
-import Link from './link';
+import { signOut, signIn } from '../../action-creators/auth';
+import Link from '../link';
 
 const mapStateToProps = (state) => {
     return {
