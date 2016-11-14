@@ -11,7 +11,7 @@ import {
 import { profileUpdated } from '../action-creators/profile';
 import { navigate } from '../action-creators/router';
 
-import AuthLink from '../components/auth-link';
+import { AuthLink } from '../components/auth';
 import Loading from '../components/loading';
 
 const mapStateToProps = (state) => {
@@ -22,6 +22,8 @@ const mapStateToProps = (state) => {
 
 class App extends React.Component {
     constructor(props) {
+        window.dispatch = props.dispatch;
+        window.navigate = navigate;
         super(props);
 
         this.provider = new firebase.auth.GoogleAuthProvider();
@@ -32,7 +34,7 @@ class App extends React.Component {
     }
 
     respondToAuthChange(user) {
-        const dispatch = this.props.dispatch;
+        const { dispatch } = this.props;
 
         dispatch(authStatusUpdated(user));
         if (user) {
@@ -43,16 +45,15 @@ class App extends React.Component {
     }
 
     navigateAfterAuthChange() {
-        const dispatch = this.props.dispatch;
-        const state = this.props.auth;
+        const { auth, dispatch } = this.props;
 
-        if (state.transitioned && state.isAuthenticated) {
-            dispatch(navigate(state.command.next || '/courses'));
+        if (auth.transitioned && auth.isAuthenticated) {
+            dispatch(navigate(auth.command.next || '/courses'));
         }
     }
 
     handleAuthCommandResult(promise) {
-        const dispatch = this.props.dispatch;
+        const { dispatch } = this.props;
 
         promise.then(() => {
             dispatch(authCommandSuccessful(true));
@@ -74,12 +75,12 @@ class App extends React.Component {
     }
 
     componentDidUpdate() {
-        const state = this.props.auth;
+        const { auth } = this.props;
 
-        if (!state.transitioned) {
-            if (state.command.type === 'sign-in') {
+        if (!auth.transitioned) {
+            if (auth.command.type === 'sign-in') {
                 this.signIn();
-            } else if (state.command.type === 'sign-out') {
+            } else if (auth.command.type === 'sign-out') {
                 this.signOut();
             }
         }
@@ -100,9 +101,9 @@ class App extends React.Component {
     }
 
     render() {
-        const state = this.props.auth;
+        const { auth } = this.props;
 
-        if (state.ready) {
+        if (auth.ready) {
             return this.renderApp();
         } else {
             return this.renderLoading();

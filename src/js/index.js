@@ -11,7 +11,7 @@ import Router from './router';
 import App from './controllers/app';
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
-import { MatchWhenAuthenticated } from './routing';
+import { MatchWhenAuthenticated } from './components/router';
 
 firebase.start();
 
