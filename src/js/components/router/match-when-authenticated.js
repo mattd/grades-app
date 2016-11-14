@@ -23,12 +23,7 @@ class MatchWhenAuthenticated extends React.Component {
         }
     }
 
-    // TODO: Document why all of these lifecycle methods call the same func.
-    componentWillMount() {
-        this.navigateConditionally();
-    }
-
-    componentWillReceiveProps(nextProps) {
+    componentDidMount() {
         this.navigateConditionally();
     }
 
