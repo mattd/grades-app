@@ -9,6 +9,7 @@ import {
     authCommandSuccessful
 } from '../action-creators/auth';
 import { profileUpdated } from '../action-creators/profile';
+import { navigate } from '../action-creators/router';
 
 import AuthLink from '../components/auth-link';
 import Loading from '../components/loading';
@@ -42,11 +43,11 @@ class App extends React.Component {
     }
 
     navigateAfterAuthChange() {
+        const dispatch = this.props.dispatch;
         const state = this.props.auth;
-        const router = this.props.router;
 
         if (state.transitioned && state.isAuthenticated) {
-            router.transitionTo(state.command.next || '/courses');
+            dispatch(navigate(state.command.next || '/courses'));
         }
     }
 

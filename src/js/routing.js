@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Match, Redirect } from 'react-router';
+import { Match } from 'react-router';
+
+import { navigate } from './action-creators/router';
 
 const mapStateToProps = (state) => {
     return {
@@ -8,33 +10,17 @@ const mapStateToProps = (state) => {
     };
 };
 
-const chooseComponentOrRedirect = (Component, props) => {
-    const state = props.auth;
-    const ComponentOrRedirect = (
-        state.isAuthenticated ?
-        <Component {...props} /> :
-        <Redirect to={
-            {
-                pathname: '/authenticate',
-                state: {
-                    from: state.command.next
-                }
-            }
-        }/>
-    );
-    return ComponentOrRedirect;
-};
-
 let MatchWhenAuthenticated = ({
     component: Component,
     ...rest
 }) => {
-    return (
-        <Match
-            {...rest}
-            component={() => chooseComponentOrRedirect(Component, rest)}
-        />
-    );
+    const dispatch = rest.dispatch;
+    const state = rest.auth;
+
+    if (!state.isAuthenticated) {
+        dispatch(navigate('/authenticate', {from: state.command.next}));
+    }
+    return <Match {...rest} component={Component} />;
 };
 
 MatchWhenAuthenticated = connect(mapStateToProps)(MatchWhenAuthenticated);
