@@ -11,6 +11,7 @@ import Router from './router';
 import App from './controllers/app';
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
+import Students from './controllers/students';
 import { MatchWhenAuthenticated } from './components/router';
 
 firebase.start();
@@ -25,6 +26,9 @@ ReactDOM.render(
                 <MatchWhenAuthenticated
                     pattern="/courses"
                     component={Courses} />
+                <MatchWhenAuthenticated
+                    pattern="/students"
+                    component={Students} />
             </App>
         </Router>
     </Provider>,

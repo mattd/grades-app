@@ -1,44 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Match } from 'react-router';
-
-import { navigate } from '../../action-creators/router';
+import { Match, Redirect } from 'react-router';
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth,
-        router: state.router
+        auth: state.auth
     };
 };
 
-class MatchWhenAuthenticated extends React.Component {
-    navigateConditionally() {
-        const { auth, router, dispatch, pattern } = this.props;
+const chooseComponentOrRedirect = (Component, props) => {
+    const { auth } = props;
+    const ComponentOrRedirect = (
+        auth.isAuthenticated ?
+        <Component {...props} /> :
+        // TODO: Figure out how to handle last path redirection.
+        <Redirect to="/authenticate" />
+    );
+    return ComponentOrRedirect;
+};
 
-        if (
-            !auth.isAuthenticated &&
-            router.location.pathname === pattern
-        ) {
-            dispatch(navigate('/authenticate', {from: auth.command.next}));
-        }
-    }
-
-    componentDidMount() {
-        this.navigateConditionally();
-    }
-
-    componentDidUpdate() {
-        this.navigateConditionally();
-    }
-
-    render() {
-        const { auth } = this.props;
-
-        if (auth.isAuthenticated) {
-            return <Match {...this.props} />;
-        }
-        return null;
-    }
+const MatchWhenAuthenticated = ({
+    component: Component,
+    ...rest
+}) => {
+    return (
+        <Match
+            {...rest}
+            component={() => chooseComponentOrRedirect(Component, rest)}
+        />
+    );
 };
 
 export default connect(mapStateToProps)(MatchWhenAuthenticated);

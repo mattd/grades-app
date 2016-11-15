@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import _ from 'firebase/auth';
+import { Link } from 'react-router';
 
 import {
     authStatusUpdated,
@@ -22,8 +23,6 @@ const mapStateToProps = (state) => {
 
 class App extends React.Component {
     constructor(props) {
-        window.dispatch = props.dispatch;
-        window.navigate = navigate;
         super(props);
 
         this.provider = new firebase.auth.GoogleAuthProvider();
@@ -48,7 +47,11 @@ class App extends React.Component {
         const { auth, dispatch } = this.props;
 
         if (auth.transitioned && auth.isAuthenticated) {
-            dispatch(navigate(auth.command.next || '/courses'));
+            dispatch(
+                navigate({
+                    pathname: auth.command.next || '/courses'
+                })
+            );
         }
     }
 
@@ -87,8 +90,25 @@ class App extends React.Component {
     }
 
     renderApp() {
+        // TODO: Make nav a separate component.
         return (
             <div>
+                <Link to="/" activeClassName="active">
+                    Home
+                </Link>
+                //
+                <Link to="/courses" activeClassName="active">
+                    Courses
+                </Link>
+                //
+                <Link to="/students" activeClassName="active">
+                    Students
+                </Link>
+                //
+                <Link to="/authenticate" activeClassName="active">
+                    Authenticate
+                </Link>
+
                 <h2>Grades App</h2>
                 {this.props.children}
                 <AuthLink />

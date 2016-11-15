@@ -1,10 +1,7 @@
-export const navigate = (pathname, state, action = 'PUSH') => {
+export const navigate = (location, action = 'PUSH') => {
     return {
         type: 'NAVIGATE',
-        location: {
-            pathname,
-            state
-        },
+        location,
         action
     };
 };
