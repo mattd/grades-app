@@ -12,6 +12,7 @@ import {
 import { profileUpdated } from '../action-creators/profile';
 import { navigate } from '../action-creators/router';
 
+import MainNav from '../components/main-nav';
 import { AuthLink } from '../components/auth';
 import Loading from '../components/loading';
 
@@ -90,28 +91,14 @@ class App extends React.Component {
     }
 
     renderApp() {
-        // TODO: Make nav a separate component.
         return (
             <div>
-                <Link to="/" activeClassName="active">
-                    Home
-                </Link>
-                //
-                <Link to="/courses" activeClassName="active">
-                    Courses
-                </Link>
-                //
-                <Link to="/students" activeClassName="active">
-                    Students
-                </Link>
-                //
-                <Link to="/authenticate" activeClassName="active">
-                    Authenticate
-                </Link>
-
-                <h2>Grades App</h2>
-                {this.props.children}
-                <AuthLink />
+                <MainNav />
+                <div className="content">
+                    <h2>Grades App</h2>
+                    {this.props.children}
+                    <AuthLink />
+                </div>
             </div>
         );
     }
