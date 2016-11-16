@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import _ from 'firebase/auth';
+import { Link } from 'react-router';
 
 import {
     authStatusUpdated,
@@ -9,7 +10,9 @@ import {
     authCommandSuccessful
 } from '../action-creators/auth';
 import { profileUpdated } from '../action-creators/profile';
+import { navigate } from '../action-creators/router';
 
+import MainNav from '../components/main-nav';
 import { AuthLink } from '../components/auth';
 import Loading from '../components/loading';
 
@@ -42,10 +45,14 @@ class App extends React.Component {
     }
 
     navigateAfterAuthChange() {
-        const { auth, router } = this.props;
+        const { auth, dispatch } = this.props;
 
         if (auth.transitioned && auth.isAuthenticated) {
-            router.transitionTo(auth.command.next || '/courses');
+            dispatch(
+                navigate({
+                    pathname: auth.command.next || '/courses'
+                })
+            );
         }
     }
 
@@ -86,9 +93,12 @@ class App extends React.Component {
     renderApp() {
         return (
             <div>
-                <h2>Grades App</h2>
-                {this.props.children}
-                <AuthLink />
+                <MainNav />
+                <div className="content">
+                    <h2>Grades App</h2>
+                    {this.props.children}
+                    <AuthLink />
+                </div>
             </div>
         );
     }
