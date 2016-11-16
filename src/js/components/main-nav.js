@@ -11,9 +11,9 @@ const MainNav = () => {
     return (
         <nav>
             <ul>
-                {links.map(link => {
+                {links.map((link, index) => {
                     return (
-                        <li>
+                        <li key={index}>
                             <Link
                                 to={link.pathname}
                                 activeOnlyWhenExact={link.exact}
