@@ -8,13 +8,13 @@ import {
     authStatusUpdated,
     authStatusReady,
     authCommandSuccessful
-} from '../action-creators/auth';
-import { profileUpdated } from '../action-creators/profile';
-import { navigate } from '../action-creators/router';
+} from './action-creators/auth';
+import { profileUpdated } from './action-creators/profile';
+import { navigate } from './action-creators/router';
 
-import MainNav from '../components/main-nav';
-import { AuthLink } from '../components/auth';
-import Loading from '../components/loading';
+import MainNav from './components/main-nav';
+import { AuthLink } from './components/auth';
+import Loading from './components/loading';
 
 const mapStateToProps = (state) => {
     return {
