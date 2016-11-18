@@ -3,9 +3,9 @@
     "name": "ENWR 1506 - 10597",
     "students": [
         {
-            "first_name": "John",
-            "middle_name": "",
-            "last_name": "Doe",
+            "firstName": "John",
+            "middleName": "",
+            "lastName": "Doe",
             "id": "f3311ba2-a1ed-11e6-80f5-76304dec7eb7"
         }
     ],
@@ -17,7 +17,7 @@
                     "student": "f3311ba2-a1ed-11e6-80f5-76304dec7eb7",
                     "grade": "B-",
                     "notes": "",
-                    "time_remaining": 22
+                    "timeRemaining": 22
                 }
             ]
         }

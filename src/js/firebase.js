@@ -1,4 +1,6 @@
 import firebase from 'firebase/app';
+import * as _auth from 'firebase/auth';
+import * as _database from 'firebase/database';
 
 const start = () => {
     const config = {

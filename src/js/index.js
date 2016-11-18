@@ -15,10 +15,12 @@ import Courses from './controllers/courses';
 import Students from './controllers/students';
 import { MatchWhenAuthenticated } from './components/router';
 
+const store = StoreFactory();
+
 firebase.start();
 
 ReactDOM.render(
-    <Provider store={StoreFactory()}>
+    <Provider store={store}>
         <Router>
             <Auth>
                 <App>
@@ -38,3 +40,5 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
+window.store = store;

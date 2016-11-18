@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
-import _ from 'firebase/auth';
 
 import {
     authStatusUpdated,
@@ -22,7 +21,7 @@ const mapStateToProps = (state) => {
 class Auth extends React.Component {
     constructor(props) {
         super(props);
-
+        window.dispatch = this.props.dispatch;
         this.provider = new firebase.auth.GoogleAuthProvider();
 
         firebase.auth().onAuthStateChanged(
@@ -89,19 +88,6 @@ class Auth extends React.Component {
 
     renderChildren() {
         return this.props.children;
-    }
-
-    renderApp() {
-        return (
-            <div>
-                <MainNav />
-                <div className="content">
-                    <h2>Grades App</h2>
-                    {this.props.children}
-                    <AuthLink />
-                </div>
-            </div>
-        );
     }
 
     renderLoading() {
