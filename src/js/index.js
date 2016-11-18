@@ -9,18 +9,18 @@ import firebase from './firebase';
 import StoreFactory from './store-factory';
 import Router from './router';
 import App from './app';
-import DAO from './dao';
+import Auth from './auth';
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
 import Students from './controllers/students';
 import { MatchWhenAuthenticated } from './components/router';
 
 firebase.start();
-window.store = StoreFactory();
+
 ReactDOM.render(
-    <Provider store={window.store}>
+    <Provider store={StoreFactory()}>
         <Router>
-            <DAO>
+            <Auth>
                 <App>
                     <Match
                         pattern="/authenticate"
@@ -33,7 +33,7 @@ ReactDOM.render(
                         component={Students} />
 
                 </App>
-            </DAO>
+            </Auth>
         </Router>
     </Provider>,
     document.getElementById('root')

@@ -1,96 +1,41 @@
 import React from 'react';
+import firebase from 'firebase/app';
+import _ from 'firebase/database';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
-import _ from 'firebase/auth';
-import { Link } from 'react-router';
-
-import {
-    authStatusUpdated,
-    authStatusReady,
-    authCommandSuccessful
-} from './action-creators/auth';
-import { profileUpdated } from './action-creators/profile';
-import { navigate } from './action-creators/router';
 
 import MainNav from './components/main-nav';
 import { AuthLink } from './components/auth';
-import Loading from './components/loading';
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth
+        profile: state.profile
     };
 };
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.provider = new firebase.auth.GoogleAuthProvider();
-
-        firebase.auth().onAuthStateChanged(
-            this.respondToAuthChange.bind(this)
-        );
+    handleTeacherDetailUpdates(snapshot) {
+        console.log(snapshot.val());
     }
 
-    respondToAuthChange(user) {
-        const { dispatch } = this.props;
-
-        dispatch(authStatusUpdated(user));
-        if (user) {
-            dispatch(profileUpdated(user));
-        }
-        dispatch(authStatusReady());
-        this.navigateAfterAuthChange();
+    openTeacherDetailUpdatesConnection(uid) {
+        const ref = firebase.database().ref('/teachers/' + uid);
+        ref.on('value', this.handleTeacherDetailUpdates);
     }
 
-    navigateAfterAuthChange() {
-        const { auth, dispatch } = this.props;
+    guardTeacherDetailUpdatesConnection(nextProps) {
+        const currentProfile = this.props.profile;
+        const nextProfile = nextProps.profile;
 
-        if (auth.transitioned && auth.isAuthenticated) {
-            dispatch(
-                navigate({
-                    pathname: auth.command.next || '/courses'
-                })
-            );
+        if (nextProfile.uid && (currentProfile.uid !== nextProfile.uid)) {
+            this.openTeacherDetailUpdatesConnection(nextProfile.uid);
         }
     }
 
-    handleAuthCommandResult(promise) {
-        const { dispatch } = this.props;
-
-        promise.then(() => {
-            dispatch(authCommandSuccessful(true));
-        }).catch(error => {
-            dispatch(authCommandSuccessful(false));
-        });
+    componentWillReceiveProps(nextProps) {
+        this.guardTeacherDetailUpdatesConnection(nextProps);
     }
 
-    signIn() {
-        this.handleAuthCommandResult(
-            firebase.auth().signInWithPopup(this.provider)
-        );
-    }
-
-    signOut() {
-        this.handleAuthCommandResult(
-            firebase.auth().signOut()
-        );
-    }
-
-    componentDidUpdate() {
-        const { auth } = this.props;
-
-        if (!auth.transitioned) {
-            if (auth.command.type === 'sign-in') {
-                this.signIn();
-            } else if (auth.command.type === 'sign-out') {
-                this.signOut();
-            }
-        }
-    }
-
-    renderApp() {
+    render() {
         return (
             <div>
                 <MainNav />
@@ -102,20 +47,6 @@ class App extends React.Component {
             </div>
         );
     }
-
-    renderLoading() {
-        return <Loading />;
-    }
-
-    render() {
-        const { auth } = this.props;
-
-        if (auth.ready) {
-            return this.renderApp();
-        } else {
-            return this.renderLoading();
-        }
-    }
-};
+}
 
 export default connect(mapStateToProps)(App);
