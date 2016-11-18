@@ -11,7 +11,8 @@
     "react-redux": "^4.4.5",
     "react-router": "^4.0.0-alpha.5",
     "react-router-addons-controlled": "0.0.1",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "ava": "^0.16.0",
