@@ -2,13 +2,16 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "id": {
+    "uid": {
       "type": "string"
     },
     "displayName": {
       "type": "string"
     },
-    "timer_default": {
+    "photoURL": {
+      "type": "string"
+    },
+    "timerDefault": {
       "type": "integer"
     },
     "terms": {

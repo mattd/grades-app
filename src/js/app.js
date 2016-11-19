@@ -15,7 +15,20 @@ const mapStateToProps = (state) => {
 class App extends React.Component {
     componentWillMount() {
         const { dispatch, profile } = this.props;
-        dispatch(subscribeToOrCreateTeacher(profile.uid));
+
+        if (profile.uid) {
+            dispatch(subscribeToOrCreateTeacher(profile.uid));
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const currentProfile = this.props.profile;
+        const nextProfile = nextProps.profile;
+        const { dispatch } = this.props;
+
+        if (nextProfile.uid && (currentProfile.uid !== nextProfile.uid)) {
+            dispatch(subscribeToOrCreateTeacher(nextProfile.uid));
+        }
     }
 
     render() {

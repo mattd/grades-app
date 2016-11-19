@@ -6,12 +6,19 @@ const getTeacherRef = (uid) => {
     return firebase.database().ref('/teachers/' + uid);
 };
 
-const createTeacher = (profile) => {
-    return (dispatch) => {
+export const createAndSubscribeToTeacher = (profile) => {
+    return (dispatch, getState) => {
+        const ref = getTeacherRef(profile.uid);
+        const { teacher } = getState();
+        ref.set({
+            ...teacher,
+            ...profile
+        });
+        dispatch(subscribeToTeacher(profile.uid));
     };
 };
 
-const subscribeToTeacher = (uid) => {
+export const subscribeToTeacher = (uid) => {
     return (dispatch) => {
         const ref = getTeacherRef(uid);
         ref.on('value', (snapshot) => {
@@ -22,7 +29,7 @@ const subscribeToTeacher = (uid) => {
     };
 };
 
-const subscribeToOrCreateTeacher = (uid) => {
+export const subscribeToOrCreateTeacher = (uid) => {
     return (dispatch, getState) => {
         const ref = getTeacherRef(uid);
         ref.once('value').then(snapshot => {
@@ -31,10 +38,8 @@ const subscribeToOrCreateTeacher = (uid) => {
             if (teacher) {
                 dispatch(subscribeToTeacher(uid));
             } else {
-                dispatch(createTeacher(profile));
+                dispatch(createAndSubscribeToTeacher(profile));
             }
         });
     };
 };
-
-export { createTeacher, subscribeToTeacher, subscribeToOrCreateTeacher };

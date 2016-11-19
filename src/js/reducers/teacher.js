@@ -1,10 +1,11 @@
 const teacher = (
     state = {
         displayName: null,
-        id: null,
-        image: null,
-        terms: [],
-        timerDefault: null
+        uid: null,
+        photoURL: null,
+        email: null,
+        terms: null,
+        timerDefault: 900
     },
     action
 ) => {
