@@ -1,9 +1,10 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import BrowserRouter from 'react-router-addons-controlled/ControlledBrowserRouter';
 
 import history from './history';
-import { navigate } from './action-creators/router';
+import * as routerSyncActionCreators from './action-creators/sync/router';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,14 +13,22 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: {
+            sync: bindActionCreators(routerSyncActionCreators, dispatch)
+        }
+    };
+};
+
 class Router extends React.Component {
     onChange(location, action) {
-        const { dispatch } = this.props;
+        const { actions } = this.props;
 
         if (action === 'SYNC') {
-            dispatch(navigate(location, this.props.action));
+            actions.sync.navigate(location, this.props.action);
         } else {
-            dispatch(navigate(location, action));
+            actions.sync.navigate(location, action);
         }
     }
 
@@ -37,4 +46,4 @@ class Router extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(Router);
+export default connect(mapStateToProps, mapDispatchToProps)(Router);

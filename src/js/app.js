@@ -1,7 +1,8 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { subscribeToOrCreateTeacher } from './thunks/teacher';
+import * as teacherAsyncActionCreators from './action-creators/async/teacher';
 
 import MainNav from './components/main-nav';
 import { AuthLink } from './components/auth';
@@ -12,22 +13,30 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: {
+            async: bindActionCreators(teacherAsyncActionCreators, dispatch)
+        }
+    };
+};
+
 class App extends React.Component {
     componentWillMount() {
-        const { dispatch, profile } = this.props;
+        const { actions, profile } = this.props;
 
         if (profile.uid) {
-            dispatch(subscribeToOrCreateTeacher(profile.uid));
+            actions.async.subscribeToOrCreateTeacher(profile.uid);
         }
     }
 
     componentWillReceiveProps(nextProps) {
         const currentProfile = this.props.profile;
         const nextProfile = nextProps.profile;
-        const { dispatch } = this.props;
+        const { actions } = this.props;
 
         if (nextProfile.uid && (currentProfile.uid !== nextProfile.uid)) {
-            dispatch(subscribeToOrCreateTeacher(nextProfile.uid));
+            actions.async.subscribeToOrCreateTeacher(nextProfile.uid);
         }
     }
 
@@ -45,4 +54,4 @@ class App extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

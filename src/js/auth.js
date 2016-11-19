@@ -1,14 +1,11 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
-import {
-    authStatusUpdated,
-    authStatusReady,
-    authCommandSuccessful
-} from './action-creators/auth';
-import { profileUpdated } from './action-creators/profile';
-import { navigate } from './action-creators/router';
+import * as authSyncActionCreators from './action-creators/sync/auth';
+import * as profileSyncActionCreators from './action-creators/sync/profile';
+import * as routerSyncActionCreators from './action-creators/sync/router';
 
 import Loading from './components/loading';
 
@@ -18,10 +15,22 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: {
+            sync: bindActionCreators({
+                ...authSyncActionCreators,
+                ...profileSyncActionCreators,
+                ...routerSyncActionCreators
+            }, dispatch)
+        }
+    };
+};
+
 class Auth extends React.Component {
     constructor(props) {
         super(props);
-        window.dispatch = this.props.dispatch;
+
         this.provider = new firebase.auth.GoogleAuthProvider();
 
         firebase.auth().onAuthStateChanged(
@@ -30,35 +39,33 @@ class Auth extends React.Component {
     }
 
     respondToAuthChange(user) {
-        const { dispatch } = this.props;
+        const { actions } = this.props;
 
-        dispatch(authStatusUpdated(user));
+        actions.sync.authStatusUpdated(user);
         if (user) {
-            dispatch(profileUpdated(user));
+            actions.sync.profileUpdated(user);
         }
-        dispatch(authStatusReady());
+        actions.sync.authStatusReady();
         this.navigateAfterAuthChange();
     }
 
     navigateAfterAuthChange() {
-        const { auth, dispatch } = this.props;
+        const { auth, actions } = this.props;
 
         if (auth.transitioned && auth.isAuthenticated) {
-            dispatch(
-                navigate({
-                    pathname: auth.command.next || '/courses'
-                })
-            );
+            actions.sync.navigate({
+                pathname: auth.command.next || '/courses'
+            })
         }
     }
 
     handleAuthCommandResult(promise) {
-        const { dispatch } = this.props;
+        const { actions } = this.props;
 
         promise.then(() => {
-            dispatch(authCommandSuccessful(true));
+            actions.sync.authCommandSuccessful(true);
         }).catch(error => {
-            dispatch(authCommandSuccessful(false));
+            actions.sync.authCommandSuccessful(false);
         });
     }
 
@@ -105,4 +112,4 @@ class Auth extends React.Component {
     }
 };
 
-export default connect(mapStateToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

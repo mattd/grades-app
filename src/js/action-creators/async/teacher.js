@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-import { teacherUpdated } from '../action-creators/teacher';
+import { teacherUpdated } from '../sync/teacher';
 
 const getTeacherRef = (uid) => {
     return firebase.database().ref('/teachers/' + uid);

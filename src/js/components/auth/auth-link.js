@@ -1,7 +1,8 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { signOut, signIn } from '../../action-creators/auth';
+import * as authSyncActionCreators from '../../action-creators/sync/auth';
 import Link from '../link';
 
 const mapStateToProps = (state) => {
@@ -11,18 +12,26 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: {
+            sync: bindActionCreators(authSyncActionCreators, dispatch)
+        }
+    }
+};
+
 const mergeProps = (stateProps, dispatchProps) => {
-    const { dispatch } = dispatchProps;
+    const { actions } = dispatchProps;
     return {
         ...stateProps,
         onClick: () => {
             if (stateProps.isAuthenticated) {
-                dispatch(signOut());
+                actions.sync.signOut();
             } else {
-                dispatch(signIn());
+                actions.sync.signIn();
             }
         }
     };
 };
 
-export default connect(mapStateToProps, null, mergeProps)(Link);
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Link);
