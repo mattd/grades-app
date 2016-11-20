@@ -2,22 +2,16 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "id": {
+    "uid": {
       "type": "string"
     },
-    "first_name": {
+    "displayName": {
       "type": "string"
     },
-    "middle_name": {
+    "photoURL": {
       "type": "string"
     },
-    "last_name": {
-      "type": "string"
-    },
-    "image": {
-      "type": "string"
-    },
-    "timer_default": {
+    "timerDefault": {
       "type": "integer"
     },
     "terms": {
@@ -43,7 +37,6 @@
   },
   "required": [
     "id",
-    "first_name",
-    "last_name"
+    "displayName"
   ]
 }
