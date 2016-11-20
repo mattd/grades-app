@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as authSyncActionCreators from '../../action-creators/sync/auth';
+import * as authActionCreators from '../../action-creators/auth';
 import Link from '../link';
 
 const mapStateToProps = (state) => {
@@ -14,21 +14,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: {
-            sync: bindActionCreators(authSyncActionCreators, dispatch)
-        }
+        actionCreators: bindActionCreators(authActionCreators, dispatch)
     }
 };
 
 const mergeProps = (stateProps, dispatchProps) => {
-    const { actions } = dispatchProps;
+    const { actionCreators } = dispatchProps;
     return {
         ...stateProps,
         onClick: () => {
             if (stateProps.isAuthenticated) {
-                actions.sync.signOut();
+                actionCreators.signOut();
             } else {
-                actions.sync.signIn();
+                actionCreators.signIn();
             }
         }
     };

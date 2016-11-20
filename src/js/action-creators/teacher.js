@@ -1,9 +1,19 @@
-import firebase from 'firebase';
+import { getTeacherRef } from '../services/teacher';
 
-import { teacherUpdated } from '../sync/teacher';
+export const teacherUpdated = (payload) => {
+    return {
+        type: 'TEACHER_UPDATED',
+        payload
+    };
+};
 
-const getTeacherRef = (uid) => {
-    return firebase.database().ref('/teachers/' + uid);
+export const subscribeToTeacher = (uid) => {
+    return (dispatch) => {
+        const ref = getTeacherRef(uid);
+        ref.on('value', (snapshot) => {
+            dispatch(teacherUpdated(snapshot.val()))
+        });
+    };
 };
 
 export const createAndSubscribeToTeacher = (profile) => {
@@ -15,17 +25,6 @@ export const createAndSubscribeToTeacher = (profile) => {
             ...profile
         });
         dispatch(subscribeToTeacher(profile.uid));
-    };
-};
-
-export const subscribeToTeacher = (uid) => {
-    return (dispatch) => {
-        const ref = getTeacherRef(uid);
-        ref.on('value', (snapshot) => {
-            dispatch(
-                teacherUpdated(snapshot.val())
-            )
-        });
     };
 };
 

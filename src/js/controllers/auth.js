@@ -3,11 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
-import * as authSyncActionCreators from './action-creators/sync/auth';
-import * as profileSyncActionCreators from './action-creators/sync/profile';
-import * as routerSyncActionCreators from './action-creators/sync/router';
+import * as authActionCreators from '../action-creators/auth';
+import * as profileActionCreators from '../action-creators/profile';
+import * as routerActionCreators from '../action-creators/router';
 
-import Loading from './components/loading';
+import Loading from '../components/loading';
 
 const mapStateToProps = (state) => {
     return {
@@ -17,13 +17,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: {
-            sync: bindActionCreators({
-                ...authSyncActionCreators,
-                ...profileSyncActionCreators,
-                ...routerSyncActionCreators
-            }, dispatch)
-        }
+        actionCreators: bindActionCreators({
+            ...authActionCreators,
+            ...profileActionCreators,
+            ...routerActionCreators
+        }, dispatch)
     };
 };
 
@@ -39,33 +37,33 @@ class Auth extends React.Component {
     }
 
     respondToAuthChange(user) {
-        const { actions } = this.props;
+        const { actionCreators } = this.props;
 
-        actions.sync.authStatusUpdated(user);
+        actionCreators.authStatusUpdated(user);
         if (user) {
-            actions.sync.profileUpdated(user);
+            actionCreators.profileUpdated(user);
         }
-        actions.sync.authStatusReady();
+        actionCreators.authStatusReady();
         this.navigateAfterAuthChange();
     }
 
     navigateAfterAuthChange() {
-        const { auth, actions } = this.props;
+        const { auth, actionCreators } = this.props;
 
         if (auth.transitioned && auth.isAuthenticated) {
-            actions.sync.navigate({
+            actionCreators.navigate({
                 pathname: auth.command.next || '/courses'
             })
         }
     }
 
     handleAuthCommandResult(promise) {
-        const { actions } = this.props;
+        const { actionCreators } = this.props;
 
         promise.then(() => {
-            actions.sync.authCommandSuccessful(true);
+            actionCreators.authCommandSuccessful(true);
         }).catch(error => {
-            actions.sync.authCommandSuccessful(false);
+            actionCreators.authCommandSuccessful(false);
         });
     }
 

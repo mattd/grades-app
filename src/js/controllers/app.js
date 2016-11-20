@@ -2,10 +2,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as teacherAsyncActionCreators from './action-creators/async/teacher';
+import * as teacherActionCreators from '../action-creators/teacher';
 
-import MainNav from './components/main-nav';
-import { AuthLink } from './components/auth';
+import MainNav from '../components/main-nav';
+import { AuthLink } from '../components/auth';
 
 const mapStateToProps = (state) => {
     return {
@@ -15,28 +15,26 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: {
-            async: bindActionCreators(teacherAsyncActionCreators, dispatch)
-        }
+        actionCreators: bindActionCreators(teacherActionCreators, dispatch)
     };
 };
 
 class App extends React.Component {
     componentWillMount() {
-        const { actions, profile } = this.props;
+        const { actionCreators, profile } = this.props;
 
         if (profile.uid) {
-            actions.async.subscribeToOrCreateTeacher(profile.uid);
+            actionCreators.subscribeToOrCreateTeacher(profile.uid);
         }
     }
 
     componentWillReceiveProps(nextProps) {
         const currentProfile = this.props.profile;
         const nextProfile = nextProps.profile;
-        const { actions } = this.props;
+        const { actionCreators } = this.props;
 
         if (nextProfile.uid && (currentProfile.uid !== nextProfile.uid)) {
-            actions.async.subscribeToOrCreateTeacher(nextProfile.uid);
+            actionCreators.subscribeToOrCreateTeacher(nextProfile.uid);
         }
     }
 
