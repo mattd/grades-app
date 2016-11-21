@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import auth from './reducers/auth';
 import profile from './reducers/profile';
 import teacher from './reducers/teacher';
+import ui from './reducers/ui';
 import router from './reducers/router';
 
 const StoreFactory = () => {
@@ -12,6 +13,7 @@ const StoreFactory = () => {
             auth,
             profile,
             teacher,
+            ui,
             router
         }),
         applyMiddleware(thunk)

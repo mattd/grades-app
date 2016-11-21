@@ -9,7 +9,8 @@ import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
 import Students from './controllers/students';
 
-import AppBar from './components/app-bar';
+import MainBar from './components/main-bar';
+import MainDrawer from './components/main-drawer';
 import { MatchWhenAuthenticated } from './components/router';
 
 const mapStateToProps = (state) => {
@@ -46,7 +47,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <AppBar />
+                <MainBar />
+                <MainDrawer />
                 <Match
                     pattern="/authenticate"
                     component={Authenticate} />
