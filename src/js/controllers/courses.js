@@ -1,11 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const Courses = () => (
-    <div>
-        <p>Courses</p>
-        <RaisedButton label="Default" />
-    </div>
-);
+const Courses = () => <p>Courses</p>;
 
 export default Courses;

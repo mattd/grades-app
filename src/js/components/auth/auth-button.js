@@ -1,14 +1,14 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import FlatButton from 'material-ui/FlatButton';
 
 import * as authActionCreators from '../../actions/creators/auth';
-import Link from '../link';
 
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        children: state.auth.isAuthenticated ? 'Sign Out' : 'Sign In'
+        label: state.auth.isAuthenticated ? 'Sign Out' : 'Sign In'
     };
 };
 
@@ -18,11 +18,12 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-const mergeProps = (stateProps, dispatchProps) => {
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const { actionCreators } = dispatchProps;
     return {
-        ...stateProps,
-        onClick: () => {
+        ...ownProps,
+        label: stateProps.label,
+        onTouchTap: () => {
             if (stateProps.isAuthenticated) {
                 actionCreators.signOut();
             } else {
@@ -32,4 +33,8 @@ const mergeProps = (stateProps, dispatchProps) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Link);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+    mergeProps
+)(FlatButton);
