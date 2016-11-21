@@ -1,0 +1,188 @@
+/*------------------------------------*\
+    #TABLES
+
+    Based on: https://github.com/inuitcss/objects.tables
+    Forked version: 0.2.1
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$table-padding: $base-spacing-unit;
+$table-padding-sizes: (
+    null: $table-padding,
+    'cosy': halve($table-padding),
+    'compact': quarter($table-padding)
+) !default;
+
+$table-border-width: 1px !default;
+$table-border-style: solid !default;
+
+// Set to false to only invoke table styling manually.
+$table-auto-apply: true !default;
+
+
+@mixin table-padding($padding) {
+    th,
+    td {
+        padding: $padding;
+    }
+}
+
+/**
+ * Table sizes.
+ */
+
+@each $size, $padding in $table-padding-sizes {
+    @if ($size == null) {
+        %table {
+            @include table-padding($padding);
+        }
+
+        @if ($argan-enable-classes == true) {
+            .table {
+                @extend %table;
+            }
+        }
+
+        @if ($table-auto-apply == true) {
+            table {
+                @extend %table;
+            }
+        }
+    } @else {
+        %table--#{$size} {
+            @include table-padding($padding);
+        }
+
+        @if ($argan-enable-classes == true) {
+            .table--#{$size} {
+                @extend %table--#{$size};
+            }
+        }
+    }
+}
+
+
+/**
+ * Make tables full-width.
+ */
+
+@mixin table--full {
+    width: 100%;
+}
+
+%table--full {
+    @include table--full;
+}
+
+@if ($argan-enable-classes == true) {
+    .table--full {
+        @extend %table--full;
+    }
+}
+
+
+/**
+ * Force tables into having equal-width columns.
+ */
+
+@mixin table--fixed {
+    table-layout: fixed;
+}
+
+%table--fixed {
+    @include table--fixed;
+}
+
+@if ($argan-enable-classes == true) {
+    .table--fixed {
+        @extend %table--fixed;
+    }
+}
+
+
+/**
+ * Add borders around all `table` cells.
+ */
+@mixin table--cells(
+    $border-width: $table-border-width,
+    $border-color: $table-border-color
+) {
+    th,
+    td {
+        border: $border-width $table-border-style $border-color;
+    }
+}
+
+%table--cells {
+    @include table--cells;
+}
+
+@if ($argan-enable-classes == true) {
+    .table--cells {
+        @extend %table--cells;
+    }
+}
+
+
+/**
+ * Add borders only to `table` rows.
+ */
+@mixin table--rows(
+    $border-width: $table-border-width,
+    $border-color: $table-border-color
+) {
+    border-top: $border-width $table-border-style $border-color;
+
+    &,
+    th,
+    td {
+        border: none;
+    }
+
+    th,
+    td {
+        border-bottom: $border-width $table-border-style $border-color;
+    }
+}
+
+%table--rows {
+    @include table--rows;
+}
+
+@if ($argan-enable-classes == true) {
+    .table--rows {
+        @extend %table--rows;
+    }
+}
+
+
+/**
+ * Add borders only to `table` columns.
+ */
+@mixin table--columns(
+    $border-width: $table-border-width,
+    $border-color: $table-border-color
+) {
+    border-left: $border-width $table-border-style $border-color;
+
+    &,
+    th,
+    td {
+        border: none;
+    }
+
+    th,
+    td {
+        border-right: $border-width $table-border-style $border-color;
+    }
+}
+
+%table--columns {
+    @include table--columns;
+}
+
+@if ($argan-enable-classes == true) {
+    .table--columns {
+        @extend %table--columns;
+    }
+}

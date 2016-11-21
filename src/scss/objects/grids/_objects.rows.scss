@@ -1,0 +1,127 @@
+/*------------------------------------*\
+    #GRID-ROWS
+
+    Bottom margins are not currently added automatically; check out
+    tools.margins and tools.responsive-spacing for some helpers.
+
+    Adapted (somewhat) from:
+    https://github.com/zurb/foundation-sites/blob/v6.3/scss/grid/_row.scss
+    https://github.com/zurb/foundation-sites/blob/v6.3/scss/grid/_flex-grid.scss
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$argan-enable-row-classes: $argan-enable-classes !default;
+$argan-enable-row-flex-classes: $argan-enable-classes !default;
+$argan-enable-row-behavior-classes: $argan-enable-classes !default;
+
+$row-behavior-options: (
+    'nest': 'nest',
+    'collapse': 'collapse',
+    'nest-collapse': 'nest collapse'
+) !default;
+
+
+// Gutter can be passed as a map of breakpoint keys and values.
+@mixin grid-row-nest($gutter: $grid-gutter-spacing) {
+    @if type-of($gutter) == 'map' {
+        @each $breakpoint, $value in $gutter {
+            $margin: halve($value) * -1;
+
+            @if ($breakpoint == null) {
+                margin-right: $margin;
+                margin-left: $margin;
+            } @else {
+                @include media-query($breakpoint) {
+                    margin-right: $margin;
+                    margin-left: $margin;
+                }
+            }
+        }
+    } @else if type-of($gutter) == 'number' and to-number($gutter) > 0 {
+        $margin: halve($gutter) * -1;
+        margin-right: $margin;
+        margin-left: $margin;
+    }
+}
+
+// Behavior options: 
+// - `nest` indicates the row will be placed inside another row.
+// - `collapse` indicates that the columns inside this row will not have padding.
+// - `nest collapse` combines both behaviors.
+//
+// Gutter: can be passed as a map of breakpoint keys and values.
+@mixin row(
+    $behavior: null,
+    $max-width: $desk-width,
+    $gutter: $grid-gutter-spacing
+) {
+    @include clearfix;
+
+    @if index($behavior, 'nest') != null {
+        @include grid-row-nest($gutter);
+
+        @if index($behavior, 'collapse') != null {
+            margin-right: 0;
+            margin-left: 0;
+        }
+    } @else {
+        max-width: $max-width;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+
+%row {
+    @include row;
+}
+
+
+@if ($argan-enable-row-classes == true) {
+    .row {
+        @extend %row;
+    }
+}
+
+
+// Behavior options: 
+// - `nest` indicates the row will be placed inside another row.
+// - `collapse` indicates that the columns inside this row will not have padding.
+// - `nest collapse` combines both behaviors.
+//
+// Gutter: can be passed as a map of breakpoint keys and values.
+@mixin row--flex(
+    $behavior: null,
+    $max-width: $desk-width,
+    $gutter: $grid-gutter-spacing
+) {
+    @include row($behavior, $max-width, $gutter);
+    display: flex;
+    flex-flow: row wrap;
+}
+
+
+%row--flex {
+    @include row--flex;
+}
+
+
+@if ($argan-enable-row-flex-classes == true) {
+    .row--flex {
+        @extend %row--flex;
+    }
+}
+
+
+
+@each $alias, $value in $row-behavior-options {
+    %row--#{$alias} {
+        @include row($value);
+    }
+
+    @if ($argan-enable-row-behavior-classes == true) {
+        .row--#{$alias} {
+            @extend %row--#{$alias};
+        }
+    }
+}

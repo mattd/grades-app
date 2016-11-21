@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    #PATHS
+\*------------------------------------*/
+
+@function is-absolute($path) {
+    @return str-slice($path, 0, 1) == '/';
+}
+
+@function image-url($path) {
+    @if (is-absolute($path)) {
+        @return url($path);
+    } @else {
+        @return url('/public/assets/images/' + $path);
+    }
+}

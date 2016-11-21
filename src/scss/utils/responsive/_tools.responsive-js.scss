@@ -1,0 +1,23 @@
+/*------------------------------------*\
+    #RESPONSIVE-JS
+\*------------------------------------*/
+
+/**
+ * Give JS a way to identify CSS-defined breakpoints.
+ * As per: lullabot.com/articles/importing-css-breakpoints-into-javascript.
+ */
+
+@if ($responsive-js-settings == true) {
+    body {
+        &:before {
+            @include media-query(tablet) {
+                display: none;
+                content: 'tablet';
+            }
+            @include media-query(palm) {
+                display: none;
+                content: 'palm';
+            }
+        }
+    }
+}

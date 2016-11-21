@@ -1,0 +1,80 @@
+/*------------------------------------*\
+    #VISIBILITY
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$argan-enable-responsive-show-classes: $argan-enable-classes !default;
+$argan-enable-responsive-hide-classes: $argan-enable-classes !default;
+
+
+%hidden {
+    @include hidden;
+}
+
+@if ($argan-enable-classes == true) {
+    .hidden {
+        @extend %hidden;
+    }
+}
+
+
+%hidden-text {
+    @include hidden-text;
+}
+
+@if ($argan-enable-classes == true) {
+    .hidden-text {
+        @extend %hidden-text;
+    }
+}
+
+
+%screen-reader-text {
+    @include screen-reader-text;
+}
+
+@if ($argan-enable-classes == true) {
+    .screen-reader-text {
+        @extend %screen-reader-text;
+    }
+}
+
+
+/*------------------------------------*\
+    #RESPONSIVE-SHOW
+\*------------------------------------*/
+// For each breakpoint set up a placeholder class that will
+// show the item only for the specified breakpoint
+
+@each $alias, $condition in $breakpoints--loop {
+    %show-for-#{$alias} {
+        @include media-query($alias) {
+            display: inherit;
+        }
+    }
+
+    @if ($argan-enable-responsive-show-classes == true) {
+        .show-for-#{$alias} {
+            @extend %show-for-#{$alias};
+        }
+    }
+}
+
+/*------------------------------------*\
+    #RESPONSIVE-HIDE
+\*------------------------------------*/
+// For each breakpoint set up a placeholder class that will
+// hide the item only for the specified breakpoint
+@each $alias, $condition in $breakpoints--loop {
+    %hide-for-#{$alias} {
+        @include media-query($alias) {
+            display: none;
+        }
+    }
+
+    @if ($argan-enable-responsive-hide-classes == true) {
+        .hide-for-#{$alias} {
+            @extend %hide-for-#{$alias};
+        }
+    }
+}

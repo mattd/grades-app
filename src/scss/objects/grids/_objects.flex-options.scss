@@ -1,0 +1,95 @@
+/*------------------------------------*\
+    #GRID-FLEX-OPTIONS
+
+    Used in conjunction with flexbox helpers in objects.columns and objects.rows.
+    
+    Adapted (somewhat) from:
+    https://github.com/zurb/foundation-sites/blob/v6.3/scss/util/_flex.scss
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$argan-enable-flex-justify-classes: $argan-enable-classes !default;
+$argan-enable-flex-align-classes: $argan-enable-classes !default;
+
+$flex-justify-options: (
+    'left': flex-start,
+    'right': flex-end,
+    'center': center,
+    'justify': space-between,
+    'spaced': space-around
+) !default;
+
+$flex-align-options: (
+    'top': flex-start,
+    'bottom': flex-end,
+    'middle': center,
+    'center': center,
+    'stretch': stretch
+) !default;
+
+
+@mixin flex-order($order: 0) {
+    order: $order;
+}
+
+@mixin flex-justify($x: null) {
+    @if $x {
+        @if map-has-key($flex-justify-options, $x) {
+            justify-content: map-get($flex-justify-options, $x);
+        }
+    }
+}
+
+@mixin flex-align($y: null) {
+    @if $y {
+        @if map-has-key($flex-align-options, $y) {
+            align-items: map-get($flex-align-options, $y);
+        }
+    }
+}
+
+@mixin flex-align-self($y: null) {
+    @if $y {
+        @if map-has-key($flex-align-options, $y) {
+            align-self: map-get($flex-align-options, $y);
+        }
+    }
+}
+
+@mixin flex-justify-align($x: null, $y: null) {
+    @include flex-justify($x);
+    @include flex-align($y);
+}
+
+
+@each $alias, $value in $flex-justify-options {
+    %flex-justify--#{$alias} {
+        @include flex-justify($alias);
+    }
+
+    @if ($argan-enable-flex-justify-classes == true) {
+        .flex-justify--#{$alias} {
+            @extend %flex-justify--#{$alias};
+        }
+    }
+}
+
+@each $alias, $value in $flex-align-options {
+    %flex-align--#{$alias} {
+        @include flex-align($alias);
+    }
+
+    %flex-align-self--#{$alias} {
+        @include flex-align-self($alias);
+    }
+
+    @if ($argan-enable-flex-align-classes == true) {
+        .flex-align--#{$alias} {
+            @extend %flex-align--#{$alias};
+        }
+
+        .flex-align-self--#{$alias} {
+            @extend %flex-align-self--#{$alias};
+        }
+    }
+}

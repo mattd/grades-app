@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    #ICONS
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+
+/**
+ * Generic icon helpers.
+ */
+
+@mixin icon-base {
+    display: inline-block;
+    content: ' ';
+    vertical-align: middle;
+}
+
+@mixin icon($path, $width, $height) {
+    @include icon-base;
+    width: $width;
+    height: $height;
+    background: image-url($path) no-repeat;
+    background-size: 100% auto;
+    cursor: pointer;
+}
+
+@mixin svg-replace-img($path, $width, $height) {
+    display: inline-block;
+    width: $width;
+    height: $height;
+    background: image-url($path) center center no-repeat;
+    background-size: 100% auto;
+
+    img {
+        visibility: hidden;
+    }
+}

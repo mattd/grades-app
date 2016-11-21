@@ -1,0 +1,87 @@
+/*------------------------------------*\
+    #TYPOGRAPHY
+\*------------------------------------*/
+
+@function responsive-font-base($breakpoint) {
+    @return map-get($base-font-sizes, $breakpoint);
+}
+
+@mixin font-family($font-family, $font-weight: $font-weight-primary, $font-style: $font-style-primary) {
+    font-family: $font-family;
+    font-style: $font-style;
+    font-weight: $font-weight;
+}
+
+@mixin responsive-font-size($fs-map, $line-height: auto) {
+    $saved-font-size: $base-font-size;
+    $fs-font-base: $base-font-size;
+
+    // Loop through each responsive base font size.
+    @each $breakpoint, $value in $base-font-sizes {
+        // Find the matching base font size for the breakpoint.
+        $fs-font-base: responsive-font-base($breakpoint);
+
+        // Check if there is a matching breakpoint in the font map passed to the
+        // mixin.
+        @if map-has-key($fs-map, $breakpoint) {
+            // If there is a match, save it in case other breakpoints don't have
+            // a specified size. For example, tablet and palm might be the same.
+            $saved-font-size: map-get($fs-map, $breakpoint);
+
+            @if ($breakpoint == null) {
+                // If no media query, use default values.
+                @include argan-font-size($saved-font-size, $line-height);
+            } @else {
+                // Wrap font function in the appropriate media query and pass in
+                // the correct base font size.
+                @include media-query($breakpoint) {
+                    @include argan-font-size($saved-font-size, $line-height, $fs-font-base);
+                }
+            }
+        } @else {
+            // If no matching breakpoint in the specified font map, use whatever
+            // the last known font size was. Wrap font function in the
+            // appropriate media query and pass in the correct base font size.
+            @include media-query($breakpoint) {
+                @include argan-font-size($saved-font-size, $line-height, $fs-font-base);
+            }
+        }
+    }
+}
+
+@mixin argan-font-size($font-size, $line-height: auto, $font-base: $base-font-size) {
+    font-size: $font-size;
+    font-size: ($font-size / $font-base) * 1rem;
+
+    @if $line-height == auto {
+        line-height: ceil($font-size / $base-line-height) * ($base-line-height / $font-size);
+    } @else {
+        @if (type-of($line-height) == number or $line-height == inherit or $line-height == normal) {
+            line-height: $line-height;
+        } @elseif ($line-height != none and $line-height != false) {
+            @warn '‘#{$line-height}’ is not a valid value for `line-height`.'
+        }
+    }
+}
+
+
+@mixin truncate-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin emphasis {
+    @extend %bold-font;
+    text-transform: uppercase;
+}
+
+
+@mixin text-shadow(
+    $offset-x: $text-shadow-offset-x,
+    $offset-y: $text-shadow-offset-y,
+    $blur: $text-shadow-blur,
+    $color: $color-text-shadow
+) {
+    text-shadow: $offset-x $offset-y $blur $color-text-shadow;
+}

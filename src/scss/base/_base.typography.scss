@@ -1,0 +1,54 @@
+/*------------------------------------*\
+    #TYPOGRAPHY
+\*------------------------------------*/
+
+/**
+ * High-, page-level styling.
+ *
+ * 1. Set the default `font-size` and `line-height` for the entire project,
+ *    sourced from our default variables. The `font-size` is calculated to exist
+ *    in ems, the `line-height` is calculated to exist unitlessly.
+ * 2. Fonts on OSX will look more consistent with other systems that do not
+ *    render text using sub-pixel anti-aliasing.
+ * 3. Prevent certain mobile browsers from automatically zooming fonts.
+ */
+html {
+    font-family: $font-family-primary;
+    font-size: ($base-font-size / 16px) * 1em; /* [1] */
+    font-weight: $font-weight-primary;
+    line-height: $base-line-height / $base-font-size; /* [1] */
+
+    -webkit-font-smoothing: antialiased; /* [2] */
+    -moz-osx-font-smoothing: grayscale; /* [2] */
+
+    text-size-adjust: 100%; /* [3] */
+
+    @include media-query(tablet) {
+        font-size: $base-font-size-tablet; /* [1] */
+    }
+
+    @include media-query(palm) {
+        font-size: $base-font-size-palm; /* [1] */
+    }
+}
+
+
+
+/**
+ * Headings 1–6.
+ *
+ * All set to the same size based on this reasoning:
+ * http://csswizardry.com/2016/02/managing-typography-on-large-apps/
+ *
+ * Blogs or documentation-heavy projects might want to use more traditional
+ * sizing.
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @include responsive-font-size($base-font-sizes, 1.2);
+}

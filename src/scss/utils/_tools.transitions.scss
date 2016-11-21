@@ -1,0 +1,94 @@
+/*------------------------------------*\
+    #TRANSITIONS
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$transition-speed: 0.5s !default;
+$transition-speed--fast: 0.25s !default;
+$transition-speed--faster: 0.15s !default;
+
+$fade-in-speed: 500ms !default;
+$fade-out-speed: 500ms !default;
+
+
+@mixin bg-change($speed: $transition-speed--faster, $easing: ease-in-out) {
+    transition: background #{$speed} $easing;
+}
+
+%bg-change {
+    @include bg-change;
+}
+
+@mixin color-change($speed: $transition-speed--faster, $easing: ease-in) {
+    transition: color #{$speed} $easing;
+}
+
+%color-change {
+    transition: color #{$transition-speed--faster} ease-in;
+}
+
+%fading {
+    transition: opacity #{$transition-speed} ease-in;
+}
+
+%fade-slow-enter {
+    opacity: 0.01;
+
+    &.fade-slow-enter-active {
+        transition: opacity #{$fade-in-speed} ease-in;
+        opacity: 1;
+    }
+}
+
+%fade-slow-leave {
+    opacity: 1;
+
+    &.fade-slow-leave-active {
+        transition: opacity #{$fade-out-speed} ease-in;
+        opacity: 0.01;
+    }
+}
+
+%sliding {
+    transform: translateX(-100%);
+}
+
+%spinning {
+    animation: spin #{$transition-speed} linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@if ($argan-enable-classes == true) {
+    .bg-change {
+        @extend %bg-change;
+    }
+
+    .color-change {
+        @extend %color-change;
+    }
+
+    .fading {
+        @extend %fading;
+    }
+
+    .fade-slow-enter {
+        @extend %fade-slow-enter;
+    }
+
+    .fade-slow-leave {
+        @extend %fade-slow-leave;
+    }
+
+    .sliding {
+        @extend %sliding;
+    }
+
+    .spinning {
+        @extend %spinning;
+    }
+}
