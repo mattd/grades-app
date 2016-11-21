@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as authActionCreators from '../../action-creators/auth';
+import * as authActionCreators from '../../actions/creators/auth';
 import Link from '../link';
 
 const mapStateToProps = (state) => {

@@ -1,3 +1,5 @@
+import { TEACHER_UPDATED } from '../actions/types/teacher';
+
 const teacher = (
     state = {
         displayName: null,
@@ -10,7 +12,7 @@ const teacher = (
     action
 ) => {
     switch (action.type) {
-        case 'TEACHER_UPDATED':
+        case TEACHER_UPDATED:
             return {
                 ...state,
                 ...action.payload

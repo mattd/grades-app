@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
-import * as authActionCreators from './action-creators/auth';
-import * as profileActionCreators from './action-creators/profile';
-import * as routerActionCreators from './action-creators/router';
+import * as authActionCreators from './actions/creators/auth';
+import * as profileActionCreators from './actions/creators/profile';
+import * as routerActionCreators from './actions/creators/router';
 
 import Loading from './components/loading';
 

@@ -1,8 +1,9 @@
-import { getTeacherRef } from '../services/teacher';
+import { TEACHER_UPDATED } from '../types/teacher';
+import { getTeacherRef } from '../../services/teacher';
 
 export const teacherUpdated = (payload) => {
     return {
-        type: 'TEACHER_UPDATED',
+        type: TEACHER_UPDATED,
         payload
     };
 };

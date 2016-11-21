@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Match } from 'react-router';
 
-import * as teacherActionCreators from './action-creators/teacher';
+import * as teacherActionCreators from './actions/creators/teacher';
 
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
