@@ -3,11 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
-import * as authActionCreators from '../action-creators/auth';
-import * as profileActionCreators from '../action-creators/profile';
-import * as routerActionCreators from '../action-creators/router';
+import * as authActionCreators from './action-creators/auth';
+import * as profileActionCreators from './action-creators/profile';
+import * as routerActionCreators from './action-creators/router';
 
-import Loading from '../components/loading';
+import Loading from './components/loading';
 
 const mapStateToProps = (state) => {
     return {

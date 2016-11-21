@@ -1,11 +1,17 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Match } from 'react-router';
 
-import * as teacherActionCreators from '../action-creators/teacher';
+import * as teacherActionCreators from './action-creators/teacher';
 
-import MainNav from '../components/main-nav';
-import { AuthLink } from '../components/auth';
+import Authenticate from './controllers/authenticate';
+import Courses from './controllers/courses';
+import Students from './controllers/students';
+
+import MainNav from './components/main-nav';
+import { MatchWhenAuthenticated } from './components/router';
+import { AuthLink } from './components/auth';
 
 const mapStateToProps = (state) => {
     return {
@@ -44,7 +50,15 @@ class App extends React.Component {
                 <MainNav />
                 <div className="content">
                     <h2>Grades App</h2>
-                    {this.props.children}
+                    <Match
+                        pattern="/authenticate"
+                        component={Authenticate} />
+                    <MatchWhenAuthenticated
+                        pattern="/courses"
+                        component={Courses} />
+                    <MatchWhenAuthenticated
+                        pattern="/students"
+                        component={Students} />
                     <AuthLink />
                 </div>
             </div>
