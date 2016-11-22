@@ -8,7 +8,7 @@ import { navigate } from './actions/creators/router';
 
 const mapStateToProps = (state) => {
     return {
-        router: state.router
+        state: state.router
     };
 };
 
@@ -20,25 +20,25 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const onChange = (actionCreators, router, location, action) => {
+const onChange = (actionCreators, state, location, action) => {
     if (action === 'SYNC') {
-        actionCreators.navigate(location, router.action);
+        actionCreators.navigate(location, state.action);
     } else {
         actionCreators.navigate(location, action);
     }
 };
 
 const Router = ({
-    router,
+    state,
     actionCreators,
     children
 }) => {
     return (
         <BrowserRouter
             history={history}
-            location={router.location}
-            action={router.action}
-            onChange={onChange.bind(null, actionCreators, router)}
+            location={state.location}
+            action={state.action}
+            onChange={onChange.bind(null, actionCreators, state)}
         >
             {children}
         </BrowserRouter>
