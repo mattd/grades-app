@@ -6,6 +6,9 @@ import {
     AUTH_STATUS_READY
 } from '../types/auth';
 
+import { flushProfile } from '../creators/profile';
+import { flushTeacher } from '../creators/teacher';
+
 export const authStatusUpdated = (user) => {
     return {
         type: AUTH_STATUS_UPDATED,
@@ -45,5 +48,12 @@ export const signOut = () => {
     return {
         type: AUTH_COMMAND,
         command: 'sign-out'
+    };
+};
+
+export const flushData = () => {
+    return (dispatch, getState) => {
+        dispatch(flushProfile());
+        dispatch(flushTeacher());
     };
 };

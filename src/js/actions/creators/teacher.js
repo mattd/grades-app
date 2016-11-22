@@ -1,10 +1,16 @@
-import { TEACHER_UPDATED } from '../types/teacher';
+import { TEACHER_UPDATED, TEACHER_FLUSH } from '../types/teacher';
 import { getTeacherRef } from '../../services/teacher';
 
 export const teacherUpdated = (payload) => {
     return {
         type: TEACHER_UPDATED,
         payload
+    };
+};
+
+export const flushTeacher = () => {
+    return {
+        type: TEACHER_FLUSH
     };
 };
 

@@ -1,8 +1,10 @@
 import * as R from 'ramda';
 
-import { PROFILE_UPDATED } from '../actions/types/profile';
+import { PROFILE_UPDATED, PROFILE_FLUSH } from '../actions/types/profile';
 
-const profile = (state = {}, action) => {
+const initialState = {};
+
+const profile = (state = initialState, action) => {
     switch (action.type) {
         case PROFILE_UPDATED:
             return {
@@ -11,6 +13,10 @@ const profile = (state = {}, action) => {
                     ['email', 'displayName', 'photoURL', 'uid'],
                     action.profile
                 )
+            };
+        case PROFILE_FLUSH:
+            return {
+                ...initialState
             };
         default:
             return state;

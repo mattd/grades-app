@@ -1,1 +1,2 @@
 export const TEACHER_UPDATED = 'TEACHER_UPDATED';
+export const TEACHER_FLUSH = 'TEACHER_FLUSH';

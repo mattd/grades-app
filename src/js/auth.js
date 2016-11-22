@@ -6,7 +6,8 @@ import firebase from 'firebase';
 import {
     authStatusUpdated,
     authStatusReady,
-    authCommandSuccessful
+    authCommandSuccessful,
+    flushData
 } from './actions/creators/auth';
 import { profileUpdated } from './actions/creators/profile';
 import { navigate } from './actions/creators/router';
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch) => {
             authStatusUpdated,
             authStatusReady,
             authCommandSuccessful,
+            flushData,
             profileUpdated,
             navigate
         }, dispatch)
@@ -63,26 +65,25 @@ class Auth extends React.Component {
         }
     }
 
-    handleAuthCommandResult(promise) {
+    signIn() {
         const { actionCreators } = this.props;
 
-        promise.then(() => {
+        firebase.auth().signInWithPopup(this.provider).then(() => {
             actionCreators.authCommandSuccessful(true);
         }).catch(error => {
             actionCreators.authCommandSuccessful(false);
         });
     }
 
-    signIn() {
-        this.handleAuthCommandResult(
-            firebase.auth().signInWithPopup(this.provider)
-        );
-    }
-
     signOut() {
-        this.handleAuthCommandResult(
-            firebase.auth().signOut()
-        );
+        const { actionCreators } = this.props;
+
+        firebase.auth().signOut().then(() => {
+            actionCreators.authCommandSuccessful(true);
+            actionCreators.flushData();
+        }).catch(error => {
+            actionCreators.authCommandSuccessful(false);
+        });
     }
 
     componentDidUpdate() {

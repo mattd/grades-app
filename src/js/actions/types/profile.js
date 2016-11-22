@@ -1,1 +1,2 @@
 export const PROFILE_UPDATED = 'PROFILE_UPDATED';
+export const PROFILE_FLUSH = 'PROFILE_FLUSH';
