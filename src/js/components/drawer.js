@@ -5,7 +5,7 @@ import Drawer from 'material-ui/Drawer';
 
 import * as uiActionCreators from '../actions/creators/ui';
 
-import MainMenu from './main-menu';
+import NavList from './nav-list';
 
 const mapStateToProps = (state) => {
     return {
@@ -30,7 +30,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                 open={drawerOpen}
                 onRequestChange={actionCreators.toggleDrawer}
             >
-                <MainMenu />
+                <NavList />
             </Drawer>
         );
     }
