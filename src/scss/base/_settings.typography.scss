@@ -1,0 +1,78 @@
+/*------------------------------------*\
+    #TYPOGRAPHY
+\*------------------------------------*/
+
+$base-font-size:          16px !default;
+$base-font-size-tablet:   16px !default;
+$base-font-size-palm:     16px !default;
+$base-line-height:        22px !default;
+
+// Defined from general to specific. (Keep in mind that they could cascade.)
+$base-font-sizes: (
+    null: $base-font-size,
+    'tablet-landscape': $base-font-size,
+    'tablet': $base-font-size-tablet,
+    'palm-landscape': $base-font-size-tablet,
+    'palm': $base-font-size-palm
+) !default;
+
+/**
+ * Font families.
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i');
+
+$sans-font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+$font-family-primary: $sans-font-family !default;
+$font-family-bold: $sans-font-family !default;
+$font-family-secondary: $sans-font-family !default;
+
+$font-weight-primary: 400 !default;
+$font-weight-bold: 700 !default;
+$font-weight-secondary: 500 !default;
+
+$font-style-primary: normal !default;
+$font-style-bold: normal !default;
+$font-style-secondary: italic !default;
+
+$text-shadow-offset-x: 0 !default;
+$text-shadow-offset-y: 2px !default;
+$text-shadow-blur: 6px !default;
+
+
+/**
+ * Headings 1–6.
+ */
+
+$alpha-font-base: 30px !default;
+$beta-font-base: 30px !default;
+$gamma-font-base: 18px !default;
+$delta-font-base: 16px !default;
+$epsilon-font-base: 14px !default;
+$zeta-font-base: 12px !default;
+
+
+$alpha-font-sizes: (
+    null: $alpha-font-base
+) !default;
+
+$beta-font-sizes: (
+    null: $beta-font-base
+) !default;
+
+$gamma-font-sizes: (
+    null: $gamma-font-base
+) !default;
+
+$delta-font-sizes: (
+    null: $delta-font-base
+) !default;
+
+$epsilon-font-sizes: (
+    null: $epsilon-font-base
+) !default;
+
+$zeta-font-sizes: (
+    null: $zeta-font-base
+) !default;

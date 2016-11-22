@@ -2,6 +2,7 @@ import test from 'ava';
 import deepFreeze from 'deep-freeze';
 
 import auth from 'reducers/auth';
+import { AUTH_STATUS_UPDATED } from 'actions/types/auth';
 
 test(
     'isAuthenticated defaults to false',
@@ -18,7 +19,7 @@ test(
     'isAuthenticated is true after authenticated true is sent',
     t => {
         const action = {
-            type: 'AUTH_STATUS_UPDATED',
+            type: AUTH_STATUS_UPDATED,
             authenticated: true
         };
         const stateBefore = {isAuthenticated: false};
@@ -34,7 +35,7 @@ test(
     'isAuthenticated is false after authenticated false is sent',
     t => {
         const action = {
-            type: 'AUTH_STATUS_UPDATED',
+            type: AUTH_STATUS_UPDATED,
             authenticated: false
         };
         const stateBefore = {isAuthenticated: true};

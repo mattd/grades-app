@@ -1,0 +1,1 @@
+export const TEACHER_UPDATED = 'TEACHER_UPDATED';

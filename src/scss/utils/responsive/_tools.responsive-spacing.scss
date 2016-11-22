@@ -1,0 +1,30 @@
+/*------------------------------------*\
+    #RESPONSIVE-SPACING
+\*------------------------------------*/
+
+// $rule: CSS rule to print before the computed pixel value(s)
+// $px: shorthand list of value(s) '0 20px 30px 0' or map of values and
+// breakpoints
+@mixin responsive-rule($rule, $px) {
+    @if type-of($px) == 'map' {
+        @each $breakpoint, $px-value in $px {
+            @if ($breakpoint == null) {
+                #{$rule}: $px-value;
+            } @else {
+                @include media-query($breakpoint) {
+                    #{$rule}: $px-value;
+                }
+            }
+        }
+    } @else {
+        #{$rule}: $px;
+    }
+}
+
+@mixin padding($px) {
+    @include responsive-rule('padding', $px);
+}
+
+@mixin margin($px) {
+    @include responsive-rule('margin', $px);
+}

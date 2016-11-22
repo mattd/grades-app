@@ -1,4 +1,5 @@
 import history from '../history';
+import { NAVIGATE } from '../actions/types/router';
 
 const router = (
     state = {
@@ -7,7 +8,7 @@ const router = (
     },
     action
 ) => {
-    if (action.type === 'NAVIGATE') {
+    if (action.type === NAVIGATE) {
         return {
             ...state,
             location: action.location,

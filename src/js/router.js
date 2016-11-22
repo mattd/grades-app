@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import BrowserRouter from 'react-router-addons-controlled/ControlledBrowserRouter';
 
 import history from './history';
-import * as routerActionCreators from './action-creators/router';
+import * as routerActionCreators from './actions/creators/router';
 
 const mapStateToProps = (state) => {
     return {

@@ -1,0 +1,25 @@
+/*------------------------------------*\
+    #ASPECT-RATIO
+\*------------------------------------*/
+
+// Uses a Chris Coyier approach linked here: http://bit.ly/1WORCU2
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+
+    &:before {
+        display: block;
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+        content: '';
+    }
+
+    & > * {
+        &:first-child {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    }
+}

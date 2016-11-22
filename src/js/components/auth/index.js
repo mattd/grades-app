@@ -1,3 +1,3 @@
-import AuthLink from './auth-link';
+import AuthButton from './auth-button';
 
-export { AuthLink };
+export { AuthButton };

@@ -1,0 +1,11 @@
+/*------------------------------------*\
+    #HEIGHTS
+\*------------------------------------*/
+
+@function calc-line-height($font-size, $line-height: $base-line-height) {
+    @return ceil($font-size / $line-height) * ($line-height / $font-size);
+}
+
+@function calc-font-height($font-size, $line-height: $base-line-height) {
+    @return $font-size * calc-line-height($font-size, $line-height);
+}

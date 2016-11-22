@@ -1,0 +1,65 @@
+/*------------------------------------*\
+    #SETTINGS-RESPONSIVE
+\*------------------------------------*/
+
+$mobile-first: false !default;
+$responsive-js-settings: true !default;
+
+// Hold our breakpoint aliases and conditions in a list.
+//
+// These can be invoked later on via the `media-query()` mixin found in
+// `_tools.responsive`.
+// e.g. @include media-query(tablet) {}
+
+$palm-width: 414px !default;
+$tablet-width: 768px !default;
+$desk-width: 1100px !default;
+
+$palm-width-max: ($palm-width - 1px);
+$tablet-width-max: ($tablet-width - 1px);
+$desk-width-max: ($desk-width - 1px);
+
+$breakpoints--mobile-last: (
+    'desk':             'screen and (max-width: #{$desk-width-max})',
+    'tablet':           'screen and (max-width: #{$tablet-width-max})',
+    'palm':             'screen and (max-width: #{$palm-width-max})'
+) !default;
+
+$breakpoints--mobile-first: (
+    'palm-and-up':      'screen and (min-width: #{$palm-width})',
+    'tablet-and-up':    'screen and (min-width: #{$tablet-width})',
+    'desk-and-up':      'screen and (min-width: #{$desk-width})'
+) !default;
+
+$breakpoints--exclusionary: (
+    'palm-landscape':   'screen and (min-width: #{$palm-width}) and (max-width: #{$tablet-width-max})',
+    'tablet-landscape': 'screen and (min-width: #{$tablet-width}) and (max-width: #{$desk-width-max})'
+) !default;
+
+$breakpoints--loop: map-merge(
+    $breakpoints--mobile-last,
+    $breakpoints--exclusionary
+) !default;
+
+@if ($mobile-first == true) {
+    $breakpoints--loop: map-merge(
+        $breakpoints--mobile-first,
+        $breakpoints--exclusionary
+    );
+}
+
+
+$breakpoints--all: map-merge(
+    map-merge(
+        $breakpoints--mobile-first,
+        $breakpoints--mobile-last
+    ),
+    $breakpoints--exclusionary
+) !default;
+
+
+$media-queries: map-merge(
+    $breakpoints--all, (
+        'retina': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'
+    )
+) !default;

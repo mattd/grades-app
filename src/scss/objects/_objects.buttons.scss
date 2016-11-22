@@ -1,0 +1,213 @@
+/*------------------------------------*\
+    #BUTTONS
+
+    Based on: https://github.com/inuitcss/objects.buttons
+    Forked version: 0.4.2
+\*------------------------------------*/
+
+/**
+ * A simple button object.
+ */
+
+// Predefine the variables below in order to alter and enable specific features.
+
+$btn-padding: halve($base-spacing-unit) !default;
+$btn-sizes: (
+    null: $btn-padding,
+    'small': halve($btn-padding),
+    'large': double($btn-padding)
+) !default;
+
+$btn-side-multiplier: 2 !default;
+
+// Set to false to only invoke the state manually.
+$btn-auto-states: (
+    'hover': true,
+    'focus': true,
+    'active': true,
+    'disabled': true
+) !default;
+
+$btn-border-width:  1px !default;
+$btn-border-style:  solid !default;
+$btn-radius:        0 !default;
+
+$btn-font-weight: inherit !default;
+
+
+// Subtract the border size from the padding value so that buttons do not grow
+// larger as we add borders.
+@function btn-padding-composed(
+    $padding: $btn-padding,
+    $multiplier: $btn-side-multiplier,
+    $border-width: $btn-border-width
+) {
+    $v-padding: $padding - $border-width;
+    $h-padding: round($padding * $multiplier) - $border-width;
+    @return ($v-padding $h-padding);
+}
+
+
+/**
+ * 1. Allow us to style box model properties.
+ * 2. Line different sized buttons up a little nicer.
+ * 3. Reset/normalize some styles.
+ * 4. Force all button-styled elements to appear clickable.
+ */
+@mixin btn(
+    $background-color: $btn-bg,
+    $padding: $btn-padding,
+    $multiplier: $btn-side-multiplier,
+    $border-width: $btn-border-width,
+    $radius: $btn-radius,
+    $font-weight: $btn-font-weight
+) {
+    display: inline-block; /* [1] */
+    margin: 0; /* [3] */
+    padding: btn-padding-composed($padding, $multiplier, $border-width);
+    background-color: $background-color;
+    color: $btn-color;
+    font-weight: $font-weight;
+    text-align: center; /* [3] */
+    text-decoration: none; /* [4] */
+    cursor: pointer; /* [4] */
+    vertical-align: middle; /* [2] */
+
+    @if ($border-width != 0) {
+        border: $border-width $btn-border-style $btn-border;
+    } @else {
+        border: none; /* [3] */
+    }
+
+    @if ($radius != 0) {
+        border-radius: $radius;
+    }
+}
+
+@mixin btn--resize(
+    $padding: $btn-padding,
+    $multiplier: $btn-side-multiplier,
+    $border-width: $btn-border-width
+) {
+    padding: btn-padding-composed($padding, $multiplier, $border-width);
+}
+
+@mixin btn--reskin(
+    $bg,
+    $color,
+    $border-color
+) {
+    @if ($bg) {
+        background-color: $bg;
+    }
+
+    @if ($color) {
+        color: $color;
+    }
+
+    @if ($border-color) {
+        border-color: $border-color;
+    }
+}
+
+@mixin btn--hover {
+    @include btn--reskin($btn-hover-bg, $btn-hover-color, $btn-hover-border);
+}
+
+@mixin btn--disabled {
+    @include btn--reskin($btn-disabled-bg, $btn-disabled-color, $btn-disabled-border);
+}
+
+
+/**
+ * Regular-sized button.
+ */
+
+%btn {
+    @include btn;
+
+    @each $state, $auto in $btn-auto-states {
+        @if ($auto) {
+            @if ($state == 'hover') {
+                &:hover {
+                    @include btn--hover;
+                }
+            } @else {
+                @if ($state == 'focus') {
+                    &:focus {
+                        @include btn--hover;
+                    }
+                } @else {
+                    @if ($state == 'active') {
+                        &:active {
+                            @include btn--hover;
+                        }
+                    } @else {
+                        &[disabled] {
+                            @include btn--disabled;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+%btn--hover {
+    @include btn--hover;
+}
+
+%btn--disabled {
+    @include btn--disabled;
+}
+
+@if ($argan-enable-classes == true) {
+    .btn {
+        @extend %btn;
+    }
+
+    .btn--hover {
+        @extend %btn--hover;
+    }
+
+    .btn--disabled {
+        @extend %btn--disabled;
+    }
+}
+
+
+/**
+ * Other sizes of buttons.
+ */
+
+@each $size, $padding in $btn-sizes {
+    @if ($size != null) {
+        %btn--#{$size} {
+            @include btn--resize($padding);
+        }
+
+        @if ($argan-enable-classes == true) {
+            .btn--#{$size} {
+                @extend %btn--#{$size};
+            }
+        }
+    }
+}
+
+/**
+ * Full-width buttons.
+ */
+
+@mixin btn--full {
+    width: 100%;
+}
+
+%btn--full {
+    @include btn--full;
+}
+
+@if ($argan-enable-classes == true) {
+    .btn--full {
+        @extend %btn--full;
+    }
+}

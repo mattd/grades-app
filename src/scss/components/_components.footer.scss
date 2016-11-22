@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    #FOOTER
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$footer-font-sizes: (
+    null: $base-font-size
+) !default;
+
+
+.footer {
+    @include responsive-font-size($footer-font-sizes, 1);
+}

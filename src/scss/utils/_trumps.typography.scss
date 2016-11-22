@@ -1,0 +1,122 @@
+/*------------------------------------*\
+    #TYPOGRAPHY
+\*------------------------------------*/
+
+%truncate-text {
+    @include truncate-text;
+}
+
+%emphasis {
+    @include emphasis;
+}
+
+%text-shadow {
+    @include text-shadow;
+}
+
+@if ($argan-enable-classes == true) {
+    .truncate-text {
+        @extend %truncate-text;
+    }
+
+    .emphasis {
+        @extend %emphasis;
+    }
+
+    .text-shadow {
+        @extend %text-shadow;
+    }
+}
+
+
+/**
+ * Font-family overrides.
+ */
+
+%primary-font {
+    @include font-family($font-family-primary);
+}
+
+%bold-font {
+    @include font-family($font-family-bold, $font-weight-bold, $font-style-bold);
+}
+
+%secondary-font {
+    @include font-family($font-family-secondary, $font-weight-secondary, $font-style-secondary);
+}
+
+@if ($argan-enable-classes == true) {
+    .primary-font {
+        @extend %primary-font;
+    }
+
+    .bold-font {
+        @extend %bold-font;
+    }
+
+    .secondary-font {
+        @extend %secondary-font;
+    }
+}
+
+
+/**
+ * Headings 1–6’s corresponding Greek-alphabet abstract classes for double-
+ * stranded heading hierarchy: csswizardry.com/2012/02/pragmatic-practical-font-sizing-in-css
+ *
+ * Use these helper classes to cause other elements to adopt the styling of the
+ * respective heading, e.g.:
+ *
+   <h2 class='alpha'>Lorem ipsum</h2>
+ *
+ */
+
+%alpha {
+    @include responsive-font-size($alpha-font-sizes, 1.2);
+}
+
+%beta {
+    @include responsive-font-size($beta-font-sizes, 1.2);
+}
+
+%gamma {
+    @include responsive-font-size($gamma-font-sizes, 1.2);
+}
+
+%delta {
+    @include responsive-font-size($delta-font-sizes, 1.2);
+}
+
+%epsilon {
+    @include responsive-font-size($epsilon-font-sizes, 1.2);
+}
+
+%zeta {
+    @include responsive-font-size($zeta-font-sizes, 1.2);
+}
+
+@if ($argan-enable-classes == true) {
+    .alpha {
+        @extend %alpha;
+    }
+
+    .beta {
+        @extend %beta;
+    }
+
+    .gamma {
+        @extend %gamma;
+    }
+
+    .delta {
+        @extend %delta;
+    }
+
+    .epsilon {
+        @extend %epsilon;
+    }
+
+    .zeta {
+        @extend %zeta;
+    }
+}

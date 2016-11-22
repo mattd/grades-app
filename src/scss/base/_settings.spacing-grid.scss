@@ -1,0 +1,24 @@
+/*------------------------------------*\
+    #SPACING-GRID
+\*------------------------------------*/
+
+$base-spacing--minimum:            10px !default;
+$base-spacing-unit:                20px !default;
+
+$base-spacing-unit--quarter:       round($base-spacing-unit / 4) !default;
+$base-spacing-unit--half:          round($base-spacing-unit / 2) !default;
+$base-spacing-unit--two-thirds:    round(2 * ($base-spacing-unit / 3)) !default;
+$base-spacing-unit--three-fourths: round(3 * ($base-spacing-unit / 4)) !default;
+$base-spacing-unit--double:        round($base-spacing-unit * 2) !default;
+
+$base-spacing-unit--tiny:          round($base-spacing-unit / 4) !default;
+$base-spacing-unit--small:         round($base-spacing-unit / 2) !default;
+$base-spacing-unit--medium:        round($base-spacing-unit * 1.25) !default;
+$base-spacing-unit--large:         round($base-spacing-unit * 2) !default;
+$base-spacing-unit--huge:          round($base-spacing-unit * 4) !default;
+
+// Grids
+$grid-column-count: 12 !default;
+$grid-gutter-spacing: $base-spacing-unit !default;
+$float-direction: left !default;
+$float-direction--opposite: right !default;

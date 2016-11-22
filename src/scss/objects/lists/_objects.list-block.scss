@@ -1,0 +1,82 @@
+/*------------------------------------*\
+    #LIST-BLOCK
+
+    Based on: https://github.com/inuitcss/objects.list-block
+    Forked version: 0.4.2
+\*------------------------------------*/
+
+/**
+ * The list-block object creates blocky list items out of a `ul` or `ol`.
+ */
+
+// Predefine the variables below in order to alter and enable specific features.
+$list-block-padding: $base-spacing-unit !default;
+$list-block-sizes: (
+    null: $list-block-padding,
+    'tiny': quarter($list-block-padding),
+    'small': halve($list-block-padding),
+    'large': double($list-block-padding),
+    'huge': quadruple($list-block-padding)
+) !default;
+
+
+@mixin list-block-item($padding: map-get($list-block-sizes, null)) {
+    padding: $padding;
+}
+
+@mixin list-block($padding: map-get($list-block-sizes, null)) {
+    margin:  0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+        @include list-block-item($padding);
+    }
+}
+
+
+%list-block-item {
+    @include list-block-item;
+}
+
+%list-block {
+    @include list-block;
+}
+
+
+@if ($argan-enable-classes == true) {
+    .list-block-item {
+        @extend %list-block-item;
+    }
+
+    .list-block {
+        @extend %list-block;
+    }
+}
+
+/**
+ * Other sizes of list blocks.
+ */
+
+@each $size, $padding in $list-block-sizes {
+    @if ($size != null) {
+        %list-block-item--#{$size} {
+            @include list-block-item($padding);
+        }
+
+        %list-block--#{$size} {
+            @include list-block($padding);
+        }
+
+        @if ($argan-enable-classes == true) {
+
+            .list-block-item--#{$size} {
+                @extend %list-block-item--#{$size};
+            }
+
+            .list-block--#{$size} {
+                @extend %list-block--#{$size};
+            }
+        }
+    }
+}

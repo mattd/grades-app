@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    #PAGE
+\*------------------------------------*/
+
+/**
+ * High-, page-level styling.
+ *
+ * 1. Ensure the page always fills at least the entire height of the viewport.
+ * 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
+ *    navigating between pages that do/do not have enough content to produce
+ *    scrollbars naturally.
+ */
+html {
+    height: 100%; /* [1] */
+    min-height: 100%;
+    background-color: $color-bg;
+    color: $color-text;
+    overflow-y: scroll; /* [2] */
+}

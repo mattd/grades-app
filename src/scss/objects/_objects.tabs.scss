@@ -1,0 +1,84 @@
+/*------------------------------------*\
+    #TABS
+
+    Based on: https://github.com/inuitcss/objects.tabs
+    Forked version: 0.2.1
+\*------------------------------------*/
+
+/**
+ * A simple abstraction for making equal-width navigation tabs.
+ *
+ * 1. Tables for layout!
+ * 2. Optionally force the object to be the full width of its parent. Combined
+ *    with [1], this makes the object behave in a quasi-`display: block;` manner.
+ * 3. Reset any residual styles (most likely from lists).
+ */
+@mixin tabs($width: auto) {
+    display: table; /* [1] */
+    width: $width; /* [2] */
+    margin: 0; /* [3] */
+    padding: 0; /* [3] */
+    list-style: none; /* [3] */
+    text-align: center;
+}
+
+@mixin tabs-item {
+    display: table-cell; /* [1] */
+}
+
+@mixin tabs-link {
+    display: block; /* [1] */
+}
+
+
+%tabs {
+    @include tabs;
+}
+
+%tabs--full {
+    @include tabs(100%);
+}
+
+%tabs-item {
+    @include tabs-item;
+}
+
+%tabs-link {
+    @include tabs-link;
+}
+
+@if ($argan-enable-classes == true) {
+    .tabs {
+        @extend %tabs;
+    }
+
+    .tabs--full {
+        @extend %tabs--full;
+    }
+
+    .tabs-item {
+        @extend %tabs-item;
+    }
+
+    .tabs-link {
+        @extend %tabs-link;
+    }
+}
+
+
+/**
+ * Force all `table-cell` children to have equal widths.
+ */
+@mixin tabs--equal {
+    table-layout: fixed;
+}
+
+%tabs--equal {
+    @include tabs--equal;
+}
+
+@if ($argan-enable-classes == true) {
+    .tabs--equal {
+        @extend %tabs--equal;
+    }
+}

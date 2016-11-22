@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    #SCROLLING
+\*------------------------------------*/
+
+%noscroll {
+    overflow: hidden;
+}
+
+@if ($argan-enable-classes == true) {
+    .noscroll {
+        @extend %noscroll;
+    }
+}

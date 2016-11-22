@@ -1,0 +1,26 @@
+/*------------------------------------*\
+    #BOX-SIZING
+    
+    Based on: https://github.com/inuitcss/generic.box-sizing
+    Forked version: 0.2.0
+\*------------------------------------*/
+
+/**
+ * Set the global `box-sizing` state to `border-box`.
+ *
+ * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+ * paulirish.com/2012/box-sizing-border-box-ftw
+ */
+html {
+    box-sizing: border-box;
+}
+
+* {
+
+    &,
+    &:before,
+    &:after {
+        box-sizing: inherit;
+    }
+
+}

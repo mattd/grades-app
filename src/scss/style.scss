@@ -1,22 +1,123 @@
-.content {
-    clear: both;
-    padding-top: 20px;
-}
+/*!
+ * argan, by @willowtreeapps
+ *
+ * github.com/willowtreeapps/argan
+ */
 
-.active {
-    color: red;
-}
+/*------------------------------------*\
+    #INTRODUCTION
+\*------------------------------------*/
 
-h2 {
-    margin-top: 0;
-}
+/*
+NOTE: The directories for /components and /objects can be adjusted, combined,
+renamed, etc, according to your project's structure. You may not prefer
+organizing your styles via directory names that your JS uses, for example.
 
-ul {
-    list-style: none;
-    padding: 0;
-}
+It is strongly recommended to keep /base and /utils however, to aid with
+organizing styles that aren't limited to one particular piece of functionality.
 
-li {
-    float: left;
-    margin-right: 12px;
-}
+/base/ ------- Settings, Generic, and of course Base.
+/objects/ ---- Objects, abstractions, and design patterns.
+/components/ - Organized similarly to JS components.
+/utils/ ------ Tools, Trumps.
+*/
+
+
+/*------------------------------------*\
+    #IMPORTS
+\*------------------------------------*/
+
+// SETTINGS:
+// Sass vars, site-wide settings, config switches, etc.
+@import 'base/settings.argan';
+@import 'base/settings.colors';
+@import 'base/settings.forms';
+@import 'base/settings.responsive';
+@import 'base/settings.spacing-grid';
+@import 'base/settings.typography';
+@import 'base/settings.z-index';
+
+
+// TOOLS:
+// Site-wide mixins and functions.
+@import 'utils/responsive/tools.media-query';
+@import 'utils/responsive/tools.responsive-js';
+@import 'utils/responsive/tools.responsive-spacing';
+
+@import 'utils/functions/tools.conversions';
+@import 'utils/functions/tools.heights';
+@import 'utils/functions/tools.maps';
+@import 'utils/functions/tools.math';
+@import 'utils/functions/tools.paths';
+
+@import 'utils/tools.clearfix';
+@import 'utils/tools.gutters';
+@import 'utils/tools.icons';
+@import 'utils/tools.images';
+@import 'utils/tools.margins';
+@import 'utils/tools.transitions';
+@import 'utils/tools.typography';
+@import 'utils/tools.visibility';
+@import 'utils/tools.widths';
+
+
+// GENERIC:
+// Low-specificity, far-reaching rulesets (e.g. resets).
+@import 'lib/generic.normalize';
+@import 'base/generic.reset';
+@import 'base/generic.box-sizing';
+@import 'base/generic.margins';
+
+
+// BASE:
+// Unclassed HTML elements (e.g. `h2`, `ul`, `a`).
+// Should be sorted alphabetically.
+@import 'base/base.html';
+@import 'base/base.forms';
+@import 'base/base.images';
+@import 'base/base.links';
+@import 'base/base.lists';
+@import 'base/base.typography';
+
+
+// OBJECTS:
+// Objects, abstractions, and design patterns (e.g. .card {}, .table {}).
+// Kept tiny and included (and expanded upon) in components or layouts.
+// Should be sorted alphabetically.
+@import 'objects/objects.buttons';
+@import 'objects/objects.spinners';
+@import 'objects/objects.tables';
+@import 'objects/objects.tabs';
+@import 'objects/grids/objects.columns';
+@import 'objects/grids/objects.flex-options';
+@import 'objects/grids/objects.rows';
+@import 'objects/lists/objects.list-bare';
+@import 'objects/lists/objects.list-block';
+@import 'objects/lists/objects.list-columns';
+@import 'objects/lists/objects.list-inline';
+
+
+// COMPONENTS:
+// Discrete, complete chunks of UI (e.g. .carousel {}).
+// Should be sorted alphabetically unless there are unavoidable dependencies.
+@import 'components/components.footer';
+
+
+// LAYOUT COMPONENTS:
+// Styles specific to certain sections and/or pages.
+// Useful for overrides to small components based on layout-specific situations.
+// Should be sorted alphabetically.
+@import 'components/layouts/components.app';
+@import 'components/layouts/components.detail';
+
+
+// TRUMPS:
+// Major overrides and helpers (e.g. .hidden {}).
+@import 'utils/trumps.gutters';
+@import 'utils/trumps.scrolling';
+@import 'utils/trumps.typography';
+@import 'utils/trumps.visibility';
+@import 'utils/trumps.widths';
+
+// trumps.print: Basic print styles from H5BP.
+@import 'lib/trumps.print';

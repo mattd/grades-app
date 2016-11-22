@@ -1,3 +1,11 @@
+import {
+    AUTH_COMMAND,
+    AUTH_COMMAND_COMPLETED,
+    AUTH_COMMAND_NEXT_PATH,
+    AUTH_STATUS_UPDATED,
+    AUTH_STATUS_READY
+} from '../actions/types/auth';
+
 const command = (
     state = {
         type: undefined,
@@ -7,18 +15,18 @@ const command = (
     action
 ) => {
     switch (action.type) {
-        case 'AUTH_COMMAND':
+        case AUTH_COMMAND:
             return {
                 ...state,
                 type: action.command,
                 success: undefined
             };
-        case 'AUTH_COMMAND_COMPLETED':
+        case AUTH_COMMAND_COMPLETED:
             return {
                 ...state,
                 success: action.success
             };
-        case 'AUTH_COMMAND_NEXT_PATH':
+        case AUTH_COMMAND_NEXT_PATH:
             return {
                 ...state,
                 next: action.next
@@ -38,29 +46,29 @@ const auth = (
     action
 ) => {
     switch (action.type) {
-        case 'AUTH_STATUS_UPDATED':
+        case AUTH_STATUS_UPDATED:
             return {
                 ...state,
                 isAuthenticated: action.authenticated
             };
-        case 'AUTH_STATUS_READY':
+        case AUTH_STATUS_READY:
             return {
                 ...state,
                 ready: true
             };
-        case 'AUTH_COMMAND':
+        case AUTH_COMMAND:
             return {
                 ...state,
                 command: command(state.command, action),
                 transitioned: false
             };
-        case 'AUTH_COMMAND_COMPLETED':
+        case AUTH_COMMAND_COMPLETED:
             return {
                 ...state,
                 command: command(state.command, action),
                 transitioned: true
             };
-        case 'AUTH_COMMAND_NEXT_PATH':
+        case AUTH_COMMAND_NEXT_PATH:
             return {
                 ...state,
                 command: command(state.command, action)

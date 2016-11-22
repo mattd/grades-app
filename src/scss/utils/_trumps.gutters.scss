@@ -1,0 +1,25 @@
+/*------------------------------------*\
+    #GUTTERS
+
+    Adapted from:
+    https://github.com/zurb/foundation-sites/blob/v6.3/scss/grid/_column.scss
+\*------------------------------------*/
+
+%gutters--collapse {
+    @include gutters--collapse;
+}
+
+%gutters--uncollapse {
+    @include gutters--uncollapse;
+}
+
+
+@if ($argan-enable-classes == true) {
+    .gutters--collapse {
+        @extend %gutters--collapse;
+    }
+
+    .gutters--uncollapse {
+        @extend %gutters--uncollapse;
+    }
+}
