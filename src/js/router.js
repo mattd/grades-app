@@ -8,8 +8,7 @@ import { navigate } from './actions/creators/router';
 
 const mapStateToProps = (state) => {
     return {
-        location: state.router.location,
-        action: state.router.action
+        router: state.router
     };
 };
 
@@ -21,29 +20,29 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-class Router extends React.Component {
-    onChange(location, action) {
-        const { actionCreators } = this.props;
-
-        if (action === 'SYNC') {
-            actionCreators.navigate(location, this.props.action);
-        } else {
-            actionCreators.navigate(location, action);
-        }
+const onChange = (actionCreators, router, location, action) => {
+    if (action === 'SYNC') {
+        actionCreators.navigate(location, router.action);
+    } else {
+        actionCreators.navigate(location, action);
     }
+};
 
-    render() {
-        return (
-            <BrowserRouter
-                history={history}
-                location={this.props.location}
-                action={this.props.action}
-                onChange={this.onChange.bind(this)}
-            >
-                {this.props.children}
-            </BrowserRouter>
-        );
-    }
-}
+const Router = ({
+    router,
+    actionCreators,
+    children
+}) => {
+    return (
+        <BrowserRouter
+            history={history}
+            location={router.location}
+            action={router.action}
+            onChange={onChange.bind(null, actionCreators, router)}
+        >
+            {children}
+        </BrowserRouter>
+    );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Router);
