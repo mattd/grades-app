@@ -13,8 +13,11 @@ import App from './app';
 
 firebase.start();
 
+const store = StoreFactory();
+window.store = store;
+
 ReactDOM.render(
-    <Provider store={StoreFactory()}>
+    <Provider store={store}>
         <Router>
             <Auth>
                 <MuiThemeProvider>

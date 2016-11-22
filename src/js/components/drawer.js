@@ -2,9 +2,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
 
 import * as uiActionCreators from '../actions/creators/ui';
+
+import MainMenu from './main-menu';
 
 const mapStateToProps = (state) => {
     return {
@@ -18,20 +19,19 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-class MainDrawer extends React.Component {
-    render() {
-        const { drawerOpen, actionCreators } = this.props;
+export default connect(mapStateToProps, mapDispatchToProps)(
+    ({
+        drawerOpen,
+        actionCreators
+    }) => {
         return (
             <Drawer
                 docked={false}
                 open={drawerOpen}
                 onRequestChange={actionCreators.toggleDrawer}
             >
-                <MenuItem>Item One</MenuItem>
-                <MenuItem>Item Two</MenuItem>
+                <MainMenu />
             </Drawer>
         );
     }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainDrawer);
+);

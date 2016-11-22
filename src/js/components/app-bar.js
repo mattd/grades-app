@@ -13,9 +13,8 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-class MainBar extends React.Component {
-    render() {
-        const { actionCreators } = this.props;
+export default connect(null, mapDispatchToProps)(
+    ({ actionCreators }) => {
         return (
             <AppBar
                 title="Grades App"
@@ -24,6 +23,4 @@ class MainBar extends React.Component {
             />
         );
     }
-}
-
-export default connect(null, mapDispatchToProps)(MainBar);
+);
