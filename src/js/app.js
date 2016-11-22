@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Match } from 'react-router';
 
-import * as teacherActionCreators from './actions/creators/teacher';
+import { subscribeToOrCreateTeacher } from './actions/creators/teacher';
 
 import Authenticate from './controllers/authenticate';
 import Courses from './controllers/courses';
@@ -21,7 +21,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actionCreators: bindActionCreators(teacherActionCreators, dispatch)
+        actionCreators: bindActionCreators({
+            subscribeToOrCreateTeacher
+        }, dispatch)
     };
 };
 

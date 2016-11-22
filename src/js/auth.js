@@ -3,9 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
-import * as authActionCreators from './actions/creators/auth';
-import * as profileActionCreators from './actions/creators/profile';
-import * as routerActionCreators from './actions/creators/router';
+import {
+    authStatusUpdated,
+    authStatusReady,
+    authCommandSuccessful
+} from './actions/creators/auth';
+import { profileUpdated } from './actions/creators/profile';
+import { navigate } from './actions/creators/router';
 
 import Loading from './components/loading';
 
@@ -18,9 +22,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actionCreators: bindActionCreators({
-            ...authActionCreators,
-            ...profileActionCreators,
-            ...routerActionCreators
+            authStatusUpdated,
+            authStatusReady,
+            authCommandSuccessful,
+            profileUpdated,
+            navigate
         }, dispatch)
     };
 };

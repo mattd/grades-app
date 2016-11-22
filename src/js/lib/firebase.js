@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import * as _auth from 'firebase/auth';
 import * as _database from 'firebase/database';
 

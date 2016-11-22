@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import BrowserRouter from 'react-router-addons-controlled/ControlledBrowserRouter';
 
 import history from './history';
-import * as routerActionCreators from './actions/creators/router';
+import { navigate } from './actions/creators/router';
 
 const mapStateToProps = (state) => {
     return {
@@ -15,7 +15,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actionCreators: bindActionCreators(routerActionCreators, dispatch)
+        actionCreators: bindActionCreators({
+            navigate
+        }, dispatch)
     };
 };
 

@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 
-import * as routerActionCreators from '../actions/creators/router';
-import * as uiActionCreators from '../actions/creators/ui';
+import { navigate } from '../actions/creators/router';
+import { toggleDrawer } from '../actions/creators/ui';
 
 const SelectableList = makeSelectable(List);
 
@@ -17,18 +17,18 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actionCreators: bindActionCreators({
-            ...uiActionCreators,
-            ...routerActionCreators
+            toggleDrawer,
+            navigate
         }, dispatch)
     };
 };
 
-const list = [
-    {pathname: '/', title: 'Home'},
-    {pathname: '/courses', title: 'Courses'},
-    {pathname: '/students', title: 'Students'},
-    {pathname: '/authenticate', title: 'Authenticate'},
-];
+const onChange = (actionCreators, event, value) => {
+    actionCreators.navigate({
+        pathname: value
+    });
+    actionCreators.toggleDrawer()
+};
 
 const getListItem = (item, index) => {
     return (
@@ -38,21 +38,20 @@ const getListItem = (item, index) => {
     );
 };
 
-const onChange = function (event, value) {
-    this.actionCreators.navigate({
-        pathname: value
-    });
-    this.actionCreators.toggleDrawer()
-};
-
 const NavList = ({
     pathname,
     actionCreators
 }) => {
+    const list = [
+        {pathname: '/', title: 'Home'},
+        {pathname: '/courses', title: 'Courses'},
+        {pathname: '/students', title: 'Students'},
+        {pathname: '/authenticate', title: 'Authenticate'}
+    ];
     return (
         <SelectableList
             value={pathname}
-            onChange={onChange.bind({actionCreators})}
+            onChange={onChange.bind(null, actionCreators)}
         >
             {list.map(getListItem)}
         </SelectableList>

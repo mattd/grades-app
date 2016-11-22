@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 
-import * as authActionCreators from '../../actions/creators/auth';
+import { signIn, signOut } from '../../actions/creators/auth';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +14,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actionCreators: bindActionCreators(authActionCreators, dispatch)
+        actionCreators: bindActionCreators({
+            signIn,
+            signOut
+        }, dispatch)
     }
 };
 
