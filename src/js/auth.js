@@ -11,6 +11,7 @@ import {
 } from './actions/creators/auth';
 import { profileUpdated } from './actions/creators/profile';
 import { navigate } from './actions/creators/router';
+import { removeDbListeners } from './actions/creators/db';
 
 import Loading from './components/loading';
 
@@ -28,7 +29,8 @@ const mapDispatchToProps = (dispatch) => {
             authCommandSuccessful,
             flushData,
             profileUpdated,
-            navigate
+            navigate,
+            removeDbListeners
         }, dispatch)
     };
 };
@@ -80,6 +82,7 @@ class Auth extends React.Component {
 
         firebase.auth().signOut().then(() => {
             actionCreators.authCommandSuccessful(true);
+            actionCreators.removeDbListeners();
             actionCreators.flushData();
         }).catch(error => {
             actionCreators.authCommandSuccessful(false);

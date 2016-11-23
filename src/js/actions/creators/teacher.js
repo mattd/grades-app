@@ -1,5 +1,6 @@
 import { TEACHER_UPDATED, TEACHER_FLUSH } from '../types/teacher';
-import { getTeacherRef } from '../../services/teacher';
+import { getTeacherRef, getTeacherPath } from '../../services/teacher';
+import { dbListenerAdded } from './db';
 
 export const teacherUpdated = (payload) => {
     return {
@@ -19,6 +20,7 @@ export const subscribeToTeacher = (uid) => {
         const ref = getTeacherRef(uid);
         ref.on('value', (snapshot) => {
             dispatch(teacherUpdated(snapshot.val()))
+            dispatch(dbListenerAdded(getTeacherPath(uid)));
         });
     };
 };
