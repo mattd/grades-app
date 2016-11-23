@@ -2,19 +2,21 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import auth from './reducers/auth';
+import db from './reducers/db';
 import profile from './reducers/profile';
+import router from './reducers/router';
 import teacher from './reducers/teacher';
 import ui from './reducers/ui';
-import router from './reducers/router';
 
 const StoreFactory = () => {
     return createStore(
         combineReducers({
             auth,
+            db,
             profile,
             teacher,
-            ui,
-            router
+            router,
+            ui
         }),
         applyMiddleware(thunk)
     );
