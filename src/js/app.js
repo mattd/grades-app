@@ -27,42 +27,28 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-class App extends React.Component {
-    componentWillMount() {
-        const { actionCreators, profile } = this.props;
-
-        if (profile.uid) {
-            actionCreators.subscribeToOrCreateTeacher(profile.uid);
-        }
+const App = ({
+    profile,
+    actionCreators
+}) => {
+    if (profile.uid) {
+        actionCreators.subscribeToOrCreateTeacher(profile.uid);
     }
-
-    componentWillReceiveProps(nextProps) {
-        const currentProfile = this.props.profile;
-        const nextProfile = nextProps.profile;
-        const { actionCreators } = this.props;
-
-        if (nextProfile.uid && (currentProfile.uid !== nextProfile.uid)) {
-            actionCreators.subscribeToOrCreateTeacher(nextProfile.uid);
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                <AppBar />
-                <Drawer />
-                <Match
-                    pattern="/authenticate"
-                    component={Authenticate} />
-                <MatchWhenAuthenticated
-                    pattern="/courses"
-                    component={Courses} />
-                <MatchWhenAuthenticated
-                    pattern="/students"
-                    component={Students} />
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            <AppBar />
+            <Drawer />
+            <Match
+                pattern="/authenticate"
+                component={Authenticate} />
+            <MatchWhenAuthenticated
+                pattern="/courses"
+                component={Courses} />
+            <MatchWhenAuthenticated
+                pattern="/students"
+                component={Students} />
+        </div>
+    );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
