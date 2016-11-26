@@ -8,14 +8,15 @@ const router = (
     },
     action
 ) => {
-    if (action.type === NAVIGATE) {
-        return {
-            ...state,
-            location: action.location,
-            action: action.action
-        }
-    } else {
-        return state
+    switch (action.type) {
+        case NAVIGATE:
+            return {
+                ...state,
+                location: action.location,
+                action: action.action
+            };
+        default:
+            return state;
     }
 };
 

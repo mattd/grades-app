@@ -1,8 +1,11 @@
 import firebase from 'firebase';
 import * as _auth from 'firebase/auth';
 import * as _database from 'firebase/database';
+import { bindActionCreators } from 'redux';
 
-const start = () => {
+import { respondToAuthChange } from '../actions/creators/auth';
+
+const start = (store) => {
     const config = {
         apiKey: process.env.FIREBASE_API_KEY,
         authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -10,9 +13,14 @@ const start = () => {
         storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
         messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
     };
-    const fb = firebase.initializeApp(config);
 
-    return fb;
+    firebase.initializeApp(config);
+
+    firebase.auth().onAuthStateChanged(
+        bindActionCreators(respondToAuthChange, store.dispatch)
+    );
+
+    return store;
 };
 
-export default { start };
+export { start };
