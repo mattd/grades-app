@@ -20,8 +20,8 @@ export const subscribeToTeacher = (uid) => {
         const ref = getTeacherRef(uid);
         ref.on('value', (snapshot) => {
             dispatch(teacherUpdated(snapshot.val()))
-            dispatch(dbListenerAdded(getTeacherPath(uid)));
         });
+        dispatch(dbListenerAdded(getTeacherPath(uid)));
     };
 };
 

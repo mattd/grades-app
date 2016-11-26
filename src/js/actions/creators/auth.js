@@ -52,7 +52,6 @@ export const signIn = () => {
 
 export const signOut = () => {
     return (dispatch, getState) => {
-        // TODO: Catch the error.
         firebase.auth().signOut().then(() => {
             dispatch(removeDbListeners());
             dispatch(flushData());
