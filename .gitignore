@@ -1,7 +1,9 @@
 node_modules
 npm-debug.log
-config/firebase/dev.js
-config/firebase/prod.js
+config/firebase/local.js
+config/firebase/production.js
+config/firebase/staging.js
 src/static
+public
 .DS_Store
 .screenrc

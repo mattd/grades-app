@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "app-root-path": "^2.0.1",
     "firebase": "^3.5.3",
     "material-ui": "^0.16.4",
     "react": "^15.4.0",
@@ -17,6 +16,7 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
+    "app-root-path": "^2.0.1",
     "ava": "^0.16.0",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.16.0",
@@ -34,6 +34,7 @@
     "eslint": "^3.8.1",
     "eslint-plugin-react": "^6.4.1",
     "express": "^4.14.0",
+    "firebase-tools": "^3.2.0",
     "node-sass": "^3.10.1",
     "ramda": "^0.22.1",
     "react-transform-hmr": "^1.0.4",
@@ -45,9 +46,13 @@
     "webpack-hot-middleware": "^2.13.0"
   },
   "scripts": {
-    "build:webpack": "NODE_ENV=production webpack --config webpack.prod.js",
-    "build": "npm run clean && npm run build:webpack",
+    "build": "npm run clean && NODE_ENV=production webpack --config config/webpack/prod.js",
+    "build:production": "FIREBASE_ENV=production npm run build",
+    "build:staging": "FIREBASE_ENV=staging npm run build",
     "clean": "rm -rf ./src/static",
+    "deploy:production": "npm run package && ./node_modules/.bin/firebase deploy -P production",
+    "deploy:staging": "npm run package && ./node_modules/.bin/firebase deploy -P staging",
+    "package": "cp -R src/index.html src/static public",
     "start": "PORT=3000 node server.js",
     "test": "NODE_PATH=src/js ava",
     "test:watch": "npm test -- --watch"

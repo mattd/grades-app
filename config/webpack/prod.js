@@ -3,8 +3,14 @@ const webpack = require('webpack');
 const base = require('./base');
 const prod = Object.assign({}, base);
 
+const firebase = (
+    process.env.FIREBASE_ENV === 'production' ?
+    require('../firebase/production') :
+    require('../firebase/staging')
+);
+
 const env = Object.assign(
-    require('../firebase/prod'),
+    firebase,
     {NODE_ENV: JSON.stringify('production')}
 );
 

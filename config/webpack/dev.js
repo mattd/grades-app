@@ -4,7 +4,7 @@ const base = require('./base');
 const dev = Object.assign({}, base);
 
 const env = Object.assign(
-    require('../firebase/dev'),
+    require('../firebase/local'),
     {NODE_ENV: JSON.stringify('development')}
 );
 
