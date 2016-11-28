@@ -15,14 +15,14 @@ import { MatchWhenAuthenticated } from './components/router';
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth
+        ready: state.auth.ready
     };
 };
 
 const App = ({
-    auth
+    ready
 }) => {
-    if (!auth.ready) {
+    if (!ready) {
         return <Loading />;
     } else {
         return (
