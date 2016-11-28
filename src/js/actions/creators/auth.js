@@ -65,11 +65,13 @@ export const signOut = () => {
 
 export const navigateAfterAuthChange = () => {
     return (dispatch, getState) => {
-        const { auth } = getState();
-        if (auth.isAuthenticated) {
+        const { isAuthenticated } = getState().auth;
+        const { state, pathname } = getState().router.location;
+
+        if (isAuthenticated && state && state.next !== pathname ) {
             dispatch(
                 navigate({
-                    pathname: auth.next || '/terms'
+                    pathname: state.next || '/terms'
                 })
             );
         }

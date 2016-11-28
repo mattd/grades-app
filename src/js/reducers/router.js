@@ -3,7 +3,10 @@ import { NAVIGATE } from '../actions/types/router';
 
 const router = (
     state = {
-        location: history.location,
+        location: {
+            ...history.location,
+            ...{state: {next: history.location.pathname}}
+        },
         action: history.action
     },
     action
