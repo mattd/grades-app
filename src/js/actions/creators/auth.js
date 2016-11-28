@@ -55,7 +55,8 @@ export const signIn = () => {
         dispatch(toggleAuthTransition());
 
         firebase.auth().signInWithPopup(provider).catch(error => {
-            // TODO: Do something with this error.
+            dispatch(toggleAuthTransition());
+            // TODO: Do something in the UI with this error.
         });
     };
 };
@@ -66,7 +67,7 @@ export const signOut = () => {
             dispatch(removeDbListeners());
             dispatch(flushData());
         }).catch(error => {
-            // TODO: Do something with this error.
+            // TODO: Do something in the UI with this error.
         });
     };
 };
@@ -78,7 +79,7 @@ export const navigateAfterAuthChange = () => {
         if (auth.isAuthenticated && auth.transitioning) {
             dispatch(
                 navigate({
-                    pathname: auth.next || '/courses'
+                    pathname: auth.next || '/terms'
                 })
             );
             dispatch(toggleAuthTransition());

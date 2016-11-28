@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Match } from 'react-router';
+import { Match, Redirect } from 'react-router';
 
 import Authenticate from './controllers/authenticate';
+import Profile from './controllers/profile';
+import Terms from './controllers/terms';
 import Courses from './controllers/courses';
 import Students from './controllers/students';
 
@@ -28,8 +30,18 @@ const App = ({
                 <AppBar />
                 <Drawer />
                 <Match
+                    pattern="/"
+                    exactly
+                    render={() => <Redirect to="/terms" />} />
+                <Match
                     pattern="/authenticate"
                     component={Authenticate} />
+                <MatchWhenAuthenticated
+                    pattern="/profile"
+                    component={Profile} />
+                <MatchWhenAuthenticated
+                    pattern="/terms"
+                    component={Terms} />
                 <MatchWhenAuthenticated
                     pattern="/courses"
                     component={Courses} />

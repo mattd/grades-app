@@ -10,8 +10,11 @@ import StoreFactory from './store-factory';
 import Router from './router';
 import App from './app';
 
+const store = StoreFactory();
+window.store = store;
+
 ReactDOM.render(
-    <Provider store={start(StoreFactory())}>
+    <Provider store={start(store)}>
         <Router>
             <MuiThemeProvider>
                 <App />

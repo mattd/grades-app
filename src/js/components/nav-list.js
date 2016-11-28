@@ -43,10 +43,10 @@ const NavList = ({
     actionCreators
 }) => {
     const list = [
-        {pathname: '/', title: 'Home'},
+        {pathname: '/profile', title: 'Profile'},
+        {pathname: '/terms', title: 'Terms'},
         {pathname: '/courses', title: 'Courses'},
-        {pathname: '/students', title: 'Students'},
-        {pathname: '/authenticate', title: 'Authenticate'}
+        {pathname: '/students', title: 'Students'}
     ];
     return (
         <SelectableList
