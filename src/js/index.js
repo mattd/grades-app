@@ -5,16 +5,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { start } from './lib/firebase';
-import { MuiThemeProvider } from './lib/material-ui';
 import StoreFactory from './store-factory';
 import Router from './router';
+import { MuiThemeProvider } from './lib/material-ui';
 import App from './app';
 
-const store = StoreFactory();
-window.store = store;
-
 ReactDOM.render(
-    <Provider store={start(store)}>
+    <Provider store={start(StoreFactory())}>
         <Router>
             <MuiThemeProvider>
                 <App />

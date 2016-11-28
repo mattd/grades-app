@@ -1,17 +1,12 @@
 import firebase from 'firebase';
 
-import {
-    AUTH_STATUS_UPDATED,
-    AUTH_STATUS_READY,
-    AUTH_TOGGLE_TRANSITION,
-    AUTH_SET_NEXT_PATH
-} from '../types/auth';
+import { AUTH_STATUS_UPDATED, AUTH_STATUS_READY } from '../types/auth';
 
 import { flushProfile } from '../creators/profile';
 import { flushTeacher } from '../creators/teacher';
 import { removeDbListeners } from '../creators/db';
-import { profileUpdated } from '../creators/profile';
 import { navigate } from '../creators/router';
+import { profileUpdated } from '../creators/profile';
 
 export const authStatusUpdated = (user) => {
     return {
@@ -27,20 +22,6 @@ export const authStatusReady = () => {
     };
 };
 
-export const toggleAuthTransition = () => {
-    return {
-        type: AUTH_TOGGLE_TRANSITION
-    };
-};
-
-// TODO: Actually use this somewhere to
-export const setLoginDestination = (destination) => {
-    return {
-        type: AUTH_SET_NEXT_PATH,
-        next: destination
-    };
-};
-
 export const flushData = () => {
     return (dispatch, getState) => {
         dispatch(flushProfile());
@@ -51,11 +32,7 @@ export const flushData = () => {
 export const signIn = () => {
     return (dispatch, getState) => {
         const provider = new firebase.auth.GoogleAuthProvider();
-
-        dispatch(toggleAuthTransition());
-
         firebase.auth().signInWithPopup(provider).catch(error => {
-            dispatch(toggleAuthTransition());
             // TODO: Do something in the UI with this error.
         });
     };
@@ -72,17 +49,17 @@ export const signOut = () => {
     };
 };
 
-
 export const navigateAfterAuthChange = () => {
     return (dispatch, getState) => {
-        const { auth } = getState();
-        if (auth.isAuthenticated && auth.transitioning) {
+        const { isAuthenticated } = getState().auth;
+        const { state } = getState().router.location;
+
+        if (isAuthenticated && state) {
             dispatch(
                 navigate({
-                    pathname: auth.next || '/terms'
+                    pathname: state.next || '/terms'
                 })
             );
-            dispatch(toggleAuthTransition());
         }
     };
 };

@@ -11,7 +11,6 @@ const router = (
     switch (action.type) {
         case NAVIGATE:
             return {
-                ...state,
                 location: action.location,
                 action: action.action
             };

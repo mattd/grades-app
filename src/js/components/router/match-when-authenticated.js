@@ -4,7 +4,8 @@ import { Match, Redirect } from 'react-router';
 
 const mapStateToProps = (state) => {
     return {
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        pathname: state.router.location.pathname
     };
 };
 
@@ -12,8 +13,10 @@ const chooseComponentOrRedirect = (Component, props) => {
     const ComponentOrRedirect = (
         props.isAuthenticated ?
         <Component {...props} /> :
-        // TODO: Figure out how to handle last path redirection.
-        <Redirect to="/authenticate" />
+        <Redirect to={{
+            pathname: "/authenticate",
+            state: {next: props.pathname}
+        }} />
     );
     return ComponentOrRedirect;
 };
