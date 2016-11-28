@@ -1,7 +1,6 @@
 import {
     AUTH_STATUS_UPDATED,
     AUTH_STATUS_READY,
-    AUTH_TOGGLE_TRANSITION,
     AUTH_SET_NEXT_PATH
 } from '../actions/types/auth';
 
@@ -9,7 +8,6 @@ const auth = (
     state = {
         isAuthenticated: false,
         ready: false,
-        transitioning: false,
         nextPath: null
     },
     action
@@ -24,11 +22,6 @@ const auth = (
             return {
                 ...state,
                 ready: true
-            };
-        case AUTH_TOGGLE_TRANSITION:
-            return {
-                ...state,
-                transitioning: !state.transitioning
             };
         case AUTH_SET_NEXT_PATH:
             return {
