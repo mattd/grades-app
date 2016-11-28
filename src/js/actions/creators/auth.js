@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import {
     AUTH_STATUS_UPDATED,
     AUTH_STATUS_READY,
+    AUTH_TOGGLE_TRANSITION,
     AUTH_SET_NEXT_PATH
 } from '../types/auth';
 
@@ -26,7 +27,13 @@ export const authStatusReady = () => {
     };
 };
 
-// TODO: Actually use this somewhere.
+export const toggleAuthTransition = () => {
+    return {
+        type: AUTH_TOGGLE_TRANSITION
+    };
+};
+
+// TODO: Actually use this somewhere to
 export const setLoginDestination = (destination) => {
     return {
         type: AUTH_SET_NEXT_PATH,
@@ -44,6 +51,9 @@ export const flushData = () => {
 export const signIn = () => {
     return (dispatch, getState) => {
         const provider = new firebase.auth.GoogleAuthProvider();
+
+        dispatch(toggleAuthTransition());
+
         firebase.auth().signInWithPopup(provider).catch(error => {
             // TODO: Do something with this error.
         });
@@ -65,12 +75,13 @@ export const signOut = () => {
 export const navigateAfterAuthChange = () => {
     return (dispatch, getState) => {
         const { auth } = getState();
-        if (auth.isAuthenticated) {
+        if (auth.isAuthenticated && auth.transitioning) {
             dispatch(
                 navigate({
                     pathname: auth.next || '/courses'
                 })
             );
+            dispatch(toggleAuthTransition());
         }
     };
 };
