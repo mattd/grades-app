@@ -49,7 +49,7 @@
     "build": "npm run clean && NODE_ENV=production webpack --config config/webpack/prod.js",
     "build:production": "FIREBASE_ENV=production npm run build",
     "build:staging": "FIREBASE_ENV=staging npm run build",
-    "clean": "rm -rf ./src/static",
+    "clean": "rm -rf ./src/static ./public",
     "deploy:production": "npm run package && ./node_modules/.bin/firebase deploy -P production",
     "deploy:staging": "npm run package && ./node_modules/.bin/firebase deploy -P staging",
     "package": "cp -R src/index.html src/static public",
