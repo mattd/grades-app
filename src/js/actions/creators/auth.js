@@ -1,16 +1,12 @@
 import firebase from 'firebase';
 
-import {
-    AUTH_STATUS_UPDATED,
-    AUTH_STATUS_READY,
-    AUTH_SET_NEXT_PATH
-} from '../types/auth';
+import { AUTH_STATUS_UPDATED, AUTH_STATUS_READY } from '../types/auth';
 
 import { flushProfile } from '../creators/profile';
 import { flushTeacher } from '../creators/teacher';
 import { removeDbListeners } from '../creators/db';
-import { profileUpdated } from '../creators/profile';
 import { navigate } from '../creators/router';
+import { profileUpdated } from '../creators/profile';
 
 export const authStatusUpdated = (user) => {
     return {
@@ -26,14 +22,6 @@ export const authStatusReady = () => {
     };
 };
 
-// TODO: Actually use this somewhere.
-export const setLoginDestination = (destination) => {
-    return {
-        type: AUTH_SET_NEXT_PATH,
-        next: destination
-    };
-};
-
 export const flushData = () => {
     return (dispatch, getState) => {
         dispatch(flushProfile());
@@ -45,7 +33,6 @@ export const signIn = () => {
     return (dispatch, getState) => {
         const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider).catch(error => {
-            dispatch(toggleAuthTransition());
             // TODO: Do something in the UI with this error.
         });
     };
@@ -62,13 +49,12 @@ export const signOut = () => {
     };
 };
 
-
 export const navigateAfterAuthChange = () => {
     return (dispatch, getState) => {
         const { isAuthenticated } = getState().auth;
-        const { state, pathname } = getState().router.location;
+        const { state } = getState().router.location;
 
-        if (isAuthenticated && state && state.next !== pathname ) {
+        if (isAuthenticated && state) {
             dispatch(
                 navigate({
                     pathname: state.next || '/terms'

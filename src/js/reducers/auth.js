@@ -1,14 +1,12 @@
 import {
     AUTH_STATUS_UPDATED,
-    AUTH_STATUS_READY,
-    AUTH_SET_NEXT_PATH
+    AUTH_STATUS_READY
 } from '../actions/types/auth';
 
 const auth = (
     state = {
         isAuthenticated: false,
-        ready: false,
-        nextPath: null
+        ready: false
     },
     action
 ) => {
@@ -22,11 +20,6 @@ const auth = (
             return {
                 ...state,
                 ready: true
-            };
-        case AUTH_SET_NEXT_PATH:
-            return {
-                ...state,
-                nextPath: action.next
             };
         default:
             return state;
