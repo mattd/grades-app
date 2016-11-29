@@ -10,7 +10,8 @@ import NavList from './nav-list';
 
 const mapStateToProps = (state) => {
     return {
-        drawerOpen: state.ui.drawerOpen
+        drawerOpen: state.ui.drawerOpen,
+        isAuthenticated: state.auth.isAuthenticated
     };
 };
 
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(
     ({
         drawerOpen,
+        isAuthenticated,
         actionCreators
     }) => {
         return (
@@ -33,7 +35,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                 open={drawerOpen}
                 onRequestChange={actionCreators.toggleDrawer}
             >
-                <ProfileCard />
+                {isAuthenticated && <ProfileCard />}
                 <NavList />
             </Drawer>
         );

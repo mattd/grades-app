@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import TouchRipple from 'material-ui/internal/TouchRipple';
 import { Card, CardHeader } from 'material-ui/Card';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import { toggleDrawer } from '../../actions/creators/ui';
 
 const mapStateToProps = (state) => {
     return {
-        isAuthenticated: state.auth.isAuthenticated,
         teacher: state.teacher
     };
 };
@@ -27,19 +27,25 @@ const onClick = (actionCreators) => {
 };
 
 const ProfileCard = ({
-    isAuthenticated,
+    muiTheme,
     teacher,
     actionCreators
 }) => {
-    if (!isAuthenticated) return null;
     return (
-        <Link to="/profile">
+        <Link
+            to="/profile"
+            activeStyle={{
+                display: 'block',
+                background: muiTheme.palette.borderColor
+            }}
+        >
             <Card
                 onClick={onClick.bind(null, actionCreators)}
                 style={{
                     boxShadow: 'none',
                     cursor: 'pointer',
-                    // Needed so the TouchRipple doesn't escape the bounds.
+                    backgroundColor: 'transparent',
+                    // Needed so TouchRipple doesn't escape the bounds.
                     transform: 'translate(0, 0)'
                 }}
             >
@@ -47,12 +53,7 @@ const ProfileCard = ({
                     <CardHeader
                         avatar={teacher.photoURL}
                         title={teacher.displayName}
-                        subtitle={teacher.email}
-                        subtitleStyle={{
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            width: '88%'
-                        }}
+                        subtitle='Profile'
                     />
                 </TouchRipple>
             </Card>
@@ -60,4 +61,6 @@ const ProfileCard = ({
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileCard);
+export default muiThemeable()(
+    connect(mapStateToProps, mapDispatchToProps)(ProfileCard)
+);
