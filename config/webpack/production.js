@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 const base = require('./base');
-const prod = Object.assign({}, base);
+const production = Object.assign({}, base);
 
 const firebase = (
     process.env.FIREBASE_ENV === 'production' ?
@@ -14,8 +14,8 @@ const env = Object.assign(
     {NODE_ENV: JSON.stringify('production')}
 );
 
-prod.devtool = 'source-map';
-prod.plugins = [
+production.devtool = 'source-map';
+production.plugins = [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({'process.env': env}),
     new webpack.optimize.UglifyJsPlugin({
@@ -25,4 +25,4 @@ prod.plugins = [
     })
 ];
 
-module.exports = prod;
+module.exports = production;

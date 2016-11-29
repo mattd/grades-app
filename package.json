@@ -46,7 +46,7 @@
     "webpack-hot-middleware": "^2.13.0"
   },
   "scripts": {
-    "build": "npm run clean && NODE_ENV=production webpack --config config/webpack/prod.js",
+    "build": "npm run clean && NODE_ENV=production webpack --config config/webpack/production.js",
     "build:production": "FIREBASE_ENV=production npm run build",
     "build:staging": "FIREBASE_ENV=staging npm run build",
     "clean": "rm -rf ./src/static ./public",
