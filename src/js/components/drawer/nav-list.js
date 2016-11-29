@@ -1,9 +1,9 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 
-import { navigate } from '../../actions/creators/router';
 import { toggleDrawer } from '../../actions/creators/ui';
 
 const SelectableList = makeSelectable(List);
@@ -17,25 +17,35 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actionCreators: bindActionCreators({
-            toggleDrawer,
-            navigate
+            toggleDrawer
         }, dispatch)
     };
 };
 
-const onChange = (actionCreators, event, value) => {
-    actionCreators.navigate({
-        pathname: value
-    });
-    actionCreators.toggleDrawer()
-};
-
 const getListItem = (item, index) => {
     return (
-        <ListItem value={item.pathname} key={index}>
-            {item.title}
+        <ListItem
+            value={item.pathname}
+            key={index}
+            innerDivStyle={{
+                padding: 0
+            }}
+        >
+            <Link
+                to={item.pathname}
+                style={{
+                    padding: 16,
+                    display: 'block'
+                }}
+            >
+                {item.title}
+            </Link>
         </ListItem>
     );
+};
+
+const onChange = (actionCreators) => {
+    actionCreators.toggleDrawer();
 };
 
 const NavList = ({
