@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 
-import { toggleDrawer } from '../actions/creators/ui';
+import { toggleDrawer } from '../../actions/creators/ui';
 
-import { AuthButton } from './auth';
+import AuthButton from './auth-button';
 
 const mapDispatchToProps = (dispatch) => {
     return {
