@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 
-import { navigate } from '../actions/creators/router';
-import { toggleDrawer } from '../actions/creators/ui';
+import { navigate } from '../../actions/creators/router';
+import { toggleDrawer } from '../../actions/creators/ui';
 
 const SelectableList = makeSelectable(List);
 
@@ -43,7 +43,6 @@ const NavList = ({
     actionCreators
 }) => {
     const list = [
-        {pathname: '/profile', title: 'Profile'},
         {pathname: '/terms', title: 'Terms'},
         {pathname: '/courses', title: 'Courses'},
         {pathname: '/students', title: 'Students'}
