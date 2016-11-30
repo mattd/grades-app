@@ -52,7 +52,7 @@
     "clean": "rm -rf ./src/static ./public",
     "deploy:production": "npm run package && ./node_modules/.bin/firebase deploy -P production",
     "deploy:staging": "npm run package && ./node_modules/.bin/firebase deploy -P staging",
-    "package": "cp -R src/index.html src/static public",
+    "package": "mkdir public && cp -R src/index.html src/static public",
     "start": "PORT=3000 node server.js",
     "test": "NODE_PATH=src/js ava",
     "test:watch": "npm test -- --watch"
