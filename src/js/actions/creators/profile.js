@@ -1,6 +1,15 @@
-import { PROFILE_UPDATED, PROFILE_FLUSH } from '../types/profile';
+import * as R from 'ramda';
 
-import { subscribeToOrCreateTeacher } from './teacher';
+import { PROFILE_UPDATED, PROFILE_FLUSH } from '../types/profile';
+import { getProfileRef, getProfilePath } from '../../services/profile';
+import { dbListenerAdded } from './db';
+
+export const profileUpdated = (profile) => {
+    return {
+        type: PROFILE_UPDATED,
+        profile
+    };
+};
 
 export const flushProfile = () => {
     return {
@@ -8,12 +17,29 @@ export const flushProfile = () => {
     };
 };
 
-export const profileUpdated = (profile) => {
-    return (dispatch, getState) => {
-        dispatch({
-            type: PROFILE_UPDATED,
-            profile
+export const subscribeToProfile = (uid) => {
+    return (dispatch) => {
+        const ref = getProfileRef(uid);
+        ref.on('value', (snapshot) => {
+            dispatch(profileUpdated(snapshot.val()))
         });
-        dispatch(subscribeToOrCreateTeacher(profile.uid));
+        dispatch(dbListenerAdded(getProfilePath(uid)));
+    };
+};
+
+export const setAndSubscribeToProfile = (user) => {
+    return (dispatch, getState) => {
+        const profile = {
+            ...getState().profile,
+            ...R.pick([
+                'email',
+                'displayName',
+                'photoURL',
+                'uid'
+            ], user)
+        };
+        const ref = getProfileRef(profile.uid);
+        ref.set(profile);
+        dispatch(subscribeToProfile(profile.uid));
     };
 };

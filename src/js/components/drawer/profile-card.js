@@ -10,7 +10,7 @@ import { toggleDrawer } from '../../actions/creators/ui';
 
 const mapStateToProps = (state) => {
     return {
-        teacher: state.teacher
+        profile: state.profile
     };
 };
 
@@ -43,7 +43,7 @@ const cardStyleOverrides = {
 
 const ProfileCard = ({
     muiTheme,
-    teacher,
+    profile,
     actionCreators
 }) => {
     return (
@@ -57,8 +57,8 @@ const ProfileCard = ({
             >
                 <TouchRipple>
                     <CardHeader
-                        avatar={teacher.photoURL}
-                        title={teacher.displayName}
+                        avatar={profile.photoURL}
+                        title={profile.displayName}
                         subtitle='Profile'
                     />
                 </TouchRipple>

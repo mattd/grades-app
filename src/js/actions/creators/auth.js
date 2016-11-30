@@ -3,10 +3,9 @@ import firebase from 'firebase';
 import { AUTH_STATUS_UPDATED, AUTH_STATUS_READY } from '../types/auth';
 
 import { flushProfile } from '../creators/profile';
-import { flushTeacher } from '../creators/teacher';
 import { removeDbListeners } from '../creators/db';
 import { navigate } from '../creators/router';
-import { profileUpdated } from '../creators/profile';
+import { setAndSubscribeToProfile } from '../creators/profile';
 
 export const authStatusUpdated = (user) => {
     return {
@@ -25,7 +24,6 @@ export const authStatusReady = () => {
 export const flushData = () => {
     return (dispatch, getState) => {
         dispatch(flushProfile());
-        dispatch(flushTeacher());
     };
 };
 
@@ -68,7 +66,7 @@ export const respondToAuthChange = (user) => {
     return (dispatch, getState) => {
         dispatch(authStatusUpdated(user));
         if (user) {
-            dispatch(profileUpdated(user));
+            dispatch(setAndSubscribeToProfile(user));
         }
         dispatch(authStatusReady());
         dispatch(navigateAfterAuthChange());

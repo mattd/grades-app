@@ -5,7 +5,6 @@ import auth from './reducers/auth';
 import db from './reducers/db';
 import profile from './reducers/profile';
 import router from './reducers/router';
-import teacher from './reducers/teacher';
 import ui from './reducers/ui';
 
 const StoreFactory = () => {
@@ -14,7 +13,6 @@ const StoreFactory = () => {
             auth,
             db,
             profile,
-            teacher,
             router,
             ui
         }),

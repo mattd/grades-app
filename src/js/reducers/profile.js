@@ -2,17 +2,20 @@ import * as R from 'ramda';
 
 import { PROFILE_UPDATED, PROFILE_FLUSH } from '../actions/types/profile';
 
-const initialState = {};
+const initialState = {
+    displayName: null,
+    uid: null,
+    photoURL: null,
+    email: null,
+    timerDefault: 900
+};
 
 const profile = (state = initialState, action) => {
     switch (action.type) {
         case PROFILE_UPDATED:
             return {
                 ...state,
-                ...R.pick(
-                    ['email', 'displayName', 'photoURL', 'uid'],
-                    action.profile
-                )
+                ...action.profile
             };
         case PROFILE_FLUSH:
             return {
