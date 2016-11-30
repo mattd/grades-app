@@ -3,6 +3,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { List, ListItem, makeSelectable } from 'material-ui/List';
+import {
+    SocialPerson,
+    ActionDateRange,
+    ActionBook,
+    SocialPeople,
+} from 'material-ui/svg-icons';
 
 import { toggleDrawer } from '../../actions/creators/ui';
 
@@ -10,6 +16,7 @@ const SelectableList = makeSelectable(List);
 
 const mapStateToProps = (state) => {
     return {
+        isAuthenticated: state.auth.isAuthenticated,
         pathname: state.router.location.pathname
     };
 };
@@ -28,6 +35,7 @@ const itemStyleOverrides = {
 
 const linkStyleOverrides = {
     padding: 16,
+    paddingLeft: 72,
     display: 'block'
 };
 
@@ -37,6 +45,7 @@ const getListItem = (item, index) => {
             value={item.pathname}
             key={index}
             innerDivStyle={itemStyleOverrides}
+            leftIcon={item.icon}
         >
             <Link to={item.pathname} style={linkStyleOverrides}>
                 {item.title}
@@ -50,14 +59,22 @@ const onChange = (actionCreators) => {
 };
 
 const NavList = ({
+    isAuthenticated,
     pathname,
     actionCreators
 }) => {
     const list = [
-        {pathname: '/terms', title: 'Terms'},
-        {pathname: '/courses', title: 'Courses'},
-        {pathname: '/students', title: 'Students'}
+        {pathname: '/terms', title: 'Terms', icon: <ActionDateRange />},
+        {pathname: '/courses', title: 'Courses', icon: <ActionBook />},
+        {pathname: '/students', title: 'Students', icon: <SocialPeople />}
     ];
+
+    if (!isAuthenticated) {
+        list.unshift({
+            pathname: '/profile', title: 'Profile', icon: <SocialPerson />
+        });
+    }
+
     return (
         <SelectableList
             value={pathname}
