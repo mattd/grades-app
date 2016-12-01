@@ -29,14 +29,15 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const itemStyleOverrides = {
-    padding: 0
-};
-
-const linkStyleOverrides = {
-    padding: 16,
-    paddingLeft: 72,
-    display: 'block'
+const styles = {
+    itemStyleOverrides: {
+        padding: 0
+    },
+    linkStyleOverrides: {
+        padding: 16,
+        paddingLeft: 72,
+        display: 'block'
+    }
 };
 
 const getListItem = (item, index) => {
@@ -44,10 +45,10 @@ const getListItem = (item, index) => {
         <ListItem
             value={item.pathname}
             key={index}
-            innerDivStyle={itemStyleOverrides}
+            innerDivStyle={styles.itemStyleOverrides}
             leftIcon={item.icon}
         >
-            <Link to={item.pathname} style={linkStyleOverrides}>
+            <Link to={item.pathname} style={styles.linkStyleOverrides}>
                 {item.title}
             </Link>
         </ListItem>

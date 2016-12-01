@@ -26,19 +26,20 @@ const onClick = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
-const getLinkActiveStyles = (muiTheme) => {
+const getStylesWithTheme = (muiTheme) => {
     return {
-        display: 'block',
-        background: muiTheme.palette.borderColor
+        linkActiveStyles: {
+            display: 'block',
+            background: muiTheme.palette.borderColor
+        },
+        cardStyleOverrides: {
+            boxShadow: 'none',
+            cursor: 'pointer',
+            backgroundColor: 'transparent',
+            // Needed so TouchRipple doesn't escape the bounds.
+            transform: 'translate(0, 0)'
+        }
     };
-};
-
-const cardStyleOverrides = {
-    boxShadow: 'none',
-    cursor: 'pointer',
-    backgroundColor: 'transparent',
-    // Needed so TouchRipple doesn't escape the bounds.
-    transform: 'translate(0, 0)'
 };
 
 const ProfileCard = ({
@@ -46,14 +47,15 @@ const ProfileCard = ({
     profile,
     actionCreators
 }) => {
+    const styles = getStylesWithTheme(muiTheme);
     return (
         <Link
             to="/profile"
-            activeStyle={getLinkActiveStyles(muiTheme)}
+            activeStyle={styles.linkActiveStyles}
         >
             <Card
                 onClick={onClick.bind(null, actionCreators)}
-                style={cardStyleOverrides}
+                style={styles.cardStyleOverrides}
             >
                 <TouchRipple>
                     <CardHeader
