@@ -27,7 +27,7 @@ export const dbListenerFlush = () => {
 }
 
 export const removeDbListener = (path) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         firebase.database().ref(path).off();
         dispatch(dbListenerRemoved(path));
     };

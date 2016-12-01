@@ -1,5 +1,3 @@
-import * as R from 'ramda';
-
 import { PROFILE_UPDATED, PROFILE_FLUSH } from '../actions/types/profile';
 
 const initialState = {

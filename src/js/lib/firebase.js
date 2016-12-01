@@ -1,6 +1,6 @@
 import firebase from 'firebase';
-import * as _auth from 'firebase/auth';
-import * as _database from 'firebase/database';
+import 'firebase/auth';
+import 'firebase/database';
 import { bindActionCreators } from 'redux';
 
 import { respondToAuthChange } from '../actions/creators/auth';

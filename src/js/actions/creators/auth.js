@@ -22,26 +22,26 @@ export const authStatusReady = () => {
 };
 
 export const flushData = () => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(flushProfile());
     };
 };
 
 export const signIn = () => {
-    return (dispatch, getState) => {
+    return () => {
         const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).catch(error => {
+        firebase.auth().signInWithPopup(provider).catch(() => {
             // TODO: Do something in the UI with this error.
         });
     };
 };
 
 export const signOut = () => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         firebase.auth().signOut().then(() => {
             dispatch(removeDbListeners());
             dispatch(flushData());
-        }).catch(error => {
+        }).catch(() => {
             // TODO: Do something in the UI with this error.
         });
     };
@@ -63,7 +63,7 @@ export const navigateAfterAuthChange = () => {
 };
 
 export const respondToAuthChange = (user) => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         dispatch(authStatusUpdated(user));
         if (user) {
             dispatch(setAndSubscribeToProfile(user));

@@ -1,4 +1,3 @@
-import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
