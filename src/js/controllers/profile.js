@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Profile = () => <p>Profile</p>;
+import { Feature } from '../components/containers';
+
+const Profile = () => {
+    return (
+        <Feature title="Profile" />
+    );
+};
 
 export default Profile;

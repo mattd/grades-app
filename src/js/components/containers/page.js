@@ -1,9 +1,15 @@
 import React from 'react';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
-const getStylesWithTheme = (muiTheme) => {
+const styles = (muiTheme) => {
+    const height = muiTheme.appBar.height + 'px';
     return {
-        margin: muiTheme.spacing.desktopGutter
+        wrapper: {
+            position: 'absolute',
+            top: height,
+            height: `calc(100% - ${height})`,
+            width: '100%'
+        }
     };
 };
 
@@ -11,12 +17,11 @@ const Page = ({
     muiTheme,
     children
 }) => {
-    const styles = getStylesWithTheme(muiTheme);
     return (
-        <div style={styles}>
+        <div style={styles(muiTheme).wrapper}>
             {children}
         </div>
     );
 };
 
-export default muiThemeable()(Page)
+export default muiThemeable()(Page);

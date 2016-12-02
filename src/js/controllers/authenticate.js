@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Authenticate = () => <p>Authenticate</p>;
+import { Feature } from '../components/containers';
+
+const Authenticate = () => {
+    return (
+        <Feature title="Authenticate" />
+    );
+};
 
 export default Authenticate;

@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Terms = () => <p>Terms</p>;
+import { Feature } from '../components/containers';
+
+const Terms = () => {
+    return (
+        <Feature title="Terms" />
+    );
+};
 
 export default Terms;

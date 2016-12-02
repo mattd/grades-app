@@ -1,3 +1,4 @@
+import Feature from './feature';
 import Page from './page';
 
-export { Page };
+export { Feature, Page };

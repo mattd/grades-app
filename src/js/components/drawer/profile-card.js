@@ -26,13 +26,13 @@ const onClick = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
-const getStylesWithTheme = (muiTheme) => {
+const styles = (muiTheme) => {
     return {
-        linkActiveStyles: {
+        linkActive: {
             display: 'block',
             background: muiTheme.palette.borderColor
         },
-        cardStyleOverrides: {
+        card: {
             boxShadow: 'none',
             cursor: 'pointer',
             backgroundColor: 'transparent',
@@ -47,15 +47,14 @@ const ProfileCard = ({
     profile,
     actionCreators
 }) => {
-    const styles = getStylesWithTheme(muiTheme);
     return (
         <Link
             to="/profile"
-            activeStyle={styles.linkActiveStyles}
+            activeStyle={styles(muiTheme).linkActive}
         >
             <Card
                 onClick={onClick.bind(null, actionCreators)}
-                style={styles.cardStyleOverrides}
+                style={styles(muiTheme).card}
             >
                 <TouchRipple>
                     <CardHeader

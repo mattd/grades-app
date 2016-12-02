@@ -1,5 +1,11 @@
 import React from 'react';
 
-const Courses = () => <p>Courses</p>;
+import { Feature } from '../components/containers';
+
+const Courses = () => {
+    return (
+        <Feature title="Courses" />
+    );
+};
 
 export default Courses;
