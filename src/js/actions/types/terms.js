@@ -1,0 +1,2 @@
+export const TERMS_UPDATED = 'TERMS_UPDATED';
+export const TERMS_FLUSH = 'TERMS_FLUSH';

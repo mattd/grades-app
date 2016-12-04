@@ -3,14 +3,24 @@
     "displayName": "Matt Dawson",
     "photoURL": "",
     "timerDefault": 900,
-    "terms": [
-        {
+    "terms": {
+        "f10a15d5-e294-40fa-a583-474ffb42cfa6": {
             "name": "Spring 2017",
+            "id": "f10a15d5-e294-40fa-a583-474ffb42cfa6",
+            "order": 0,
             "courses": [
                 "3baf11b0-a1ec-11e6-80f5-76304dec7eb7"
             ]
+        },
+        "5a542c4f-ba50-4117-afb9-3f5dc05b1d4c": {
+            "name": "Fall 2017",
+            "id": "5a542c4f-ba50-4117-afb9-3f5dc05b1d4c",
+            "order": 1,
+            "courses": [
+                "3131930c-f270-4b5d-9b99-697620cf49fe"
+            ]
         }
-    ],
+    },
     "courses": {
         "3baf11b0-a1ec-11e6-80f5-76304dec7eb7": {
             "id": "3baf11b0-a1ec-11e6-80f5-76304dec7eb7",
