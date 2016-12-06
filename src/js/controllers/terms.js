@@ -9,6 +9,7 @@ import {
     flushTerms
 } from '../actions/creators/terms';
 import { Feature } from '../components/containers';
+import TermList from '../components/terms/term-list'
 
 const mapStateToProps = (state) => {
     return {
@@ -37,7 +38,9 @@ const willUnmount = ({
 
 const Terms = () => {
     return (
-        <Feature title="Terms" />
+        <Feature title="Terms">
+            <TermList />
+        </Feature>
     );
 };
 
