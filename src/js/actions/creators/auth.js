@@ -21,12 +21,6 @@ export const authStatusReady = () => {
     };
 };
 
-export const flushData = () => {
-    return (dispatch) => {
-        dispatch(flushProfile());
-    };
-};
-
 export const signIn = () => {
     return () => {
         const provider = new firebase.auth.GoogleAuthProvider();
@@ -40,7 +34,7 @@ export const signOut = () => {
     return (dispatch) => {
         firebase.auth().signOut().then(() => {
             dispatch(removeDbListeners());
-            dispatch(flushData());
+            dispatch(flushProfile());
         }).catch(() => {
             // TODO: Do something in the UI with this error.
         });

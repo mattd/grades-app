@@ -5,6 +5,7 @@ import auth from './reducers/auth';
 import db from './reducers/db';
 import profile from './reducers/profile';
 import router from './reducers/router';
+import terms from './reducers/terms';
 import ui from './reducers/ui';
 
 const StoreFactory = () => {
@@ -14,6 +15,7 @@ const StoreFactory = () => {
             db,
             profile,
             router,
+            terms,
             ui
         }),
         applyMiddleware(thunk)

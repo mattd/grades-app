@@ -19,8 +19,7 @@ export const flushProfile = () => {
 
 export const subscribeToProfile = (uid) => {
     return (dispatch) => {
-        const ref = getProfileRef(uid);
-        ref.on('value', (snapshot) => {
+        getProfileRef(uid).on('value', (snapshot) => {
             dispatch(profileUpdated(snapshot.val()))
         });
         dispatch(dbListenerAdded(getProfilePath(uid)));
@@ -38,8 +37,7 @@ export const setAndSubscribeToProfile = (user) => {
                 'uid'
             ], user)
         };
-        const ref = getProfileRef(profile.uid);
-        ref.set(profile);
+        getProfileRef(profile.uid).set(profile);
         dispatch(subscribeToProfile(profile.uid));
     };
 };

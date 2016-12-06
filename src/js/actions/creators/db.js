@@ -37,7 +37,9 @@ export const removeDbListeners = () => {
     return (dispatch, getState) => {
         const listeners = getState().db;
         Object.keys(listeners).forEach(path => {
-            dispatch(removeDbListener(path));
+            if (listeners[path]) {
+                dispatch(removeDbListener(path));
+            }
         });
         dispatch(dbListenerFlush())
     };
