@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { makeController } from '../controllers';
 import { getTermsPath } from '../services/terms';
 import {
     subscribeToTerms,
@@ -16,27 +17,30 @@ const mapStateToProps = (state) => {
     };
 };
 
-class Terms extends React.Component {
-    componentWillMount() {
-        const { db, uid, dispatch } = this.props;
-
-        if (!db[getTermsPath(uid)]) {
-            dispatch(subscribeToTerms(uid));
-        }
+const willMount = ({
+    db,
+    uid,
+    dispatch
+}) => {
+    if (!db[getTermsPath(uid)]) {
+        dispatch(subscribeToTerms(uid));
     }
+};
 
-    componentWillUnmount() {
-        const { uid, dispatch } = this.props;
+const willUnmount = ({
+    uid,
+    dispatch
+}) => {
+    if (uid) dispatch(unsubscribeFromTerms(uid));
+    dispatch(flushTerms());
+};
 
-        if (uid) dispatch(unsubscribeFromTerms(uid));
-        dispatch(flushTerms());
-    }
+const Terms = () => {
+    return (
+        <Feature title="Terms" />
+    );
+};
 
-    render() {
-        return (
-            <Feature title="Terms" />
-        );
-    }
-}
-
-export default connect(mapStateToProps)(Terms);
+export default connect(mapStateToProps)(
+    makeController(willMount, willUnmount)(Terms)
+);
