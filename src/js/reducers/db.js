@@ -1,30 +1,26 @@
 import {
     DB_LISTENER_ADDED,
     DB_LISTENER_REMOVED,
-    DB_LISTENER_FLUSH
+    DB_LISTENERS_FLUSH
 } from '../actions/types/db';
 
-const initialState = {};
+import { makeObject } from '../utils/reducer';
 
-const getRefObject = (path, active) => {
-    const ref = {};
-    ref[path] = active;
-    return ref;
-};
+const initialState = {};
 
 const db = (state = initialState, action) => {
     switch (action.type) {
         case DB_LISTENER_ADDED:
             return {
                 ...state,
-                ...getRefObject(action.path, true)
+                ...makeObject(action.path, true)
             };
         case DB_LISTENER_REMOVED:
             return {
                 ...state,
-                ...getRefObject(action.path, false)
+                ...makeObject(action.path, false)
             };
-        case DB_LISTENER_FLUSH:
+        case DB_LISTENERS_FLUSH:
             return {
                 ...initialState
             };

@@ -1,11 +1,19 @@
-import { TOGGLE_DRAWER } from '../actions/types/ui';
+import { UI_TOGGLE } from '../actions/types/ui';
 
-const ui = (state = { drawerOpen: false }, action) => {
+import { makeObject } from '../utils/reducer';
+
+const ui = (
+    state = {
+        drawerOpen: false,
+        addingTerm: false
+    },
+    action
+) => {
     switch (action.type) {
-        case TOGGLE_DRAWER:
+        case UI_TOGGLE:
             return {
                 ...state,
-                drawerOpen: !state.drawerOpen
+                ...makeObject(action.value, !state[action.value])
             };
         default:
             return state;

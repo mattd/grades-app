@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import {
     DB_LISTENER_ADDED,
     DB_LISTENER_REMOVED,
-    DB_LISTENER_FLUSH
+    DB_LISTENERS_FLUSH
 } from '../types/db';
 
 export const dbListenerAdded = (path) => {
@@ -20,9 +20,9 @@ export const dbListenerRemoved = (path) => {
     };
 };
 
-export const dbListenerFlush = () => {
+export const flushDbListeners = () => {
     return {
-        type: DB_LISTENER_FLUSH
+        type: DB_LISTENERS_FLUSH
     };
 }
 
@@ -41,6 +41,6 @@ export const removeDbListeners = () => {
                 dispatch(removeDbListener(path));
             }
         });
-        dispatch(dbListenerFlush())
+        dispatch(flushDbListeners())
     };
 };

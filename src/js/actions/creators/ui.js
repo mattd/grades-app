@@ -1,7 +1,15 @@
-import { TOGGLE_DRAWER } from '../types/ui';
+import { UI_TOGGLE } from '../types/ui';
 
 export const toggleDrawer = () => {
     return {
-        type: TOGGLE_DRAWER
+        type: UI_TOGGLE,
+        value: 'drawerOpen'
+    };
+};
+
+export const toggleAddingTerm = () => {
+    return {
+        type: UI_TOGGLE,
+        value: 'addingTerm'
     };
 };

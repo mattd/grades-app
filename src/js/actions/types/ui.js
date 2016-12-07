@@ -1,1 +1,1 @@
-export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
+export const UI_TOGGLE = 'UI_TOGGLE';
