@@ -5,7 +5,7 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 
 const styles = (muiTheme) => {
     return {
-        wrapper: {
+        outerWrapper: {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'stretch',
@@ -14,6 +14,9 @@ const styles = (muiTheme) => {
         paper: {
             flex: 1,
             margin: muiTheme.spacing.desktopGutter
+        },
+        innerWrapper: {
+            padding: muiTheme.spacing.desktopGutter
         }
     };
 };
@@ -24,12 +27,14 @@ const Feature = ({
     children
 }) => {
     return (
-        <div style={styles(muiTheme).wrapper}>
+        <div style={styles(muiTheme).outerWrapper}>
             <Paper style={styles(muiTheme).paper}>
                 <Toolbar>
                     <ToolbarTitle text={title} />
                 </Toolbar>
-                {children}
+                <div style={styles(muiTheme).innerWrapper}>
+                    {children}
+                </div>
             </Paper>
         </div>
     );
