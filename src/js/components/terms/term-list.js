@@ -2,9 +2,13 @@ import * as R from 'ramda';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import TermForm from './term-form';
+import AddTerm from './add-term';
+
 const mapStateToProps = (state) => {
     return {
-        terms: state.terms
+        terms: state.terms,
+        addingTerm: state.ui.addingTerm
     };
 };
 
@@ -23,12 +27,16 @@ const getTerm = (term) => {
 };
 
 const TermList = ({
-    terms
+    terms,
+    addingTerm
 }) => {
     return (
-        <ul>
-            {sortTerms(terms).map(getTerm)}
-        </ul>
+        <div>
+            <ul>
+                {sortTerms(terms).map(getTerm)}
+            </ul>
+            {addingTerm ? <TermForm /> : <AddTerm />}
+        </div>
     );
 };
 
