@@ -1,6 +1,4 @@
-import Mousetrap from 'mousetrap';
-
-import { UI_TOGGLE } from '../types/ui';
+import { UI_TOGGLE, UI_RESET } from '../types/ui';
 
 export const toggleDrawer = () => {
     return {
@@ -16,18 +14,8 @@ export const toggleAddingTerm = () => {
     };
 };
 
-export const startAddingTerm = () => {
-    return (dispatch) => {
-        dispatch(toggleAddingTerm());
-        Mousetrap.bind('esc', () => {
-            dispatch(toggleAddingTerm());
-        });
-    };
-};
-
-export const stopAddingTerm = () => {
-    return (dispatch) => {
-        dispatch(toggleAddingTerm());
-        Mousetrap.unbind('esc');
+export const resetUi = () => {
+    return {
+        type: UI_RESET
     };
 };

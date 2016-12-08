@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import { startAddingTerm } from '../../actions/creators/ui';
+import { startAddingTerm } from '../../actions/creators/terms';
 
 const mapDispatchToProps = (dispatch) => {
     return {

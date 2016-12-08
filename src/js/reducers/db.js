@@ -4,8 +4,6 @@ import {
     DB_LISTENERS_FLUSH
 } from '../actions/types/db';
 
-import { makeObject } from '../utils/reducer';
-
 const initialState = {};
 
 const db = (state = initialState, action) => {
@@ -13,12 +11,12 @@ const db = (state = initialState, action) => {
         case DB_LISTENER_ADDED:
             return {
                 ...state,
-                ...makeObject(action.path, true)
+                [action.path]: true
             };
         case DB_LISTENER_REMOVED:
             return {
                 ...state,
-                ...makeObject(action.path, false)
+                [action.path]: false
             };
         case DB_LISTENERS_FLUSH:
             return {

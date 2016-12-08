@@ -3,6 +3,8 @@ import firebase from 'firebase';
 import { AUTH_STATUS_UPDATED, AUTH_STATUS_READY } from '../types/auth';
 
 import { flushProfile } from '../creators/profile';
+import { resetForms } from '../creators/forms';
+import { resetUi } from '../creators/ui';
 import { removeDbListeners } from '../creators/db';
 import { navigate } from '../creators/router';
 import { setAndSubscribeToProfile } from '../creators/profile';
@@ -35,6 +37,8 @@ export const signOut = () => {
         firebase.auth().signOut().then(() => {
             dispatch(removeDbListeners());
             dispatch(flushProfile());
+            dispatch(resetForms());
+            dispatch(resetUi());
         }).catch(() => {
             // TODO: Do something in the UI with this error.
         });

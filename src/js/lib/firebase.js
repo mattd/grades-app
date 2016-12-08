@@ -13,12 +13,14 @@ const start = (store) => {
         storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
         messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
     };
-    window.store = store;
+
     firebase.initializeApp(config);
 
     firebase.auth().onAuthStateChanged(
         bindActionCreators(respondToAuthChange, store.dispatch)
     );
+
+    if (process.env['NODE_ENV'] !== 'production') window.store = store;
 
     return store;
 };

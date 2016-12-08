@@ -14,7 +14,8 @@
     "react-router-addons-controlled": "0.0.1",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "app-root-path": "^2.0.1",
@@ -40,6 +41,7 @@
     "node-sass": "^3.13.0",
     "ramda": "^0.22.1",
     "react-transform-hmr": "^1.0.4",
+    "redux-logger": "^2.7.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
