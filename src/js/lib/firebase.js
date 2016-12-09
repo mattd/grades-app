@@ -1,9 +1,32 @@
+import * as R from 'ramda';
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
 import { bindActionCreators } from 'redux';
 
 import { respondToAuthChange } from '../actions/creators/auth';
+
+// TODO: Find a better place to put these order functions.
+export const nextOrder = (obj) => {
+    return (
+        (
+            R.last(
+                R.sort(
+                    R.min,
+                    R.pluck('order')(R.values(obj))
+                )
+            ) + 1
+        ) || 0
+    );
+};
+
+export const sortObject = (obj) => {
+    return (
+        R.sortBy(
+            R.prop('order')
+        )(R.values(obj))
+    );
+};
 
 const start = (store) => {
     const config = {
