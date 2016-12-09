@@ -1,4 +1,6 @@
 language: node_js
+node_js:
+  - "6.1"
 cache: yarn
 before_install:
   - openssl aes-256-cbc -K $encrypted_15fe2d076d93_key -iv $encrypted_15fe2d076d93_iv -in config/firebase/secrets.tar.enc -out config/firebase/secrets.tar -d
