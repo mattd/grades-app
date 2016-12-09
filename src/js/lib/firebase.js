@@ -8,16 +8,7 @@ import { respondToAuthChange } from '../actions/creators/auth';
 
 // TODO: Find a better place to put these order functions.
 export const nextOrder = (obj) => {
-    return (
-        (
-            R.last(
-                R.sort(
-                    R.min,
-                    R.pluck('order')(R.values(obj))
-                )
-            ) + 1
-        ) || 0
-    );
+    return Object.values(obj).length;
 };
 
 export const sortObject = (obj) => {

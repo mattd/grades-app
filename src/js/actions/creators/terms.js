@@ -6,6 +6,7 @@ import { getTermsRef, getTermRef, getTermsPath } from '../../services/terms';
 import { dbListenerAdded, dbListenerRemoved } from './db';
 import { updateFormValues, updateFormDisplay, cleanForm } from './forms';
 import { toggleAddingTerm } from './ui';
+import { nextOrder } from '../../lib/firebase';
 
 export const termsUpdated = (terms) => {
     return {
@@ -36,11 +37,11 @@ export const unsubscribeFromTerms = (uid) => {
     };
 };
 
-export const setTerm = () => {
+export const setTerm = (values) => {
     return (dispatch, getState) => {
         const { uid } = getState().profile;
-        const { values } = getState().forms.term;
-        getTermRef(uid, values.id).set(values)
+        values.order = nextOrder(getState().terms);
+        return getTermRef(uid, values.id).set(values);
     };
 };
 
