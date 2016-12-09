@@ -13,8 +13,7 @@ import { toggleAddingTerm } from '../../actions/creators/ui';
 
 const mapStateToProps = (state) => {
     return {
-        focused: state.forms.term.display.focused,
-        values: state.forms.term.values
+        focused: state.forms.term.display.focused
     };
 };
 
@@ -30,10 +29,9 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const onSubmit = (values, actionCreators, event) => {
+const onSubmit = (actionCreators, event) => {
     event.preventDefault();
-
-    actionCreators.setTerm(values);
+    actionCreators.setTerm();
     actionCreators.cleanForm('term');
     actionCreators.toggleAddingTerm();
 };
@@ -58,11 +56,10 @@ const onBlur = (actionCreators) => {
 
 const TermForm = ({
     focused,
-    values,
     actionCreators
 }) => {
     return (
-        <form onSubmit={onSubmit.bind(null, values, actionCreators)}>
+        <form onSubmit={onSubmit.bind(null, actionCreators)}>
             <TextField
                 hintText="Name"
                 autoFocus={focused === 'name'}

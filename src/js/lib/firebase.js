@@ -19,7 +19,7 @@ export const sortObject = (obj) => {
     );
 };
 
-const start = (store) => {
+export const start = (store) => {
     const config = {
         apiKey: process.env.FIREBASE_API_KEY,
         authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -38,5 +38,3 @@ const start = (store) => {
 
     return store;
 };
-
-export { start };

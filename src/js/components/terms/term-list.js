@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { sortObject } from '../../lib/firebase';
 import TermForm from './term-form';
 import AddTerm from './add-term';
+import { List, ListItem } from 'material-ui/List';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +15,7 @@ const mapStateToProps = (state) => {
 
 const getTerm = (term) => {
     return (
-        <li key={term.id}>{term.name}</li>
+        <ListItem key={term.id} primaryText={term.name} />
     );
 };
 
@@ -24,9 +25,9 @@ const TermList = ({
 }) => {
     return (
         <div>
-            <ul>
+            <List>
                 {sortObject(terms).map(getTerm)}
-            </ul>
+            </List>
             {addingTerm ? <TermForm /> : <AddTerm />}
         </div>
     );

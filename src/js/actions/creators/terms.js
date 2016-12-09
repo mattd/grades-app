@@ -37,11 +37,12 @@ export const unsubscribeFromTerms = (uid) => {
     };
 };
 
-export const setTerm = (values) => {
+export const setTerm = () => {
     return (dispatch, getState) => {
+        const { values } = getState().forms.term;
         const { uid } = getState().profile;
         values.order = nextOrder(getState().terms);
-        return getTermRef(uid, values.id).set(values);
+        getTermRef(uid, values.id).set(values);
     };
 };
 
