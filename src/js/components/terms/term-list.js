@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { List, ListItem } from 'material-ui/List';
 
-import { sortObject } from '../../lib/firebase';
+import { sortObject } from '../../utils/ordering';
 import TermForm from './term-form';
 import AddTerm from './add-term';
-import { List, ListItem } from 'material-ui/List';
 
 const mapStateToProps = (state) => {
     return {

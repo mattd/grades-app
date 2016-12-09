@@ -6,7 +6,7 @@ import { getTermsRef, getTermRef, getTermsPath } from '../../services/terms';
 import { dbListenerAdded, dbListenerRemoved } from './db';
 import { updateFormValues, updateFormDisplay, cleanForm } from './forms';
 import { toggleAddingTerm } from './ui';
-import { nextOrder } from '../../lib/firebase';
+import { nextOrder } from '../../utils/ordering';
 
 export const termsUpdated = (terms) => {
     return {

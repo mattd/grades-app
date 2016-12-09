@@ -1,23 +1,10 @@
-import * as R from 'ramda';
 import firebase from 'firebase';
 import 'firebase/auth';
 import 'firebase/database';
 import { bindActionCreators } from 'redux';
 
 import { respondToAuthChange } from '../actions/creators/auth';
-
-// TODO: Find a better place to put these order functions.
-export const nextOrder = (obj) => {
-    return Object.values(obj).length;
-};
-
-export const sortObject = (obj) => {
-    return (
-        R.sortBy(
-            R.prop('order')
-        )(R.values(obj))
-    );
-};
+import { isDev } from '../utils/dev';
 
 export const start = (store) => {
     const config = {
@@ -34,7 +21,7 @@ export const start = (store) => {
         bindActionCreators(respondToAuthChange, store.dispatch)
     );
 
-    if (process.env['NODE_ENV'] !== 'production') window.store = store;
+    if (isDev()) window.store = store;
 
     return store;
 };

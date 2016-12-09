@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
+import { isDev } from './utils/dev';
 import auth from './reducers/auth';
 import db from './reducers/db';
 import forms from './reducers/forms';
@@ -12,7 +13,7 @@ import ui from './reducers/ui';
 
 const middlewares = [thunk];
 
-if (process.env['NODE_ENV'] !== 'production') {
+if (isDev()) {
     middlewares.push(
         ...[logger()]
     );
