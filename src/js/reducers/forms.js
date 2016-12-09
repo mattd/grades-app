@@ -1,20 +1,40 @@
 import {
-    FORM_UPDATE,
+    FORM_UPDATE_VALUES,
+    FORM_UPDATE_DISPLAY,
     FORM_CLEAN
 } from '../actions/types/forms';
 
 const initialState = {
-    term: {focused: 'name'}
+    term: {display: {focused: 'name'}, values: {}}
 };
 
+// TODO: Break this into sub-reducers.
 const forms = (state = initialState, action) => {
     switch (action.type) {
-        case FORM_UPDATE:
+        case FORM_UPDATE_VALUES:
             return {
                 ...state,
                 [action.name]: {
-                    ...state[action.name],
-                    ...action.payload
+                    values: {
+                        ...state[action.name].values,
+                        ...action.payload
+                    },
+                    display: {
+                        ...state[action.name].display
+                    }
+                }
+            };
+        case FORM_UPDATE_DISPLAY:
+            return {
+                ...state,
+                [action.name]: {
+                    display: {
+                        ...state[action.name].display,
+                        ...action.payload
+                    },
+                    values: {
+                        ...state[action.name].values
+                    }
                 }
             };
         case FORM_CLEAN:

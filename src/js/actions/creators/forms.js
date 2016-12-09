@@ -1,8 +1,20 @@
-import { FORM_UPDATE, FORM_CLEAN } from '../types/forms';
+import {
+    FORM_UPDATE_VALUES,
+    FORM_UPDATE_DISPLAY,
+    FORM_CLEAN
+} from '../types/forms';
 
-export const updateForm = (name, payload) => {
+export const updateFormValues = (name, payload) => {
     return {
-        type: FORM_UPDATE,
+        type: FORM_UPDATE_VALUES,
+        name,
+        payload
+    };
+};
+
+export const updateFormDisplay = (name, payload) => {
+    return {
+        type: FORM_UPDATE_DISPLAY,
         name,
         payload
     };

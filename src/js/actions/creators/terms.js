@@ -2,9 +2,9 @@ import uuid from 'uuid';
 import Mousetrap from 'mousetrap';
 
 import { TERMS_UPDATED, TERMS_FLUSH } from '../types/terms';
-import { getTermsRef, getTermsPath } from '../../services/terms';
+import { getTermsRef, getTermRef, getTermsPath } from '../../services/terms';
 import { dbListenerAdded, dbListenerRemoved } from './db';
-import { updateForm, cleanForm } from './forms';
+import { updateFormValues, updateFormDisplay, cleanForm } from './forms';
 import { toggleAddingTerm } from './ui';
 
 export const termsUpdated = (terms) => {
@@ -36,16 +36,30 @@ export const unsubscribeFromTerms = (uid) => {
     };
 };
 
-export const updateTerm = (term) => {
+export const setTerm = () => {
+    return (dispatch, getState) => {
+        const { uid } = getState().profile;
+        const { values } = getState().forms.term;
+        getTermRef(uid, values.id).set(values)
+    };
+};
+
+export const updateTermValues = (values) => {
     return (dispatch) => {
-        dispatch(updateForm('term', term));
+        dispatch(updateFormValues('term', values));
+    };
+};
+
+export const updateTermDisplay = (display) => {
+    return (dispatch) => {
+        dispatch(updateFormDisplay('term', display));
     };
 };
 
 export const startAddingTerm = () => {
     return (dispatch) => {
         dispatch(toggleAddingTerm());
-        dispatch(updateTerm({id: uuid()}));
+        dispatch(updateTermValues({id: uuid()}));
         Mousetrap.bind('esc', () => {
             dispatch(stopAddingTerm());
         });
