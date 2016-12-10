@@ -4,7 +4,7 @@ const express = require('express');
 const webpack = require('webpack');
 const appRootPath = require('app-root-path').toString();
 
-const webpackConfig = require('./config/webpack/local');
+const webpackConfig = require('./config/webpack/development');
 
 const app = express();
 const compiler = webpack(webpackConfig);

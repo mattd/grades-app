@@ -1,6 +1,6 @@
 node_modules
 npm-debug.log
-config/firebase/local.js
+config/firebase/integration.js
 config/firebase/production.js
 config/firebase/staging.js
 src/static
