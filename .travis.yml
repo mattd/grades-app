@@ -9,4 +9,4 @@ script:
   - npm run preflight
 after_success:
   - npm run build:integration
-  - firebase deploy --token ${FIREBASE_TOKEN} -P integration
+  - firebase deploy --token "$FIREBASE_TOKEN" -P integration
