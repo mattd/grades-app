@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "grades-app-local",
+    "default": "grades-app-integration",
     "production": "grades-app-production",
     "staging": "grades-app-staging"
   }

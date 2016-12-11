@@ -8,4 +8,5 @@ before_install:
 script:
   - npm run preflight
 after_success:
+  - npm run build:integration
   - firebase deploy --email ${FIREBASE_USERNAME} --password ${FIREBASE_PASSWORD} -P integration
