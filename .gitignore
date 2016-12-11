@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+config/firebase/integration.js
+config/firebase/production.js
+config/firebase/staging.js
+src/static
+public
+.DS_Store
+.screenrc

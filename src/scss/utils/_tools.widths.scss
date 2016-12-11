@@ -1,0 +1,44 @@
+/*------------------------------------*\
+    #WIDTHS
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$argan-enable-widths-classes: $argan-enable-classes !default;
+$argan-enable-responsive-widths-classes: $argan-enable-classes !default;
+
+
+@mixin width-proportional($size, $division: $grid-column-count) {
+    width: proportional-percentage($size, $division);
+}
+
+@mixin widths-for-all-columns($columns: $grid-column-count) {
+    @for $i from 1 through $columns {
+        %width--#{$i} {
+            @include width-proportional($i);
+        }
+
+        @if ($argan-enable-widths-classes == true) {
+            .width--#{$i} {
+                @extend %width--#{$i};
+            }
+        }
+    }
+}
+
+@mixin responsive-widths-for-all-columns($columns: $grid-column-count) {
+    @each $alias, $condition in $breakpoints--loop {
+        @for $i from 1 through $columns {
+            %width--#{$i}--#{$alias}  {
+                @include media-query($alias) {
+                    @include width-proportional($i);
+                }
+            }
+
+            @if ($argan-enable-responsive-widths-classes == true) {
+                .width--#{$i}--#{$alias}  {
+                    @extend %width--#{$i}--#{$alias};
+                }
+            }
+        }
+    }
+}

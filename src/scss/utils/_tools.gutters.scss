@@ -1,0 +1,51 @@
+/*------------------------------------*\
+    #GUTTERS
+
+    Adapted from:
+    https://github.com/zurb/foundation-sites/blob/v6.3/scss/grid/_column.scss
+\*------------------------------------*/
+
+@mixin gutters($gutter: $grid-gutter-spacing) {
+    @if type-of($gutter) == 'map' {
+        @each $breakpoint, $value in $gutter {
+            $padding: halve($value);
+
+            @if ($breakpoint == null) {
+                padding-right: $padding;
+                padding-left: $padding;
+            } @else {
+                @include media-query($breakpoint) {
+                    padding-right: $padding;
+                    padding-left: $padding;
+                }
+            }
+        }
+    } @else if type-of($gutter) == 'number' and to-number($gutter) > 0 {
+        $padding: halve($gutter);
+        padding-right: $padding;
+        padding-left: $padding;
+    }
+}
+
+@mixin gutters--collapse {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+@mixin gutters--uncollapse($gutter: $grid-gutter-spacing) {
+    $padding: halve($gutter);
+    padding-right: $gutter;
+    padding-left: $gutter;
+}
+
+
+%gutters {
+    @include gutters;
+}
+
+
+@if ($argan-enable-classes == true) {
+    .gutters {
+        @extend %gutters;
+    }
+}

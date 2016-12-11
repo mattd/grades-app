@@ -1,0 +1,69 @@
+/*------------------------------------*\
+    #MARGINS
+\*------------------------------------*/
+
+/**
+ * Where `margin-bottom` is concerned,this value will be the same as the
+ * base line-height. This allows us to keep a consistent vertical rhythm.
+ * As per: csswizardry.com/2012/06/single-direction-margin-declarations
+ */
+
+%margin-bottom {
+    @include responsive-rule('margin-bottom', $base-spacing-unit);
+}
+
+%margin-bottom--small {
+    @include responsive-rule('margin-bottom', $base-spacing-unit--half);
+}
+
+%margin-bottom--large {
+    @include responsive-rule('margin-bottom', $base-spacing-unit--double)
+}
+
+
+@if ($argan-enable-classes == true) {
+    .margin-bottom {
+        @extend %margin-bottom;
+    }
+
+    .margin-bottom--small {
+        @extend %margin-bottom--small;
+    }
+
+    .margin-bottom--large {
+        @extend %margin-bottom--large;
+    }
+}
+
+
+/**
+ * Where `margin-left` is concerned we want to try and indent certain elements
+ * by a consistent amount. Define that amount once, here.
+ */
+
+%margin-left {
+    @include responsive-rule('margin-left', $base-spacing-unit);
+}
+
+%margin-left--small {
+    @include responsive-rule('margin-left', $base-spacing-unit--half);
+}
+
+%margin-left--large {
+    @include responsive-rule('margin-left', $base-spacing-unit--double);
+}
+
+
+@if ($argan-enable-classes == true) {
+    .margin-left {
+        @extend %margin-left;
+    }
+
+    .margin-left--small {
+        @extend %margin-left--small;
+    }
+
+    .margin-left--large {
+        @extend %margin-left--large;
+    }
+}

@@ -1,0 +1,85 @@
+/*------------------------------------*\
+    #LIST-COLUMNS
+\*------------------------------------*/
+
+/**
+ * The list-columns object uses flexbox to present list items in columns.
+ * Useful for lists of cards presented in a grid, for example.
+ */
+
+@mixin list-columns-item(
+    $max-columns,
+    $gutter: $base-spacing-unit,
+    $gutter-palm: $base-spacing-unit--half,
+    $last-equal: true,
+    $flex-basis: (100%) / $max-columns
+) {
+    flex: 1 0 $flex-basis;
+    padding-top: $gutter;
+    padding-left: $gutter;
+
+    @if $last-equal {
+        max-width: $flex-basis;
+    }
+
+    @include media-query(palm) {
+        padding-top: $gutter-palm;
+        padding-left: $gutter-palm;
+    }
+}
+
+@mixin list-columns(
+    $max-columns,
+    $gutter: $base-spacing-unit,
+    $gutter-palm: $base-spacing-unit--half,
+    $last-equal: true,
+    $flex-basis: (100%) / $max-columns
+) {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: $gutter;
+    margin-left: $gutter;
+
+    @include media-query(palm) {
+        margin-top: $gutter-palm;
+        margin-left: $gutter-palm;
+    }
+
+    & > li {
+        @include list-columns-item($max-columns, $gutter, $gutter-palm, $last-equal, $flex-basis);
+    }
+}
+
+%list-columns--one-half {
+    @include list-columns(2);
+}
+
+%list-columns--one-third {
+    @include list-columns(3);
+}
+
+%list-columns--one-quarter {
+    @include list-columns(4);
+}
+
+%list-columns--one-fifth {
+    @include list-columns(5);
+}
+
+@if ($argan-enable-classes == true) {
+    .list-columns--one-half {
+        @extend %list-columns--one-half;
+    }
+
+    .list-columns--one-third {
+        @extend %list-columns--one-third;
+    }
+
+    .list-columns--one-quarter {
+        @extend %list-columns--one-quarter;
+    }
+
+    .list-columns--one-fifth {
+        @extend %list-columns--one-fifth;
+    }
+}

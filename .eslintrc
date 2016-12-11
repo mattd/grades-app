@@ -1,0 +1,28 @@
+{
+    "parserOptions": {
+        "ecmaFeatures": {
+            "modules": true
+        }
+    },
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "globals": {
+        "document": true,
+        "module": true,
+        "process": true,
+        "window": true
+    },
+    "parser": "babel-eslint",
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "react/prop-types": 0
+    }
+}

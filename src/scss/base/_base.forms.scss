@@ -1,0 +1,51 @@
+/*------------------------------------*\
+    #FORMS
+\*------------------------------------*/
+
+select,
+textarea,
+input {
+    outline: none;
+}
+
+select,
+textarea,
+input[type='text'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='search'],
+input[type='tel'],
+input[type='color'] {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid $color-input-border;
+    border-radius: $form-input-border-radius;
+    background: $color-input-bg;
+    color: $color-input-color;
+}
+
+textarea,
+input {
+    &::placeholder {
+        color: $color-input-color;
+    }
+}
+
+.btn,
+button,
+input[type=submit] {
+    outline: none;
+    appearance: none;
+}
+
+input[type=submit] {
+    @extend %btn;
+}

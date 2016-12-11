@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "integration": "grades-app-integration",
+    "production": "grades-app-production",
+    "staging": "grades-app-staging"
+  }
+}

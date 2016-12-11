@@ -1,0 +1,26 @@
+///*------------------------------------*\
+//    #MEDIA-QUERY
+//\*------------------------------------*/
+
+@mixin media-query($mq) {
+    $query-found: false;
+
+    // Loop through the list of queries we’ve provided in our settings file.
+    @each $alias, $condition in $media-queries {
+        // If the media query we’ve specified has an alias and a condition...
+        @if $mq == $alias and $condition {
+            // ...tell the mixin that we’ve found it...
+            $query-found: true;
+
+            // ...and spit it out here.
+            @media #{$condition} {
+                @content;
+            }
+        }
+    }
+
+    // If the user specifies a non-exitent alias, send them a warning.
+    @if $query-found == false {
+        @warn 'Oops! Query ‘#{$mq}’ does not exist.';
+    }
+}

@@ -1,0 +1,103 @@
+/*------------------------------------*\
+    #COLORS
+\*------------------------------------*/
+
+// Naming suggestions: http://www.color-blindness.com/color-name-hue/
+// Especially helpful when trying to organize 10+ different greys.
+
+$color-transparent: rgba(0, 0, 0, 0);
+
+$color-white: #fff;
+$color-white-30: rgba(255, 255, 255, 0.3);
+
+$color-true-black: #000;
+$color-true-black-30: rgba(0, 0, 0, 0.3);
+$color-true-black-50: rgba(0, 0, 0, 0.5);
+$color-true-black-80: rgba(0, 0, 0, 0.8);
+
+$color-white-smoke: #eaeaea;
+$color-grey-light: #ccc;
+$color-grey-mortar: #555;
+$color-grey-dark: #333;
+$color-grey: #535353;
+$color-black-green: #002b32;
+
+$color-willowtree-teal: #74cac4;
+$color-willowtree-teal-variant: #4fbcb4;
+$color-willowtree-teal-dark: #308390;
+
+$color-red-90-percent-red: #e53935;
+
+$color-grey-charcoal-27: rgba(25, 25, 25, 0.27);
+
+/*------------------------------------*\
+    #COLOR THEME
+\*------------------------------------*/
+
+$color-primary: $color-willowtree-teal-variant !default;
+$color-secondary: $color-willowtree-teal-dark !default;
+$color-tertiary: $color-willowtree-teal !default;
+
+$color-text: $color-black-green !default;
+$color-text-shadow: $color-true-black-50 !default;
+$color-text-secondary: $color-white-smoke !default;
+
+$color-link: $color-text !default;
+$color-link-active: $color-primary !default;
+
+$color-bg: $color-white !default;
+
+$color-error: $color-red-90-percent-red !default;
+
+$color-input-bg: $color-text !default;
+$color-input-color: $color-bg !default;
+$color-input-border: $color-input-bg !default;
+
+/*------------------------------------*\
+    #COLOR ASSIGNMENTS
+\*------------------------------------*/
+
+/*
+NAMING GUIDELINES:
+
+- Block-Element-Modifier conventions can be very helpful for variable names
+  (as well as for class names in general). https://css-tricks.com/bem-101/
+
+- Standard suffixes can be useful in clarifying how a color is used.
+--- Text color: -color
+--- Background: -bg
+--- Border: -border
+--- Shadow: -shadow
+
+- When in doubt, pick a pattern that feels right to you, but be consistent.
+  (And preferably replace these guidelines with your own.)
+*/
+
+// TOOLS
+$text-button-hover-color: $color-tertiary !default;
+$text-button-color: $color-true-black !default;
+
+// OBJECTS
+$btn-bg: $color-primary !default;
+$btn-color: $color-text !default;
+$btn-border: $btn-bg !default;
+$btn-hover-bg: $color-primary !default;
+$btn-hover-color: $btn-color !default;
+$btn-hover-border: $color-primary !default;
+$btn-disabled-color: $color-grey-mortar !default;
+$btn-disabled-bg: $color-grey-dark !default;
+$btn-disabled-border: $color-grey-dark !default;
+
+$spinner-border: $color-transparent !default;
+$spinner-border-active: $color-tertiary !default;
+
+$table-border-color: $color-grey-light !default;
+
+// COMPONENTS
+$masthead-bg: $color-primary !default;
+
+// LAYOUTS
+$app-wrapper-bg: $color-bg !default;
+
+// TRUMPS
+

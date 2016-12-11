@@ -1,0 +1,23 @@
+/*------------------------------------*\
+    #VISIBILITY
+\*------------------------------------*/
+
+@mixin hidden {
+    display: none;
+}
+
+@mixin hidden-text {
+    text-align: left;
+    text-indent: -9999px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin screen-reader-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+}

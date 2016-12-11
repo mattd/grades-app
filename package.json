@@ -1,0 +1,82 @@
+{
+  "name": "grades-app",
+  "version": "0.1.1",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "firebase": "^3.6.2",
+    "material-ui": "^0.16.4",
+    "mousetrap": "^1.6.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-redux": "^4.4.6",
+    "react-router": "^4.0.0-alpha.6",
+    "react-router-addons-controlled": "0.0.1",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "app-root-path": "^2.0.1",
+    "ava": "^0.17.0",
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.16.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-plugin-transform-decorators": "^6.13.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "6.16.0",
+    "css-loader": "^0.26.0",
+    "deep-freeze": "^0.0.1",
+    "eslint": "^3.9.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-react": "^6.7.1",
+    "express": "^4.14.0",
+    "firebase-tools": "^3.2.0",
+    "node-sass": "^3.13.0",
+    "ramda": "^0.22.1",
+    "react-transform-hmr": "^1.0.4",
+    "redux-logger": "^2.7.4",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.13.0"
+  },
+  "scripts": {
+    "build": "npm run clean && NODE_ENV=production webpack --config config/webpack/production.js",
+    "build:integration": "FIREBASE_ENV=integration npm run build && npm run package",
+    "build:production": "FIREBASE_ENV=production npm run build && npm run package",
+    "build:staging": "FIREBASE_ENV=staging npm run build && npm run package",
+    "clean": "rm -rf ./src/static ./public",
+    "deploy:integration": "./node_modules/.bin/firebase deploy -P integration",
+    "deploy:production": "./node_modules/.bin/firebase deploy -P production",
+    "deploy:staging": "./node_modules/.bin/firebase deploy -P staging",
+    "lint": "./node_modules/.bin/eslint src/js",
+    "package": "mkdir public && cp -R src/index.html src/static public",
+    "preflight": "npm run lint && npm run test",
+    "start": "PORT=3000 node server.js",
+    "test": "NODE_PATH=src/js ava",
+    "test:watch": "npm test -- --watch"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.js"
+    ],
+    "source": [
+      "src/js/**/*.{js,jsx}"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "author": "Matt Dawson",
+  "license": "ISC"
+}

@@ -1,0 +1,26 @@
+/*------------------------------------*\
+    #LIST-BARE
+
+    Based on: https://github.com/inuitcss/objects.list-bare
+    Forked version: 0.3.0
+\*------------------------------------*/
+
+/**
+ * The list-bare object simply removes any indents and bullet points from lists.
+ */
+
+@mixin list-bare {
+    margin:  0;
+    padding: 0;
+    list-style: none;
+}
+
+%list-bare {
+    @include list-bare;
+}
+
+@if ($argan-enable-classes == true) {
+    .list-bare {
+        @extend %list-bare;
+    }
+}

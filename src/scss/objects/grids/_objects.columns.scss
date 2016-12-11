@@ -1,0 +1,96 @@
+/*------------------------------------*\
+    #GRID-COLUMNS
+
+    Used in conjunction with trumps.widths and objects.rows. Bottom margins are
+    not currently added automatically for tablet or palm stacking purposes;
+    check out tools.margins and tools.responsive-spacing for some helpers.
+
+    Adapted (somewhat) from:
+    https://github.com/zurb/foundation-sites/blob/v6.3/scss/grid/_column.scss
+    https://github.com/zurb/foundation-sites/blob/v6.3/scss/grid/_flex-grid.scss
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$argan-enable-column-float-classes: $argan-enable-classes !default;
+$argan-enable-column-flex-classes: $argan-enable-classes !default;
+$argan-enable-column-flex-behavior-classes: $argan-enable-classes !default;
+
+
+@mixin column--float(
+    $gutter: $grid-gutter-spacing,
+    $direction: $float-direction,
+    $last-direction: $float-direction--opposite
+) {
+    @include gutters($gutter);
+
+    float: $direction;
+
+    &:last-child {
+        &:not(:first-child) {
+            float: $last-direction;
+        }
+    }
+}
+
+
+%column--float {
+    @include column--float;
+}
+
+
+@if ($argan-enable-column-float-classes == true) {
+    .column--float {
+        @extend %column--float;
+    }
+}
+
+// Behavior options: 
+// - `null` (the default) will make the column take up only the horizontal space it needs.
+// - `expand` will make the column expand to fill any extra space.
+@mixin column--flex(
+    $behavior: null,
+    $gutter: $grid-gutter-spacing
+) {
+    @include gutters($gutter);
+
+    @if $behavior == 'expand' {
+        flex: 1 1 0;
+    } @else if $behavior != null {
+        flex: $behavior;
+    } @else {
+        flex: 0 0 auto;
+    }
+}
+
+
+%column--flex {
+    @include column--flex;
+}
+
+%column--flex--expand {
+    @include column--flex('expand');
+}
+
+
+@if ($argan-enable-column-flex-classes == true) {
+    .column--flex {
+        @extend %column--flex;
+    }
+
+    @if ($argan-enable-column-flex-behavior-classes == true) {
+        .column--flex--expand {
+            @extend %column--flex--expand;
+        }
+    }
+}
+
+// Adapt these rules to your preferred default column (float or flex).
+%column {
+    @extend %column--float;
+}
+
+@if ($argan-enable-classes == true) {
+    .column {
+        @extend %column;
+    }
+}

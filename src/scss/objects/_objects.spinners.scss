@@ -1,0 +1,92 @@
+/*------------------------------------*\
+    #SPINNERS
+\*------------------------------------*/
+
+// Predefine the variables below in order to alter and enable specific features.
+$spinner-radius: 68px !default;
+$spinner-sizes: (
+    null: $spinner-radius,
+    'small': ($spinner-radius / 2),
+    'tiny': ($spinner-radius / 4)
+) !default;
+
+$spinner-line-width: 5px !default;
+
+
+@mixin spinner-container($min-height: 30vh) {
+    position: relative;
+    min-height: $min-height;
+}
+
+@mixin spinner($radius: $spinner-radius) {
+    @extend %spinning;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $radius;
+    height: $radius;
+    margin-top: -#{$radius} / 2;
+    margin-left: -#{$radius} / 2;
+    border: $spinner-line-width solid $spinner-border;
+    border-radius: 50%;
+    border-top-color: $spinner-border-active;
+}
+
+
+
+/**
+ * Spinner containers.
+ */
+
+%spinner-container {
+    @include spinner-container;
+}
+
+%spinner-container--full {
+    @include spinner-container(100vh);
+}
+
+@if ($argan-enable-classes == true) {
+    .spinner-container {
+        @extend %spinner-container;
+    }
+
+    .spinner-container--full {
+        @extend %spinner-container--full;
+    }
+}
+
+
+/**
+ * Regular-sized spinner.
+ */
+
+%spinner {
+    @include spinner;
+}
+
+@if ($argan-enable-classes == true) {
+    .spinner {
+        @extend %spinner;
+    }
+}
+
+
+/**
+ * Other sizes of spinners.
+ */
+
+@each $size, $radius in $spinner-sizes {
+    @if ($size != null) {
+        %spinner--#{$size} {
+            @include spinner($radius);
+        }
+
+        @if ($argan-enable-classes == true) {
+            .spinner--#{$size} {
+                @extend %spinner--#{$size};
+            }
+        }
+    }
+}

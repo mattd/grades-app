@@ -1,0 +1,65 @@
+/*------------------------------------*\
+    #LIST-INLINE
+
+    Based on: https://github.com/inuitcss/objects.list-inline
+    Forked version: 0.3.2
+\*------------------------------------*/
+
+/**
+ * The list-inline object simply displays a list of items in one line.
+ */
+
+// Predefine the variables below in order to alter and enable specific features.
+$list-inline-delimit-characters: (
+    'comma': ',\00A0',
+    'dash': '\00a0-\00a0'
+) !default;
+
+
+@mixin list-inline {
+    margin:  0;
+    padding: 0;
+    list-style: none;
+
+    > li,
+    > dd {
+        display: inline-block;
+    }
+}
+
+%list-inline {
+    @include list-inline;
+}
+
+@if ($argan-enable-classes == true) {
+    .list-inline {
+        @extend %list-inline;
+    }
+}
+
+/**
+ * Comma delimited list to semantically mark up lists of tags, etc.
+ */
+
+@mixin list-inline--delimited($character: null) {
+    > li,
+    > dd {
+        &:not(:last-child) {
+            &:after {
+                content: '#{map-get($list-inline-delimit-characters, 'comma')}';
+            }
+        }
+    }
+}
+
+@each $type, $character in $list-inline-delimit-characters {
+    %list-inline--delimited--#{$type} {
+        @include list-inline--delimited($character);
+    }
+
+    @if ($argan-enable-classes == true) {
+        .list-inline--delimited--#{$type} {
+            @extend %list-inline--delimited--#{$type};
+        }
+    }
+}
