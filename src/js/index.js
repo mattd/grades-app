@@ -23,3 +23,6 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
+window.BUILD_DATE = process.env['BUILD_DATE'];
+window.BUILD_COMMIT = process.env['BUILD_COMMIT'];
