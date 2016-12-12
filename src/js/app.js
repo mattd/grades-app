@@ -12,6 +12,7 @@ import Students from './controllers/students';
 import Loading from './components/loading';
 import AppBar from './components/app-bar';
 import Drawer from './components/drawer';
+import UpdateNotifier from './components/update-notifier';
 import { MatchWhenAuthenticated } from './components/router';
 
 const mapStateToProps = (state) => {
@@ -51,6 +52,7 @@ const App = ({
                         pattern="/students"
                         component={Students} />
                 </Page>
+                <UpdateNotifier />
             </div>
         );
     }
