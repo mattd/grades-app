@@ -1,18 +1,14 @@
-const execSync = require('child_process').execSync;
-
 const webpack = require('webpack');
 
 const base = require('./base');
-const production = Object.assign({}, base);
-
-const commit = execSync('git rev-parse --short HEAD').toString().trim();
 const version = require('../../package').version;
+const production = Object.assign({}, base);
 
 const env = Object.assign(
     require('../firebase/' + process.env['FIREBASE_ENV']),
     {
         NODE_ENV: JSON.stringify('production'),
-        BUILD_COMMIT: JSON.stringify(commit),
+        BUILD_COMMIT: JSON.stringify(process.env['BUILD_COMMIT']),
         BUILD_TIMESTAMP: process.env['BUILD_TIMESTAMP'],
         BUILD_VERSION: JSON.stringify(version)
     }
