@@ -18,3 +18,4 @@ script:
 after_success:
   - npm run build:${DEPLOY_TARGET}
   - firebase deploy --token $FIREBASE_TOKEN -P $DEPLOY_TARGET
+  - node scripts/update-build $TRAVIS_COMMIT

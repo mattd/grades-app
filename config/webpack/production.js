@@ -6,14 +6,15 @@ const base = require('./base');
 const production = Object.assign({}, base);
 
 const commit = execSync('git rev-parse --short HEAD').toString().trim();
-const date = execSync('date -u').toString().trim();
+const version = require('../../package').version;
 
 const env = Object.assign(
     require('../firebase/' + process.env.FIREBASE_ENV),
     {
         NODE_ENV: JSON.stringify('production'),
         BUILD_COMMIT: JSON.stringify(commit),
-        BUILD_DATE: JSON.stringify(date)
+        BUILD_TIMESTAMP: Date.now(),
+        BUILD_VERSION: JSON.stringify(version)
     }
 );
 

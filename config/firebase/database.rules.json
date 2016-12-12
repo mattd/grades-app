@@ -5,6 +5,10 @@
         ".write": "$uid === auth.uid",
         ".read": "$uid === auth.uid"
       }
+    },
+    "build": {
+      ".write": "auth.uid === 'service-worker'",
+      ".read": true
     }
   }
 }

@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { isDev } from './utils/dev';
+import { isDev } from './utils/environment';
 import { helpers } from './utils/console';
 import { start } from './lib/firebase';
 import StoreFactory from './store-factory';

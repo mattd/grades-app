@@ -8,14 +8,15 @@ const base = require('./base');
 const development = Object.assign({}, base);
 
 const commit = execSync('git rev-parse --short HEAD').toString().trim();
-const date = execSync('date -u').toString().trim();
+const version = require('../../package').version;
 
 const env = Object.assign(
     require('../firebase/integration'),
     {
         NODE_ENV: JSON.stringify('development'),
         BUILD_COMMIT: JSON.stringify(commit),
-        BUILD_DATE: JSON.stringify(date)
+        BUILD_TIMESTAMP: Date.now(),
+        BUILD_VERSION: JSON.stringify(version)
     }
 );
 
