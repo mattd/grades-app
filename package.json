@@ -51,7 +51,7 @@
     "webpack-hot-middleware": "^2.13.0"
   },
   "scripts": {
-    "build": "npm run clean && NODE_ENV=production webpack --config config/webpack/production.js",
+    "build": "BUILD_TIMESTAMP=`date +%s` npm run clean && NODE_ENV=production webpack --config config/webpack/production.js",
     "build:integration": "FIREBASE_ENV=integration npm run build && npm run package",
     "build:production": "FIREBASE_ENV=production npm run build && npm run package",
     "build:staging": "FIREBASE_ENV=staging npm run build && npm run package",
