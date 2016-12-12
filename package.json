@@ -51,7 +51,7 @@
     "webpack-hot-middleware": "^2.13.0"
   },
   "scripts": {
-    "build": "BUILD_TIMESTAMP=`date +%s` npm run clean && NODE_ENV=production webpack --config config/webpack/production.js",
+    "build": "source scripts/timestamp.sh && npm run clean && NODE_ENV=production webpack --config config/webpack/production.js",
     "build:integration": "FIREBASE_ENV=integration npm run build && npm run package",
     "build:production": "FIREBASE_ENV=production npm run build && npm run package",
     "build:staging": "FIREBASE_ENV=staging npm run build && npm run package",
@@ -62,7 +62,7 @@
     "lint": "./node_modules/.bin/eslint src/js",
     "package": "mkdir public && cp -R src/index.html src/static public",
     "preflight": "npm run lint && npm run test",
-    "start": "PORT=3000 node server.js",
+    "start": "source scripts/timestamp.sh && PORT=3000 node server.js",
     "test": "NODE_PATH=src/js ava",
     "test:watch": "npm test -- --watch"
   },

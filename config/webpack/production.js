@@ -9,11 +9,11 @@ const commit = execSync('git rev-parse --short HEAD').toString().trim();
 const version = require('../../package').version;
 
 const env = Object.assign(
-    require('../firebase/' + process.env.FIREBASE_ENV),
+    require('../firebase/' + process.env['FIREBASE_ENV']),
     {
         NODE_ENV: JSON.stringify('production'),
         BUILD_COMMIT: JSON.stringify(commit),
-        BUILD_TIMESTAMP: Date.now(),
+        BUILD_TIMESTAMP: process.env['BUILD_TIMESTAMP'],
         BUILD_VERSION: JSON.stringify(version)
     }
 );

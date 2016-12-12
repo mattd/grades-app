@@ -15,7 +15,7 @@ const env = Object.assign(
     {
         NODE_ENV: JSON.stringify('development'),
         BUILD_COMMIT: JSON.stringify(commit),
-        BUILD_TIMESTAMP: Date.now(),
+        BUILD_TIMESTAMP: process.env['BUILD_TIMESTAMP'],
         BUILD_VERSION: JSON.stringify(version)
     }
 );
