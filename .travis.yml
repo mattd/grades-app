@@ -16,6 +16,7 @@ before_install:
 script:
   - npm run preflight
 after_success:
+  - source scripts/timestamp.sh
   - npm run build:${DEPLOY_TARGET}
   - firebase deploy --token $FIREBASE_TOKEN -P $DEPLOY_TARGET
   - node scripts/update-build $TRAVIS_COMMIT
