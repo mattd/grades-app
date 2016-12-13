@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import { reducer as form } from 'redux-form';
 
 import { isDev } from './utils/environment';
 import auth from './reducers/auth';
@@ -25,6 +26,7 @@ const StoreFactory = () => {
             auth,
             build,
             db,
+            form,
             profile,
             router,
             terms,

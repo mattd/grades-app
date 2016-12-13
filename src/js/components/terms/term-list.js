@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
 
 import { sortObject } from '../../utils/ordering';
+import TermForm from './term-form';
 import AddTerm from './add-term';
 
 const mapStateToProps = (state) => {
@@ -27,7 +28,7 @@ const TermList = ({
             <List>
                 {sortObject(terms).map(getTerm)}
             </List>
-            {addingTerm ? <p>Term Form</p> : <AddTerm />}
+            {addingTerm ? <TermForm /> : <AddTerm />}
         </div>
     );
 };
