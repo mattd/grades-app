@@ -2,8 +2,9 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-import { isDev } from './utils/dev';
+import { isDev } from './utils/environment';
 import auth from './reducers/auth';
+import build from './reducers/build';
 import db from './reducers/db';
 import forms from './reducers/forms';
 import profile from './reducers/profile';
@@ -23,6 +24,7 @@ const StoreFactory = () => {
     return createStore(
         combineReducers({
             auth,
+            build,
             db,
             forms,
             profile,

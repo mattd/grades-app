@@ -4,7 +4,7 @@ import 'firebase/database';
 import { bindActionCreators } from 'redux';
 
 import { respondToAuthChange } from '../actions/creators/auth';
-import { isDev } from '../utils/dev';
+import { isDev } from '../utils/environment';
 
 export const start = (store) => {
     const config = {

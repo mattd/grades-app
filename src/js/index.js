@@ -4,14 +4,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import { isDev, attachHelpers } from './utils/dev';
+import { isDev } from './utils/environment';
+import { helpers } from './utils/console';
 import { start } from './lib/firebase';
 import StoreFactory from './store-factory';
 import Router from './router';
 import { MuiThemeProvider } from './lib/material-ui';
 import App from './app';
 
-if (isDev()) attachHelpers();
+if (isDev()) helpers.mountDev();
+helpers.mountPublic();
 
 ReactDOM.render(
     <Provider store={start(StoreFactory())}>
@@ -23,6 +25,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
-
-window.BUILD_DATE = process.env['BUILD_DATE'];
-window.BUILD_COMMIT = process.env['BUILD_COMMIT'];

@@ -1,8 +1,10 @@
 {
-    "uid": "jJWTFWFNnuSI6fxdWfo3tX4zFF62",
-    "displayName": "Matt Dawson",
-    "photoURL": "",
-    "timerDefault": 900,
+    "profile": {
+        "uid": "jJWTFWFNnuSI6fxdWfo3tX4zFF62",
+        "displayName": "Matt Dawson",
+        "photoURL": "",
+        "timerDefault": 900
+    },
     "terms": {
         "f10a15d5-e294-40fa-a583-474ffb42cfa6": {
             "name": "Spring 2017",
@@ -25,14 +27,6 @@
         "3baf11b0-a1ec-11e6-80f5-76304dec7eb7": {
             "id": "3baf11b0-a1ec-11e6-80f5-76304dec7eb7",
             "name": "ENWR 1506 - 10597",
-            "students": {
-                "f3311ba2-a1ed-11e6-80f5-76304dec7eb7": {
-                    "firstName": "John",
-                    "middleName": "",
-                    "lastName": "Doe",
-                    "id": "f3311ba2-a1ed-11e6-80f5-76304dec7eb7"
-                }
-            },
             "assignments": [
                 {
                     "name": "Paper 1",
@@ -46,6 +40,14 @@
                     ]
                 }
             ]
+        }
+    },
+    "students": {
+        "f3311ba2-a1ed-11e6-80f5-76304dec7eb7": {
+            "firstName": "John",
+            "middleName": "",
+            "lastName": "Doe",
+            "id": "f3311ba2-a1ed-11e6-80f5-76304dec7eb7"
         }
     }
 }
