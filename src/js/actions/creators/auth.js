@@ -8,6 +8,7 @@ import { resetUi } from '../creators/ui';
 import { removeDbListeners } from '../creators/db';
 import { navigate } from '../creators/router';
 import { setAndSubscribeToProfile } from '../creators/profile';
+import { subscribeToBuild } from '../creators/build';
 
 export const authStatusUpdated = (user) => {
     return {
@@ -66,6 +67,7 @@ export const respondToAuthChange = (user) => {
         if (user) {
             dispatch(setAndSubscribeToProfile(user));
         }
+        dispatch(subscribeToBuild());
         dispatch(authStatusReady());
         dispatch(navigateAfterAuthChange());
     };
