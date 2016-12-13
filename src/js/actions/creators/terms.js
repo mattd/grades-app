@@ -1,10 +1,8 @@
-import uuid from 'uuid';
 import Mousetrap from 'mousetrap';
 
 import { TERMS_UPDATED, TERMS_FLUSH } from '../types/terms';
 import { getTermsRef, getTermRef, getTermsPath } from '../../services/terms';
 import { dbListenerAdded, dbListenerRemoved } from './db';
-import { updateFormValues, updateFormDisplay, cleanForm } from './forms';
 import { toggleAddingTerm } from './ui';
 import { nextOrder } from '../../utils/ordering';
 
@@ -46,22 +44,9 @@ export const setTerm = () => {
     };
 };
 
-export const updateTermValues = (values) => {
-    return (dispatch) => {
-        dispatch(updateFormValues('term', values));
-    };
-};
-
-export const updateTermDisplay = (display) => {
-    return (dispatch) => {
-        dispatch(updateFormDisplay('term', display));
-    };
-};
-
 export const startAddingTerm = () => {
     return (dispatch) => {
         dispatch(toggleAddingTerm());
-        dispatch(updateTermValues({id: uuid()}));
         Mousetrap.bind('esc', () => {
             dispatch(stopAddingTerm());
         });
@@ -71,7 +56,6 @@ export const startAddingTerm = () => {
 export const stopAddingTerm = () => {
     return (dispatch) => {
         dispatch(toggleAddingTerm());
-        dispatch(cleanForm('term'));
         Mousetrap.unbind('esc');
     };
 };
