@@ -1,74 +1,56 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField';
+import { Field, reduxForm } from 'redux-form';
 
-import {
-    updateTermValues,
-    updateTermDisplay,
-    setTerm
-} from '../../actions/creators/terms';
-import { cleanForm } from '../../actions/creators/forms';
-import { toggleAddingTerm } from '../../actions/creators/ui';
-
-const mapStateToProps = (state) => {
-    return {
-        focused: state.forms.term.display.focused
-    };
-};
+import { setTerm, stopAddingTerm } from '../../actions/creators/terms';
+import { MuiTextField } from '../forms/fields';
 
 const mapDispatchToProps = (dispatch) => {
     return {
         actionCreators: bindActionCreators({
-            updateTermValues,
-            updateTermDisplay,
             setTerm,
-            cleanForm,
-            toggleAddingTerm
+            stopAddingTerm
         }, dispatch)
     };
 };
 
-const onSubmit = (actionCreators, event) => {
-    event.preventDefault();
-    actionCreators.setTerm();
-    actionCreators.cleanForm('term');
-    actionCreators.toggleAddingTerm();
-};
-
-const onChange = (actionCreators, event) => {
-    actionCreators.updateTermValues({
-        name: event.target.value
+const validate = (values) => {
+    const errors = {};
+    const requiredFields = ['name'];
+    requiredFields.forEach(field => {
+        if (!values[field]) {
+            errors[field] = 'Required';
+        }
     });
-};
+    return errors;
+}
 
-const onFocus = (actionCreators) => {
-    actionCreators.updateTermDisplay({
-        focused: 'name'
-    });
-};
-
-const onBlur = (actionCreators) => {
-    actionCreators.updateTermDisplay({
-        focused: null
-    });
+const onSubmit = (actionCreators, values) => {
+    actionCreators.setTerm(values);
+    actionCreators.stopAddingTerm();
 };
 
 const TermForm = ({
-    focused,
+    handleSubmit,
     actionCreators
 }) => {
+    const handler = onSubmit.bind(null, actionCreators);
     return (
-        <form onSubmit={onSubmit.bind(null, actionCreators)}>
-            <TextField
-                hintText="Name"
-                autoFocus={focused === 'name'}
-                onChange={onChange.bind(null, actionCreators)}
-                onFocus={onFocus.bind(null, actionCreators)}
-                onBlur={onBlur.bind(null, actionCreators)}
+        <form onSubmit={handleSubmit(handler)}>
+            <Field
+                name="name"
+                component={MuiTextField}
+                label="Name"
+                autoFocus={true}
             />
         </form>
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TermForm);
+export default connect(null, mapDispatchToProps)(
+    reduxForm({
+        form: 'term',
+        validate
+    })(TermForm)
+);

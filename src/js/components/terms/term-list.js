@@ -1,3 +1,4 @@
+import uuid from 'uuid';
 import React from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
@@ -23,12 +24,14 @@ const TermList = ({
     terms,
     addingTerm
 }) => {
+    const form = <TermForm initialValues={{id: uuid()}} />;
+    const button = <AddTerm />;
     return (
         <div>
             <List>
                 {sortObject(terms).map(getTerm)}
             </List>
-            {addingTerm ? <TermForm /> : <AddTerm />}
+            {addingTerm ? form : button}
         </div>
     );
 };
