@@ -35,9 +35,8 @@ export const unsubscribeFromTerms = (uid) => {
     };
 };
 
-export const setTerm = () => {
+export const setTerm = (values) => {
     return (dispatch, getState) => {
-        const { values } = getState().forms.term;
         const { uid } = getState().profile;
         values.order = nextOrder(getState().terms);
         getTermRef(uid, values.id).set(values);

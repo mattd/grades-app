@@ -1,7 +1,19 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
+import { setTerm, stopAddingTerm } from '../../actions/creators/terms';
 import { MuiTextField } from '../forms/fields';
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actionCreators: bindActionCreators({
+            setTerm,
+            stopAddingTerm
+        }, dispatch)
+    };
+};
 
 const validate = (values) => {
     const errors = {};
@@ -14,15 +26,18 @@ const validate = (values) => {
     return errors;
 }
 
-const onSubmit = (values) => {
-    window.console.log(values);
+const onSubmit = (actionCreators, values) => {
+    actionCreators.setTerm(values);
+    actionCreators.stopAddingTerm();
 };
 
 const TermForm = ({
-    handleSubmit
+    handleSubmit,
+    actionCreators
 }) => {
+    const handler = onSubmit.bind(null, actionCreators);
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(handler)}>
             <Field
                 name="name"
                 component={MuiTextField}
@@ -33,4 +48,9 @@ const TermForm = ({
     );
 };
 
-export default reduxForm({form: 'term', validate})(TermForm);
+export default connect(null, mapDispatchToProps)(
+    reduxForm({
+        form: 'term',
+        validate
+    })(TermForm)
+);
