@@ -2,26 +2,29 @@ require('../scss/style.scss');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { AppContainer } from 'react-hot-loader'
 
-import { isDev } from './utils/environment';
-import { helpers } from './utils/console';
 import { start } from './lib/firebase';
 import StoreFactory from './store-factory';
-import Router from './router';
-import { MuiThemeProvider } from './lib/material-ui';
-import App from './app';
+import Root from './root';
 
-if (isDev()) helpers.mountDev();
-helpers.mountPublic();
+const store = start(StoreFactory());
 
 ReactDOM.render(
-    <Provider store={start(StoreFactory())}>
-        <Router>
-            <MuiThemeProvider>
-                <App />
-            </MuiThemeProvider>
-        </Router>
-    </Provider>,
+    <AppContainer>
+        <Root store={store} />
+    </AppContainer>,
     document.getElementById('root')
 );
+
+if (module.hot) {
+    module.hot.accept('./root', () => {
+        const NextRoot = require('./root').default;
+        ReactDOM.render(
+            <AppContainer>
+                <NextRoot store={store} />
+            </AppContainer>,
+            document.getElementById('root')
+        );
+    });
+}

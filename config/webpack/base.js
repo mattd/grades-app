@@ -2,7 +2,10 @@ const path = require('path');
 const appRootPath = require('app-root-path').toString();
 
 module.exports = {
-    entry: ['babel-polyfill', './src/js/index.js'],
+    entry: [
+        'babel-polyfill',
+        './src/js/index.js'
+    ],
     module: {
         loaders: [{
             test: /\.js?$/,

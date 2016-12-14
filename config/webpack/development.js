@@ -19,7 +19,10 @@ const env = Object.assign(
 
 development.debug = true;
 development.devtool = 'eval';
-development.entry.unshift('webpack-hot-middleware/client');
+development.entry.unshift(
+    'webpack-hot-middleware/client',
+    'react-hot-loader/patch'
+);
 development.module.preLoaders = [{
     test: /\.js$/,
     loader: 'eslint-loader',
