@@ -17,9 +17,9 @@ const app = admin.initializeApp({
 });
 
 admin.database().ref('/build').set({
-    commit: commit,
-    timestamp: timestamp,
-    version: version
+    commit,
+    timestamp,
+    version
 }).then(() => {
     app.delete();
 });
