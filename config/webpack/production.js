@@ -16,9 +16,9 @@ const env = Object.assign(
 
 production.devtool = 'source-map';
 production.plugins = [
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({'process.env': env}),
     new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
         compressor: {
             warnings: false
         }
