@@ -5,10 +5,7 @@ const initialState = {};
 const terms = (state = initialState, action) => {
     switch (action.type) {
         case TERMS_UPDATED:
-            return {
-                ...state,
-                ...action.terms
-            };
+            return action.terms;
         case TERMS_FLUSH:
             return {
                 ...initialState
