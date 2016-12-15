@@ -7,9 +7,7 @@ const terms = (state = initialState, action) => {
         case TERMS_UPDATED:
             return action.terms;
         case TERMS_FLUSH:
-            return {
-                ...initialState
-            };
+            return initialState;
         default:
             return state;
     }

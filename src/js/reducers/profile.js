@@ -16,9 +16,7 @@ const profile = (state = initialState, action) => {
                 ...action.profile
             };
         case PROFILE_FLUSH:
-            return {
-                ...initialState
-            };
+            return initialState;
         default:
             return state;
     }
