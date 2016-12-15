@@ -1,7 +1,7 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { makeController } from '../controllers';
 import { getTermsPath } from '../services/terms';
 import {
     subscribeToTerms,
@@ -18,32 +18,39 @@ const mapStateToProps = (state) => {
     };
 };
 
-const willMount = ({
-    db,
-    uid,
-    dispatch
-}) => {
-    if (!db[getTermsPath(uid)]) {
-        dispatch(subscribeToTerms(uid));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actionCreators: bindActionCreators({
+            subscribeToTerms,
+            unsubscribeFromTerms,
+            flushTerms
+        }, dispatch)
+    };
+};
+
+class Terms extends React.Component {
+    componentWillMount() {
+        const { db, uid, actionCreators } = this.props;
+
+        if (!db[getTermsPath(uid)]) {
+            actionCreators.subscribeToTerms(uid);
+        }
     }
-};
 
-const willUnmount = ({
-    uid,
-    dispatch
-}) => {
-    if (uid) dispatch(unsubscribeFromTerms(uid));
-    dispatch(flushTerms());
-};
+    componentWillUnmount() {
+        const { uid, actionCreators } = this.props;
 
-const Terms = () => {
-    return (
-        <Feature title="Terms">
-            <TermList />
-        </Feature>
-    );
-};
+        if (uid) actionCreators.unsubscribeFromTerms(uid);
+        actionCreators.flushTerms();
+    }
 
-export default connect(mapStateToProps)(
-    makeController(willMount, willUnmount)(Terms)
-);
+    render() {
+        return (
+            <Feature title="Terms">
+                <TermList />
+            </Feature>
+        );
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Terms);
