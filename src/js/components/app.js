@@ -2,18 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Match, Redirect } from 'react-router';
 
-import { Page } from './components/containers';
+import { Page } from './containers';
 import Authenticate from './controllers/authenticate';
 import Profile from './controllers/profile';
 import Terms from './controllers/terms';
 import Courses from './controllers/courses';
 import Students from './controllers/students';
 
-import Loading from './components/loading';
-import AppBar from './components/app-bar';
-import Drawer from './components/drawer';
-import UpdateNotifier from './components/update-notifier';
-import { MatchWhenAuthenticated } from './components/router';
+import Loading from './loading';
+import AppBar from './app-bar';
+import Drawer from './drawer';
+import UpdateNotification from './notifications/update';
+import MatchWhenAuthenticated from './match-when-authenticated';
 
 const mapStateToProps = (state) => {
     return {
@@ -52,7 +52,7 @@ const App = ({
                         pattern="/students"
                         component={Students} />
                 </Page>
-                <UpdateNotifier />
+                <UpdateNotification />
             </div>
         );
     }

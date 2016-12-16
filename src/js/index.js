@@ -6,22 +6,22 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
 import { start } from './lib/firebase';
-import StoreFactory from './store-factory';
+import StoreFactory from './factories/store';
 import { isDev } from './utils/environment';
 import { helpers } from './utils/console';
-import Router from './router';
+import Router from './components/router';
 import { MuiThemeProvider } from './lib/material-ui';
-import App from './app';
+import Root from './components/root';
 
 const store = start(StoreFactory());
 
-const render = (App) => {
+const render = (Root) => {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
                 <Router>
                     <MuiThemeProvider>
-                        <App />
+                        <Root />
                     </MuiThemeProvider>
                 </Router>
             </Provider>
@@ -33,11 +33,11 @@ const render = (App) => {
 if (isDev()) helpers.mountDev();
 helpers.mountPublic();
 
-render(App);
+render(Root);
 
 if (module.hot) {
-    module.hot.accept('./app', () => {
-        const NextApp = require('./app').default;
-        render(NextApp);
+    module.hot.accept('./components/root', () => {
+        const NextRoot = require('./components/root').default;
+        render(NextRoot);
     });
 }

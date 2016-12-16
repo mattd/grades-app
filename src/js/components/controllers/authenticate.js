@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Feature } from '../components/containers';
+import { Feature } from '../containers';
 
 const Authenticate = () => {
     return (

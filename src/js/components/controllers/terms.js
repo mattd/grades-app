@@ -2,14 +2,14 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { getTermsPath } from '../services/terms';
+import { getTermsPath } from '../../services/terms';
 import {
     subscribeToTerms,
     unsubscribeFromTerms,
     flushTerms
-} from '../actions/creators/terms';
-import { Feature } from '../components/containers';
-import TermList from '../components/terms/term-list'
+} from '../../actions/creators/terms';
+import { Feature } from '../containers';
+import TermList from '../terms/term-list'
 
 const mapStateToProps = (state) => {
     return {

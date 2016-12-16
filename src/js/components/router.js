@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import BrowserRouter from 'react-router-addons-controlled/ControlledBrowserRouter';
 
-import history from './history';
-import { navigate } from './actions/creators/router';
+import history from '../history';
+import { navigate } from '../actions/creators/router';
 
 const mapStateToProps = (state) => {
     return {
