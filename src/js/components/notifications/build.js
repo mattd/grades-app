@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const UpdateNotification = ({
+const BuildNotification = ({
     build
 }) => {
     return (
@@ -23,4 +23,4 @@ const UpdateNotification = ({
     );
 };
 
-export default connect(mapStateToProps)(UpdateNotification);
+export default connect(mapStateToProps)(BuildNotification);
