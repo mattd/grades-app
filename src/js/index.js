@@ -8,7 +8,7 @@ import { AppContainer } from 'react-hot-loader';
 import { start } from './lib/firebase';
 import StoreFactory from './factories/store';
 import { isDev } from './utils/environment';
-import { helpers } from './utils/console';
+import log from './utils/log';
 import Router from './components/router';
 import { MuiThemeProvider } from './lib/material-ui';
 import Root from './components/root';
@@ -30,8 +30,8 @@ const render = (Root) => {
     );
 };
 
-if (isDev()) helpers.mountDev();
-helpers.mountPublic();
+if (isDev()) log.helpers.mountDev();
+log.helpers.mountPublic();
 
 render(Root);
 

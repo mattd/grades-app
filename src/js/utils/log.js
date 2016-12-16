@@ -4,7 +4,7 @@ const pretty = (obj) => {
     return JSON.stringify(obj, null, 2);
 };
 
-export const helpers = {
+const helpers = {
     mountDev: () => {
         window.pretty = pretty;
     },
@@ -14,3 +14,5 @@ export const helpers = {
         window.BUILD_VERSION = BUILD_VERSION;
     }
 };
+
+export default { helpers };
