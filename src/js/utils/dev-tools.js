@@ -18,8 +18,6 @@ const launch = (store) => {
         <DevTools store={store} />,
         popup.document.getElementById('react-devtools-root')
     );
-
-    window.addEventListener('unload', () => popup.close());
 };
 
 const bind = (store) => {
