@@ -8,20 +8,21 @@ import { AppContainer } from 'react-hot-loader';
 import { start } from './lib/firebase';
 import StoreFactory from './factories/store';
 import { isDev } from './utils/environment';
-import log from './utils/log';
+import logHelpers from './utils/log-helpers';
+import devTools from './utils/dev-tools';
 import Router from './components/router';
 import { MuiThemeProvider } from './lib/material-ui';
-import Root from './components/root';
+import App from './components/app';
 
 const store = start(StoreFactory());
 
-const render = (Root) => {
+const render = (App) => {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
                 <Router>
                     <MuiThemeProvider>
-                        <Root />
+                        <App />
                     </MuiThemeProvider>
                 </Router>
             </Provider>
@@ -30,14 +31,17 @@ const render = (Root) => {
     );
 };
 
-if (isDev()) log.helpers.mountDev();
-log.helpers.mountPublic();
+if (isDev()) {
+    devTools.bind(store);
+    logHelpers.mountDev();
+}
+logHelpers.mountPublic();
 
-render(Root);
+render(App);
 
 if (module.hot) {
-    module.hot.accept('./components/root', () => {
-        const NextRoot = require('./components/root').default;
-        render(NextRoot);
+    module.hot.accept('./components/app', () => {
+        const NextApp = require('./components/app').default;
+        render(NextApp);
     });
 }
