@@ -8,7 +8,7 @@ import { AppContainer } from 'react-hot-loader';
 import { start } from './lib/firebase';
 import StoreFactory from './factories/store';
 import { isDev } from './utils/environment';
-import logHelpers from './utils/log-helpers';
+import consoleHelpers from './utils/console-helpers';
 import devTools from './utils/dev-tools';
 import Router from './components/router';
 import { MuiThemeProvider } from './lib/material-ui';
@@ -33,9 +33,9 @@ const render = (App) => {
 
 if (isDev()) {
     devTools.bind(store);
-    logHelpers.mountDev();
+    consoleHelpers.mountDev();
 }
-logHelpers.mountPublic();
+consoleHelpers.mountPublic();
 
 render(App);
 
