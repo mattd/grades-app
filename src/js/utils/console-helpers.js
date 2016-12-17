@@ -4,7 +4,7 @@ const pretty = (obj) => {
     return JSON.stringify(obj, null, 2);
 };
 
-const logHelpers = {
+const consoleHelpers = {
     mountDev: () => {
         window.pretty = pretty;
     },
@@ -15,4 +15,4 @@ const logHelpers = {
     }
 };
 
-export default logHelpers;
+export default consoleHelpers;
