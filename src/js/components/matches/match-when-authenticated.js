@@ -28,7 +28,11 @@ const MatchWhenAuthenticated = ({
     return (
         <Match
             {...rest}
-            render={() => chooseComponentOrRedirect(Component, rest)}
+            render={(props) => {
+                return chooseComponentOrRedirect(
+                    Component, {...props, ...rest}
+                );
+            }}
         />
     );
 };

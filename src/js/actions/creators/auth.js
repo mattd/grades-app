@@ -7,6 +7,7 @@ import { resetUi } from '../creators/ui';
 import { removeDbListeners } from '../creators/db';
 import { navigate } from '../creators/router';
 import { setAndSubscribeToProfile } from '../creators/profile';
+import { subscribeToTerms, flushTerms } from '../creators/terms';
 import { subscribeToBuild } from '../creators/build';
 
 export const authStatusUpdated = (user) => {
@@ -32,11 +33,24 @@ export const signIn = () => {
     };
 };
 
+export const flushUserData = () => {
+    return (dispatch) => {
+        dispatch(flushProfile());
+        dispatch(flushTerms());
+    };
+};
+
+export const subscribeToGradesData = (uid) => {
+    return (dispatch) => {
+        dispatch(subscribeToTerms(uid));
+    };
+};
+
 export const signOut = () => {
     return (dispatch) => {
         firebase.auth().signOut().then(() => {
             dispatch(removeDbListeners());
-            dispatch(flushProfile());
+            dispatch(flushUserData());
             dispatch(resetUi());
         }).catch(() => {
             // TODO: Do something in the UI with this error.
@@ -64,6 +78,7 @@ export const respondToAuthChange = (user) => {
         dispatch(authStatusUpdated(user));
         if (user) {
             dispatch(setAndSubscribeToProfile(user));
+            dispatch(subscribeToGradesData(user.uid));
         }
         dispatch(subscribeToBuild());
         dispatch(authStatusReady());

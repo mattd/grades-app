@@ -1,3 +1,4 @@
+import * as R from 'ramda';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -14,10 +15,20 @@ import { toggleDrawer } from '../../actions/creators/ui';
 
 const SelectableList = makeSelectable(List);
 
+const getTopLevelPath = (pathname) => {
+    return (
+        '/' +
+        R.reject(
+            R.isEmpty,
+            pathname.split('/')
+        )[0]
+    );
+};
+
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        pathname: state.router.location.pathname
+        topLevelPath: getTopLevelPath(state.router.location.pathname)
     };
 };
 
@@ -42,48 +53,44 @@ const styles = () => {
     };
 };
 
-const getListItem = (item, index) => {
+const getListItem = (actionCreators, item, index) => {
     return (
         <ListItem
-            value={item.pathname}
+            value={item.topLevelPath}
             key={index}
             innerDivStyle={styles().innerDiv}
             leftIcon={item.icon}
+            onClick={actionCreators.toggleDrawer}
         >
-            <Link to={item.pathname} style={styles().link}>
+            <Link to={item.topLevelPath} style={styles().link}>
                 {item.title}
             </Link>
         </ListItem>
     );
 };
 
-const onChange = (actionCreators) => {
-    actionCreators.toggleDrawer();
-};
-
 const NavList = ({
     isAuthenticated,
-    pathname,
+    topLevelPath,
     actionCreators
 }) => {
     const list = [
-        {pathname: '/terms', title: 'Terms', icon: <ActionDateRange />},
-        {pathname: '/courses', title: 'Courses', icon: <ActionBook />},
-        {pathname: '/students', title: 'Students', icon: <SocialPeople />}
+        {topLevelPath: '/terms', title: 'Terms', icon: <ActionDateRange />},
+        {topLevelPath: '/courses', title: 'Courses', icon: <ActionBook />},
+        {topLevelPath: '/students', title: 'Students',icon: <SocialPeople />}
     ];
 
     if (!isAuthenticated) {
         list.unshift({
-            pathname: '/profile', title: 'Profile', icon: <SocialPerson />
+            topLevelPath: '/profile',
+            title: 'Profile',
+            icon: <SocialPerson />
         });
     }
 
     return (
-        <SelectableList
-            value={pathname}
-            onChange={onChange.bind(null, actionCreators)}
-        >
-            {list.map(getListItem)}
+        <SelectableList value={topLevelPath} onChange={() => {}}>
+            {list.map(getListItem.bind(null, actionCreators))}
         </SelectableList>
     );
 }

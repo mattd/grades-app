@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Feature } from '../containers';
 
-const Students = () => {
+const StudentListController = () => {
     return (
         <Feature title="Students" />
     );
 };
 
-export default Students;
+export default StudentListController;
