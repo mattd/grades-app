@@ -54,10 +54,10 @@ const Matches = () => {
                 exactly
                 render={() => <Redirect to="/terms" />} />
             <Match
-                exactly
                 pattern="/authenticate"
+                exactly
                 component={AuthenticateController} />
-            <MatchWhenAuthenticated
+            <Match
                 pattern="/:rest"
                 component={AuthenticatedMatches} />
         </div>
