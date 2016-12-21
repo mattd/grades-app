@@ -77,7 +77,7 @@ const NavList = ({
     const list = [
         {topLevelPath: '/terms', title: 'Terms', icon: <ActionDateRange />},
         {topLevelPath: '/courses', title: 'Courses', icon: <ActionBook />},
-        {topLevelPath: '/students', title: 'Students',icon: <SocialPeople />}
+        {topLevelPath: '/students', title: 'Students', icon: <SocialPeople />}
     ];
 
     if (!isAuthenticated) {
