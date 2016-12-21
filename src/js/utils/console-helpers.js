@@ -5,7 +5,8 @@ const pretty = (obj) => {
 };
 
 const consoleHelpers = {
-    mountDev: () => {
+    mountDev: (store) => {
+        window.store = store;
         window.pretty = pretty;
     },
     mountPublic: () => {

@@ -33,7 +33,7 @@ const render = (App) => {
 
 if (isDev()) {
     devTools.bind(store);
-    consoleHelpers.mountDev();
+    consoleHelpers.mountDev(store);
 }
 consoleHelpers.mountPublic();
 

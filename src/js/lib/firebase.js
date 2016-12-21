@@ -4,7 +4,6 @@ import 'firebase/database';
 import { bindActionCreators } from 'redux';
 
 import { respondToAuthChange } from '../actions/creators/auth';
-import { isDev } from '../utils/environment';
 
 export const start = (store) => {
     const config = {
@@ -20,8 +19,6 @@ export const start = (store) => {
     firebase.auth().onAuthStateChanged(
         bindActionCreators(respondToAuthChange, store.dispatch)
     );
-
-    if (isDev()) window.store = store;
 
     return store;
 };
