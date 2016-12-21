@@ -4,8 +4,9 @@ const pretty = (obj) => {
     return JSON.stringify(obj, null, 2);
 };
 
-export const helpers = {
-    mountDev: () => {
+const consoleHelpers = {
+    mountDev: (store) => {
+        window.store = store;
         window.pretty = pretty;
     },
     mountPublic: () => {
@@ -14,3 +15,5 @@ export const helpers = {
         window.BUILD_VERSION = BUILD_VERSION;
     }
 };
+
+export default consoleHelpers;

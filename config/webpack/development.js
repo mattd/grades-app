@@ -17,18 +17,21 @@ const env = Object.assign(
     }
 );
 
-development.debug = true;
 development.devtool = 'eval';
-development.entry.unshift('webpack-hot-middleware/client');
-development.module.preLoaders = [{
+development.entry.unshift(
+    'webpack-hot-middleware/client',
+    'react-hot-loader/patch'
+);
+development.module.rules.unshift({
     test: /\.js$/,
-    loader: 'eslint-loader',
+    use: 'eslint-loader',
+    enforce: 'pre',
     include: [path.resolve(appRootPath, 'src/js')]
-}];
+});
 development.plugins = [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({'process.env': env}),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({'process.env': env})
 ];
 
 module.exports = development;

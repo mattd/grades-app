@@ -2,16 +2,19 @@ const path = require('path');
 const appRootPath = require('app-root-path').toString();
 
 module.exports = {
-    entry: ['babel-polyfill', './src/js/index.js'],
+    entry: [
+        'babel-polyfill',
+        './src/js/index.js'
+    ],
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js?$/,
-            loaders: ['babel'],
+            use: ['babel-loader'],
             include: path.resolve(appRootPath, 'src/js')
         },
         {
             test: /\.scss$/,
-            loaders: ['style', 'css', 'sass']
+            use: ['style-loader', 'css-loader', 'sass-loader']
         }]
     },
     output: {
@@ -20,6 +23,9 @@ module.exports = {
         publicPath: '/static/'
     },
     resolve: {
-        extensions: ['', '.jsx', '.js']
+        extensions: ['.jsx', '.js']
+    },
+    performance: {
+        hints: false
     }
 }

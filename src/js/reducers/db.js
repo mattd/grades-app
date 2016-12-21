@@ -19,9 +19,7 @@ const db = (state = initialState, action) => {
                 [action.path]: false
             };
         case DB_LISTENERS_FLUSH:
-            return {
-                ...initialState
-            };
+            return initialState;
         default:
             return state;
     }

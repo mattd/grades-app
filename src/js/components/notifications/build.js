@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Snackbar from 'material-ui/Snackbar';
 
-import { BUILD_TIMESTAMP } from '../utils/build';
+import { BUILD_TIMESTAMP } from '../../utils/build';
 
 const mapStateToProps = (state) => {
     return {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const UpdateNotifier = ({
+const BuildNotification = ({
     build
 }) => {
     return (
@@ -23,4 +23,4 @@ const UpdateNotifier = ({
     );
 };
 
-export default connect(mapStateToProps)(UpdateNotifier);
+export default connect(mapStateToProps)(BuildNotification);

@@ -13,9 +13,7 @@ const ui = (state = initialState, action) => {
                 [action.value]: !state[action.value]
             };
         case UI_RESET:
-            return {
-                ...initialState
-            };
+            return initialState;
         default:
             return state;
     }
