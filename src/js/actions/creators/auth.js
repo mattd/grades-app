@@ -63,9 +63,12 @@ export const navigateAfterAuthChange = () => {
         const { isAuthenticated } = getState().auth;
         const { state } = getState().router.location;
 
-        if (isAuthenticated) {
-            const next = state ? state.next : '/terms';
-            dispatch(navigate({pathname: next}));
+        if (isAuthenticated && state) {
+            dispatch(
+                navigate({
+                    pathname: state.next || '/terms'
+                })
+            );
         }
     };
 };

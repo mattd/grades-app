@@ -57,7 +57,7 @@ export const AuthenticatedMatches = () => {
                     <Match
                         exactly
                         pattern="/authenticate"
-                        component={AuthenticateController} />
+                        render={AuthenticateController} />
                     <Match
                         exactly
                         pattern="/profile"
