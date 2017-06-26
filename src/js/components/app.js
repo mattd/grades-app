@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-import { AuthenticatedMatches, UnauthenticatedMatches } from './matches';
+import { AuthenticatedRoutes, UnauthenticatedRoutes } from './routes';
 import Loading from './loading';
 import AppBar from './app-bar';
 import Drawer from './drawer';
@@ -11,18 +12,20 @@ import BuildNotification from './notifications/build';
 const mapStateToProps = (state) => {
     return {
         ready: state.auth.ready,
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        location: state.router.location
     };
 };
 
 const App = ({
     ready,
-    isAuthenticated
+    isAuthenticated,
+    location
 }) => {
-    const Matches = (
+    const Routes = (
         isAuthenticated ?
-        AuthenticatedMatches :
-        UnauthenticatedMatches
+        AuthenticatedRoutes :
+        UnauthenticatedRoutes
     );
 
     if (!ready) {
@@ -33,7 +36,7 @@ const App = ({
                 <AppBar />
                 <Drawer />
                 <Page>
-                    <Matches />
+                    <Routes location={location} />
                 </Page>
                 <BuildNotification />
             </div>
@@ -41,4 +44,4 @@ const App = ({
     }
 };
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

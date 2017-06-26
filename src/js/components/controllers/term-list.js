@@ -3,7 +3,7 @@ import React from 'react';
 import { Feature } from '../containers';
 import TermList from '../terms/term-list'
 
-const Terms = () => {
+const TermListController = () => {
     return (
         <Feature title="Terms">
             <TermList />
@@ -11,4 +11,4 @@ const Terms = () => {
     );
 };
 
-export default Terms;
+export default TermListController;
