@@ -8,7 +8,7 @@ import DevTools from '../../components/dev-tools';
 import { root } from '../../reducers';
 
 const enhancer = compose(
-    applyMiddleware(thunk, logger(), router(history)),
+    applyMiddleware(thunk, logger, router(history)),
     DevTools.instrument()
 );
 
