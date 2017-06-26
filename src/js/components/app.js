@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-import { AuthenticatedMatches, UnauthenticatedMatches } from './matches';
+import { AuthenticatedRoutes, UnauthenticatedRoutes } from './routes';
 import Loading from './loading';
 import AppBar from './app-bar';
 import Drawer from './drawer';
@@ -19,10 +20,10 @@ const App = ({
     ready,
     isAuthenticated
 }) => {
-    const Matches = (
+    const Routes = (
         isAuthenticated ?
-        AuthenticatedMatches :
-        UnauthenticatedMatches
+        AuthenticatedRoutes :
+        UnauthenticatedRoutes
     );
 
     if (!ready) {
@@ -33,7 +34,7 @@ const App = ({
                 <AppBar />
                 <Drawer />
                 <Page>
-                    <Matches />
+                    <Routes />
                 </Page>
                 <BuildNotification />
             </div>
@@ -41,4 +42,4 @@ const App = ({
     }
 };
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));

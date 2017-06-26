@@ -1,7 +1,7 @@
 import * as R from 'ramda';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { Feature } from '../containers';
 import Loading from '../loading';
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 
 const Terms = ({
     terms,
-    params
+    match
 }) => {
     if (R.isEmpty(terms)) {
         return <Loading />;
@@ -22,9 +22,9 @@ const Terms = ({
         return (
             <Feature
                 title={<Link to="/terms">Terms</Link>}
-                subtitle={`${terms[params.id].name}`}
+                subtitle={`${terms[match.params.id].name}`}
             >
-                <p>ID: {params.id}</p>
+                <p>ID: {match.params.id}</p>
             </Feature>
         );
     }

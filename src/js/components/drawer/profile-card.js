@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import TouchRipple from 'material-ui/internal/TouchRipple';
 import { Card, CardHeader } from 'material-ui/Card';
 import muiThemeable from 'material-ui/styles/muiThemeable';
@@ -48,7 +48,7 @@ const ProfileCard = ({
     actionCreators
 }) => {
     return (
-        <Link
+        <NavLink
             to="/profile"
             activeStyle={styles(muiTheme).linkActive}
         >
@@ -64,7 +64,7 @@ const ProfileCard = ({
                     />
                 </TouchRipple>
             </Card>
-        </Link>
+        </NavLink>
     );
 };
 

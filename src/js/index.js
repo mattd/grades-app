@@ -4,13 +4,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
+import { ConnectedRouter } from 'react-router-redux';
 
 import { start } from './lib/firebase';
 import StoreFactory from './factories/store';
+import history from './history';
 import { isDev } from './utils/environment';
 import consoleHelpers from './utils/console-helpers';
 import devTools from './utils/dev-tools';
-import Router from './components/router';
 import { MuiThemeProvider } from './lib/material-ui';
 import App from './components/app';
 
@@ -20,11 +21,11 @@ const render = (App) => {
     ReactDOM.render(
         <AppContainer>
             <Provider store={store}>
-                <Router>
+                <ConnectedRouter history={history}>
                     <MuiThemeProvider>
                         <App />
                     </MuiThemeProvider>
-                </Router>
+                </ConnectedRouter>
             </Provider>
         </AppContainer>,
         document.getElementById('root')

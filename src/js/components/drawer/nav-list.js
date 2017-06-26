@@ -1,8 +1,8 @@
-import * as R from 'ramda';
+//import * as R from 'ramda';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 import {
     SocialPerson,
@@ -15,7 +15,7 @@ import { toggleDrawer } from '../../actions/creators/ui';
 
 const SelectableList = makeSelectable(List);
 
-const getTopLevelPath = (pathname) => {
+/*const getTopLevelPath = (pathname) => {
     return (
         '/' +
         R.reject(
@@ -23,12 +23,12 @@ const getTopLevelPath = (pathname) => {
             pathname.split('/')
         )[0]
     );
-};
+};*/
 
 const mapStateToProps = (state) => {
     return {
-        isAuthenticated: state.auth.isAuthenticated,
-        topLevelPath: getTopLevelPath(state.router.location.pathname)
+        isAuthenticated: state.auth.isAuthenticated/*,
+        topLevelPath: getTopLevelPath(state.router.location.pathname)*/
     };
 };
 
@@ -71,7 +71,7 @@ const getListItem = (actionCreators, item, index) => {
 
 const NavList = ({
     isAuthenticated,
-    topLevelPath,
+    //topLevelPath,
     actionCreators
 }) => {
     const list = [
@@ -89,7 +89,7 @@ const NavList = ({
     }
 
     return (
-        <SelectableList value={topLevelPath} onChange={() => {}}>
+        <SelectableList value='/terms' onChange={() => {}}>
             {list.map(getListItem.bind(null, actionCreators))}
         </SelectableList>
     );
