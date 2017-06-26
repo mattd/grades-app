@@ -2,7 +2,8 @@ import uuid from 'uuid';
 import React from 'react';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
-import { Link } from 'react-router';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { sortObject } from '../../utils/ordering';
 import TermForm from './term-form';
@@ -53,4 +54,4 @@ const TermList = ({
     );
 };
 
-export default connect(mapStateToProps)(TermList);
+export default withRouter(connect(mapStateToProps)(TermList));

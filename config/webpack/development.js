@@ -30,7 +30,7 @@ development.module.rules.unshift({
 });
 development.plugins = [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({'process.env': env})
 ];
 

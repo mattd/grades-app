@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Feature } from '../containers';
 
-const Profile = () => {
+const ProfileController = () => {
     return (
         <Feature title="Profile" />
     );
 };
 
-export default Profile;
+export default ProfileController;
