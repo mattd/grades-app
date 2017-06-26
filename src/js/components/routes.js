@@ -8,21 +8,13 @@ import TermDetailController from './controllers/term-detail';
 import CourseListController from './controllers/course-list';
 import StudentListController from './controllers/student-list';
 
-const styles = () => {
-    return {
-        container: {
-            display: 'inline'
-        }
-    };
-};
-
 const NoMatch = () => {
     return <h2>404</h2>;
 };
 
 export const UnauthenticatedRoutes = ({location}) => {
     return (
-        <Switch style={styles().container}>
+        <Switch>
             <Route
                 path="/authenticate"
                 exact
@@ -37,7 +29,7 @@ export const UnauthenticatedRoutes = ({location}) => {
 
 export const AuthenticatedRoutes = () => {
     return (
-        <Switch style={styles().container}>
+        <Switch>
             <Route
                 exact
                 path="/authenticate"
