@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-//import { push } from 'react-router-redux';
+import { push } from 'react-router-redux';
 
 import { AUTH_STATUS_UPDATED, AUTH_STATUS_READY } from '../types/auth';
 
@@ -61,9 +61,10 @@ export const signOut = () => {
 export const navigateAfterAuthChange = () => {
     return (dispatch, getState) => {
         const { isAuthenticated } = getState().auth;
+        const { state } = getState().router.location;
 
-        if (isAuthenticated) {
-            //dispatch(push('/terms'));
+        if (isAuthenticated && state) {
+            dispatch(push(state.next || '/terms'));
         }
     };
 };

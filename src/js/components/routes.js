@@ -20,7 +20,7 @@ const NoMatch = () => {
     return <h2>404</h2>;
 };
 
-export const UnauthenticatedRoutes = () => {
+export const UnauthenticatedRoutes = ({location}) => {
     return (
         <Switch style={styles().container}>
             <Route
@@ -28,8 +28,8 @@ export const UnauthenticatedRoutes = () => {
                 exact
                 component={AuthenticateController} />
             <Redirect to={{
-                pathname: "/authenticate"/*,
-                state: {next: location.pathname}*/
+                pathname: "/authenticate",
+                state: {next: location.pathname}
             }} />
         </Switch>
     );
@@ -41,7 +41,7 @@ export const AuthenticatedRoutes = () => {
             <Route
                 exact
                 path="/authenticate"
-                render={AuthenticateController} />
+                component={AuthenticateController} />
             <Route
                 exact
                 path="/profile"

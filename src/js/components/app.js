@@ -12,13 +12,15 @@ import BuildNotification from './notifications/build';
 const mapStateToProps = (state) => {
     return {
         ready: state.auth.ready,
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth.isAuthenticated,
+        location: state.router.location
     };
 };
 
 const App = ({
     ready,
-    isAuthenticated
+    isAuthenticated,
+    location
 }) => {
     const Routes = (
         isAuthenticated ?
@@ -34,7 +36,7 @@ const App = ({
                 <AppBar />
                 <Drawer />
                 <Page>
-                    <Routes />
+                    <Routes location={location} />
                 </Page>
                 <BuildNotification />
             </div>

@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const Terms = ({
+const TermDetailController = ({
     terms,
     match
 }) => {
@@ -30,4 +30,4 @@ const Terms = ({
     }
 };
 
-export default connect(mapStateToProps)(Terms);
+export default connect(mapStateToProps)(TermDetailController);
