@@ -9,7 +9,7 @@ import {
     ActionDateRange,
     ActionBook,
     SocialPeople,
-} from 'material-ui/svg-icons';
+} from 'material-ui-icons';
 
 import { toggleDrawer } from '../../actions/creators/ui';
 
