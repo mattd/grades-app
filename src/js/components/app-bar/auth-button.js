@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import FlatButton from 'material-ui/FlatButton';
+import Button from 'material-ui/Button';
 
 import { signIn, signOut } from '../../actions/creators/auth';
 
@@ -39,4 +39,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps,
     mergeProps
-)(FlatButton);
+)(Button);
