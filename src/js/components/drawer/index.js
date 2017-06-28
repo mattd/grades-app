@@ -34,7 +34,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
                 open={drawerOpen}
                 onRequestClose={actionCreators.toggleDrawer}
             >
-                <h2>This is a drawer.</h2>
+                <h2>The Drawer</h2>
             </Drawer>
         );
     }
