@@ -7,7 +7,7 @@ import { signIn, signOut } from '../../actions/creators/auth';
 const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
-        label: state.auth.isAuthenticated ? 'Sign Out' : 'Sign In'
+        children: state.auth.isAuthenticated ? 'Sign Out' : 'Sign In'
     };
 };
 
@@ -24,8 +24,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     const { actionCreators } = dispatchProps;
     return {
         ...ownProps,
-        label: stateProps.label,
-        onTouchTap: () => {
+        children: stateProps.children,
+        color: 'contrast',
+        onClick: () => {
             if (stateProps.isAuthenticated) {
                 actionCreators.signOut();
             } else {

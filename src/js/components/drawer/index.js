@@ -5,8 +5,7 @@ import Drawer from 'material-ui/Drawer';
 
 import { toggleDrawer } from '../../actions/creators/ui';
 
-import ProfileCard from './profile-card';
-import NavList from './nav-list';
+//import ProfileCard from './profile-card';
 
 const mapStateToProps = (state) => {
     return {
@@ -26,17 +25,16 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(
     ({
         drawerOpen,
-        isAuthenticated,
+        //isAuthenticated,
         actionCreators
     }) => {
         return (
             <Drawer
                 docked={false}
                 open={drawerOpen}
-                onRequestChange={actionCreators.toggleDrawer}
+                onRequestClose={actionCreators.toggleDrawer}
             >
-                {isAuthenticated && <ProfileCard />}
-                <NavList />
+                <h2>This is a drawer.</h2>
             </Drawer>
         );
     }

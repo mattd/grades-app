@@ -1,73 +1,42 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import {
-    Toolbar,
-    ToolbarGroup,
-    ToolbarSeparator,
-    ToolbarTitle
-} from 'material-ui/Toolbar';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import Toolbar from 'material-ui/Toolbar';
+import { withTheme } from 'material-ui/styles';
 
-const styles = (muiTheme) => {
+const styles = (theme) => {
     return {
-        outerWrapper: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'stretch',
-            height: '100%'
-        },
-        paper: {
-            flex: 1,
-            margin: muiTheme.spacing.desktopGutter
-        },
-        innerWrapper: {
-            padding: muiTheme.spacing.desktopGutter
-        },
-        title: {
-            fontSize: muiTheme.toolbar.titleFontSize,
-            fontWeight: 400
-        },
         subtitle: {
-            color: muiTheme.palette.accent3Color,
-            marginLeft: muiTheme.spacing.desktopGutter
+            color: theme.palette.grey[500],
+            marginLeft: '24px'
         }
     };
 };
 
-const maybeGetSeparator = (subtitle) => {
-    if (subtitle) return <ToolbarSeparator />;
-};
-
 const maybeGetSubtitle = (subtitle, styles) => {
     if (subtitle) {
-        return <ToolbarTitle text={subtitle} style={styles} />;
+        return <h3 style={styles}>{subtitle}</h3>;
     }
 };
 
 const Feature = ({
-    muiTheme,
+    theme,
     title,
     subtitle,
     children
 }) => {
     return (
-        <div style={styles(muiTheme).outerWrapper}>
-            <Paper style={styles(muiTheme).paper}>
-                <Toolbar>
-                    <ToolbarGroup>
-                        <h2 style={styles(muiTheme).title}>
-                            {title}
-                        </h2>
-                        {maybeGetSeparator(subtitle)}
-                        {maybeGetSubtitle(subtitle, styles(muiTheme).subtitle)}
-                    </ToolbarGroup>
-                </Toolbar>
-                <div style={styles(muiTheme).innerWrapper}>
-                    {children}
-                </div>
-            </Paper>
-        </div>
+        <Paper>
+            <Toolbar>
+                <h2>
+                    {title}
+                </h2>
+                {maybeGetSubtitle(subtitle, styles(theme).subtitle)}
+            </Toolbar>
+            <div>
+                {children}
+            </div>
+        </Paper>
     );
 };
 
-export default muiThemeable()(Feature);
+export default withTheme(Feature);

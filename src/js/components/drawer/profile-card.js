@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import TouchRipple from 'material-ui/internal/TouchRipple';
 import { Card, CardHeader } from 'material-ui/Card';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import { withTheme } from 'material-ui/styles';
 
 import { toggleDrawer } from '../../actions/creators/ui';
 
@@ -26,11 +26,11 @@ const onClick = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
-const styles = (muiTheme) => {
+const styles = (theme) => {
     return {
         linkActive: {
             display: 'block',
-            background: muiTheme.palette.borderColor
+            background: theme.palette.grey[300]
         },
         card: {
             boxShadow: 'none',
@@ -43,18 +43,18 @@ const styles = (muiTheme) => {
 };
 
 const ProfileCard = ({
-    muiTheme,
+    theme,
     profile,
     actionCreators
 }) => {
     return (
         <NavLink
             to="/profile"
-            activeStyle={styles(muiTheme).linkActive}
+            activeStyle={styles(theme).linkActive}
         >
             <Card
                 onClick={onClick.bind(null, actionCreators)}
-                style={styles(muiTheme).card}
+                style={styles(theme).card}
             >
                 <TouchRipple>
                     <CardHeader
@@ -68,6 +68,6 @@ const ProfileCard = ({
     );
 };
 
-export default muiThemeable()(
+export default withTheme(
     connect(mapStateToProps, mapDispatchToProps)(ProfileCard)
 );
