@@ -19,7 +19,7 @@ export default connect(null, mapDispatchToProps)(
         return (
             <IconButton
                 color="contrast"
-                onClick={actionCreators.toggleDrawer}
+                onTouchTap={actionCreators.toggleDrawer}
             >
                 <MenuIcon />
             </IconButton>
