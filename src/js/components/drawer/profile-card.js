@@ -2,8 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import TouchRipple from 'material-ui/internal/TouchRipple';
-import { Card, CardHeader } from 'material-ui/Card';
+import Avatar from 'material-ui/Avatar';
+import Button from 'material-ui/Button';
+import Card, { CardHeader } from 'material-ui/Card';
 import { withTheme } from 'material-ui/styles';
 
 import { toggleDrawer } from '../../actions/creators/ui';
@@ -22,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const onClick = (actionCreators) => {
+const onTouchTap = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
@@ -33,11 +34,14 @@ const styles = (theme) => {
             background: theme.palette.grey[300]
         },
         card: {
+            paddingBottom: 0,
             boxShadow: 'none',
-            cursor: 'pointer',
-            backgroundColor: 'transparent',
-            // Needed so TouchRipple doesn't escape the bounds.
-            transform: 'translate(0, 0)'
+            backgroundColor: 'transparent'
+        },
+        button: {
+            textAlign: 'left',
+            padding: 0,
+            textTransform: 'none'
         }
     };
 };
@@ -53,16 +57,16 @@ const ProfileCard = ({
             activeStyle={styles(theme).linkActive}
         >
             <Card
-                onClick={onClick.bind(null, actionCreators)}
+                onTouchTap={onTouchTap.bind(null, actionCreators)}
                 style={styles(theme).card}
             >
-                <TouchRipple>
+                <Button style={styles(theme).button}>
                     <CardHeader
-                        avatar={profile.photoURL}
-                        title={profile.displayName}
-                        subtitle='Profile'
+                        avatar={<Avatar src={profile.photoURL} />}
+                        title={<h2>{profile.displayName}</h2>}
+                        subheader='Profile'
                     />
-                </TouchRipple>
+                </Button>
             </Card>
         </NavLink>
     );
