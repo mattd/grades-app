@@ -1,11 +1,11 @@
-import uuid from 'uuid';
+//import uuid from 'uuid';
 import React from 'react';
 import { connect } from 'react-redux';
-import { List, ListItem } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import { Link } from 'react-router-dom';
 
 import { sortObject } from '../../utils/ordering';
-import TermForm from './term-form';
+//import TermForm from './term-form';
 import AddTerm from './add-term';
 
 const mapStateToProps = (state) => {
@@ -15,40 +15,28 @@ const mapStateToProps = (state) => {
     };
 };
 
-const styles = () => {
-    return {
-        innerDiv: {
-            padding: 0
-        },
-        link: {
-            padding: 16,
-            display: 'block'
-        }
-    };
-};
-
 const getTerm = (term) => {
     return (
-        <ListItem key={term.id} innerDivStyle={styles().innerDiv}>
-            <Link to={`/terms/${term.id}`} style={styles().link}>
-                {term.name}
-            </Link>
-        </ListItem>
+        <Link to={`/terms/${term.id}`} key={term.id}>
+            <ListItem button>
+                <ListItemText primary={term.name} />
+            </ListItem>
+        </Link>
     );
 };
 
 const TermList = ({
-    terms,
-    addingTerm
+    terms/*,
+    addingTerm*/
 }) => {
-    const form = <TermForm initialValues={{id: uuid()}} />;
-    const button = <AddTerm />;
+    /*const form = <TermForm initialValues={{id: uuid()}} />;
+    const button = <AddTerm />;*/
     return (
         <div>
             <List>
                 {sortObject(terms).map(getTerm)}
             </List>
-            {addingTerm ? form : button}
+            <AddTerm />
         </div>
     );
 };

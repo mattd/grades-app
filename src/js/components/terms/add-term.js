@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch) => {
 const mergeProps = (stateProps, dispatchProps) => {
     const { actionCreators } = dispatchProps;
     return {
-        label: 'Add Term',
-        primary: true,
+        children: 'Add Term',
+        color: 'primary',
         raised: true,
         onTouchTap: actionCreators.startAddingTerm
     };
