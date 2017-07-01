@@ -10,11 +10,13 @@ export const MuiTextField = ({
     },
     ...rest
 }) => {
+    const errorText = touched && error;
     return (
         <TextField
-            hintText={label}
-            floatingLabelText={label}
-            errorText={touched && error}
+            label={label}
+            InputProps={{placeholder: label}}
+            error={!!errorText}
+            helperText={errorText}
             {...input}
             {...rest}
         />
