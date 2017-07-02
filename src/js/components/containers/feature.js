@@ -1,6 +1,7 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
 const styleSheet = createStyleSheet('Feature', theme => {
@@ -18,6 +19,9 @@ const styleSheet = createStyleSheet('Feature', theme => {
                 margin: theme.spacing.unit * 3
             }
         },
+        toolbar: {
+            backgroundColor: theme.palette.grey[200]
+        },
         content: {
             padding: theme.spacing.unit * 2,
             [theme.breakpoints.up('sm')]: {
@@ -33,7 +37,11 @@ const styleSheet = createStyleSheet('Feature', theme => {
 
 const maybeGetSubtitle = (subtitle, classes) => {
     if (subtitle) {
-        return <h3 className={classes.subtitle}>{subtitle}</h3>;
+        return (
+            <Typography type='title' className={classes.subtitle}>
+                {subtitle}
+            </Typography>
+        );
     }
 };
 
@@ -46,10 +54,10 @@ const Feature = ({
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <Toolbar>
-                    <h2>
+                <Toolbar className={classes.toolbar}>
+                    <Typography type='title'>
                         {title}
-                    </h2>
+                    </Typography>
                     {maybeGetSubtitle(subtitle, classes)}
                 </Toolbar>
                 <div className={classes.content}>
