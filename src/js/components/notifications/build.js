@@ -17,7 +17,7 @@ const BuildNotification = ({
     const action = (
         <Button
             color='accent'
-            onTouchTap={() => window.location.reload(true)}
+            onClick={() => window.location.reload(true)}
         >
             Refresh
         </Button>

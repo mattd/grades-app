@@ -18,7 +18,7 @@ const mergeProps = (stateProps, dispatchProps) => {
         children: 'Add Term',
         color: 'primary',
         raised: true,
-        onTouchTap: actionCreators.startAddingTerm
+        onClick: actionCreators.startAddingTerm
     };
 };
 

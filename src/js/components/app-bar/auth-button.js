@@ -26,7 +26,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         ...ownProps,
         children: stateProps.children,
         color: 'contrast',
-        onTouchTap: () => {
+        onClick: () => {
             if (stateProps.isAuthenticated) {
                 actionCreators.signOut();
             } else {

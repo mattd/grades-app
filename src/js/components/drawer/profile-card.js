@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const onTouchTap = (actionCreators) => {
+const onClick = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
@@ -69,7 +69,7 @@ const ProfileCard = ({
             activeStyle={styles(theme).linkActive}
         >
             <Card
-                onTouchTap={onTouchTap.bind(null, actionCreators)}
+                onClick={onClick.bind(null, actionCreators)}
                 style={styles(theme).card}
             >
                 <Button style={styles(theme).button}>

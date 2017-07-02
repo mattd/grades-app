@@ -27,7 +27,7 @@ const getListItem = (theme, actionCreators, item, index) => {
         <NavLink
             to={item.path}
             key={index}
-            onTouchTap={actionCreators.toggleDrawer}
+            onClick={actionCreators.toggleDrawer}
             style={{display: 'block'}}
             activeStyle={{background: theme.palette.grey[400]}}
         >
