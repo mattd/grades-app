@@ -6,6 +6,7 @@ import { AuthenticatedRoutes, UnauthenticatedRoutes } from './routes';
 import Loading from './loading';
 import AppBar from './app-bar';
 import Drawer from './drawer';
+import { Page } from './containers';
 import BuildNotification from './notifications/build';
 
 const mapStateToProps = (state) => {
@@ -34,7 +35,9 @@ const App = ({
             <div>
                 <AppBar />
                 <Drawer />
-                <Routes location={location} />
+                <Page>
+                    <Routes location={location} />
+                </Page>
                 <BuildNotification />
             </div>
         );

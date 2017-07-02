@@ -20,7 +20,7 @@ const styleSheet = createStyleSheet('ButtonAppBar', {
 export default withStyles(styleSheet)(
     ({ classes }) => {
         return (
-            <AppBar position="static">
+            <AppBar>
                 <Toolbar>
                     <MenuButton />
                     <Typography

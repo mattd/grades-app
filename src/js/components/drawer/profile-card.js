@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Avatar from 'material-ui/Avatar';
 import Button from 'material-ui/Button';
 import Card, { CardHeader } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 import { withTheme } from 'material-ui/styles';
 
 import { toggleDrawer } from '../../actions/creators/ui';
@@ -51,6 +52,11 @@ const ProfileCard = ({
     profile,
     actionCreators
 }) => {
+    const name = (
+        <Typography type='subheading'>
+            {profile.displayName}
+        </Typography>
+    );
     return (
         <NavLink
             to="/profile"
@@ -63,7 +69,7 @@ const ProfileCard = ({
                 <Button style={styles(theme).button}>
                     <CardHeader
                         avatar={<Avatar src={profile.photoURL} />}
-                        title={<h2>{profile.displayName}</h2>}
+                        title={name}
                         subheader='Profile'
                     />
                 </Button>
