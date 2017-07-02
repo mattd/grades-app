@@ -28,6 +28,7 @@ const onTouchTap = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
+// TODO: Figure out how to use createStyleSheet here instead.
 const styles = (theme) => {
     return {
         linkActive: {
