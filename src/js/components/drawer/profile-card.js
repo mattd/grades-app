@@ -42,7 +42,12 @@ const styles = (theme) => {
         button: {
             textAlign: 'left',
             padding: 0,
-            textTransform: 'none'
+            textTransform: 'none',
+            display: 'block',
+            width: '250px'
+        },
+        cardHeader: {
+            paddingBottom: '20px'
         }
     };
 };
@@ -71,6 +76,7 @@ const ProfileCard = ({
                         avatar={<Avatar src={profile.photoURL} />}
                         title={name}
                         subheader='Profile'
+                        style={styles(theme).cardHeader}
                     />
                 </Button>
             </Card>
