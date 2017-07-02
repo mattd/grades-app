@@ -40,7 +40,7 @@
     "eslint-plugin-react": "^7.1.0",
     "express": "^4.15.3",
     "firebase-admin": "^5.0.0",
-    "firebase-tools": "^3.9.1",
+    "firebase-tools": "firebase/firebase-tools",
     "node-sass": "^4.5.3",
     "react-hot-loader": "next",
     "redux-devtools": "^3.4.0",
