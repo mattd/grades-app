@@ -5,14 +5,14 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import { ConnectedRouter } from 'react-router-redux';
+import { MuiThemeProvider } from 'material-ui/styles';
 
-import { start } from './lib/firebase';
+import { start } from './firebase';
 import StoreFactory from './factories/store';
 import history from './history';
 import { isDev } from './utils/environment';
 import consoleHelpers from './utils/console-helpers';
 import devTools from './utils/dev-tools';
-import { MuiThemeProvider } from './lib/material-ui';
 import App from './components/app';
 
 const store = start(StoreFactory());
