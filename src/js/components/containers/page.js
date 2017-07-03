@@ -1,27 +1,32 @@
 import React from 'react';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 
-const styles = (muiTheme) => {
-    const height = muiTheme.appBar.height + 'px';
+const styleSheet = createStyleSheet('Page', theme => {
+    const whenSmall = '56px';
+    const whenBig = '64px';
     return {
-        wrapper: {
+        root: {
             position: 'absolute',
-            top: height,
-            height: `calc(100% - ${height})`,
-            width: '100%'
+            width: '100%',
+            top: whenSmall,
+            height: `calc(100% - ${whenSmall})`,
+            [theme.breakpoints.up('sm')]: {
+                top: whenBig,
+                height: `calc(100% - ${whenBig})`
+            }
         }
     };
-};
+});
 
 const Page = ({
-    muiTheme,
+    classes,
     children
 }) => {
     return (
-        <div style={styles(muiTheme).wrapper}>
+        <div className={classes.root}>
             {children}
         </div>
     );
 };
 
-export default muiThemeable()(Page);
+export default withStyles(styleSheet)(Page);

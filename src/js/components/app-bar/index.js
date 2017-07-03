@@ -1,28 +1,37 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
-
-import { toggleDrawer } from '../../actions/creators/ui';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 
 import AuthButton from './auth-button';
+import MenuButton from './menu-button';
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        actionCreators: bindActionCreators({
-            toggleDrawer
-        }, dispatch)
-    };
-};
+const styleSheet = createStyleSheet('ButtonAppBar', {
+      root: {
+          marginTop: 30,
+          width: '100%'
+      },
+      flex: {
+          flex: 1
+      }
+});
 
-export default connect(null, mapDispatchToProps)(
-    ({ actionCreators }) => {
+export default withStyles(styleSheet)(
+    ({ classes }) => {
         return (
-            <AppBar
-                title="Grades App"
-                iconElementRight={<AuthButton />}
-                onLeftIconButtonTouchTap={actionCreators.toggleDrawer}
-            />
+            <AppBar>
+                <Toolbar>
+                    <MenuButton />
+                    <Typography
+                        type="title"
+                        color="inherit"
+                        className={classes.flex}>
+                        Grades App
+                    </Typography>
+                    <AuthButton />
+                </Toolbar>
+            </AppBar>
         );
     }
 );

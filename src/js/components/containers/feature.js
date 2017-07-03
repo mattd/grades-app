@@ -1,16 +1,12 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
-import {
-    Toolbar,
-    ToolbarGroup,
-    ToolbarSeparator,
-    ToolbarTitle
-} from 'material-ui/Toolbar';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import { withStyles, createStyleSheet } from 'material-ui/styles';
 
-const styles = (muiTheme) => {
+const styleSheet = createStyleSheet('Feature', theme => {
     return {
-        outerWrapper: {
+        root: {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'stretch',
@@ -18,51 +14,53 @@ const styles = (muiTheme) => {
         },
         paper: {
             flex: 1,
-            margin: muiTheme.spacing.desktopGutter
+            margin: theme.spacing.unit * 2,
+            [theme.breakpoints.up('sm')]: {
+                margin: theme.spacing.unit * 3
+            }
         },
-        innerWrapper: {
-            padding: muiTheme.spacing.desktopGutter
+        toolbar: {
+            backgroundColor: theme.palette.grey[200]
         },
-        title: {
-            fontSize: muiTheme.toolbar.titleFontSize,
-            fontWeight: 400
+        content: {
+            padding: theme.spacing.unit * 2,
+            [theme.breakpoints.up('sm')]: {
+                padding: theme.spacing.unit * 3
+            }
         },
         subtitle: {
-            color: muiTheme.palette.accent3Color,
-            marginLeft: muiTheme.spacing.desktopGutter
+            color: theme.palette.grey[500],
+            marginLeft: '24px'
         }
     };
-};
+});
 
-const maybeGetSeparator = (subtitle) => {
-    if (subtitle) return <ToolbarSeparator />;
-};
-
-const maybeGetSubtitle = (subtitle, styles) => {
+const maybeGetSubtitle = (subtitle, classes) => {
     if (subtitle) {
-        return <ToolbarTitle text={subtitle} style={styles} />;
+        return (
+            <Typography type='title' className={classes.subtitle}>
+                {subtitle}
+            </Typography>
+        );
     }
 };
 
 const Feature = ({
-    muiTheme,
+    classes,
     title,
     subtitle,
     children
 }) => {
     return (
-        <div style={styles(muiTheme).outerWrapper}>
-            <Paper style={styles(muiTheme).paper}>
-                <Toolbar>
-                    <ToolbarGroup>
-                        <h2 style={styles(muiTheme).title}>
-                            {title}
-                        </h2>
-                        {maybeGetSeparator(subtitle)}
-                        {maybeGetSubtitle(subtitle, styles(muiTheme).subtitle)}
-                    </ToolbarGroup>
+        <div className={classes.root}>
+            <Paper className={classes.paper}>
+                <Toolbar className={classes.toolbar}>
+                    <Typography type='title'>
+                        {title}
+                    </Typography>
+                    {maybeGetSubtitle(subtitle, classes)}
                 </Toolbar>
-                <div style={styles(muiTheme).innerWrapper}>
+                <div className={classes.content}>
                     {children}
                 </div>
             </Paper>
@@ -70,4 +68,4 @@ const Feature = ({
     );
 };
 
-export default muiThemeable()(Feature);
+export default withStyles(styleSheet)(Feature);

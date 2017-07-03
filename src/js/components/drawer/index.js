@@ -33,7 +33,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             <Drawer
                 docked={false}
                 open={drawerOpen}
-                onRequestChange={actionCreators.toggleDrawer}
+                onRequestClose={actionCreators.toggleDrawer}
             >
                 {isAuthenticated && <ProfileCard />}
                 <NavList />

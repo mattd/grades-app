@@ -2,9 +2,11 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import TouchRipple from 'material-ui/internal/TouchRipple';
-import { Card, CardHeader } from 'material-ui/Card';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import Avatar from 'material-ui/Avatar';
+import Button from 'material-ui/Button';
+import Card, { CardHeader } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
+import { withTheme } from 'material-ui/styles';
 
 import { toggleDrawer } from '../../actions/creators/ui';
 
@@ -26,48 +28,63 @@ const onClick = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
-const styles = (muiTheme) => {
+// TODO: Figure out how to use createStyleSheet here instead.
+const styles = (theme) => {
     return {
         linkActive: {
             display: 'block',
-            background: muiTheme.palette.borderColor
+            background: theme.palette.grey[300]
         },
         card: {
+            paddingBottom: 0,
             boxShadow: 'none',
-            cursor: 'pointer',
-            backgroundColor: 'transparent',
-            // Needed so TouchRipple doesn't escape the bounds.
-            transform: 'translate(0, 0)'
+            backgroundColor: 'transparent'
+        },
+        button: {
+            textAlign: 'left',
+            padding: 0,
+            textTransform: 'none',
+            display: 'block',
+            width: '250px'
+        },
+        cardHeader: {
+            paddingBottom: '20px'
         }
     };
 };
 
 const ProfileCard = ({
-    muiTheme,
+    theme,
     profile,
     actionCreators
 }) => {
+    const name = (
+        <Typography type='subheading'>
+            {profile.displayName}
+        </Typography>
+    );
     return (
         <NavLink
             to="/profile"
-            activeStyle={styles(muiTheme).linkActive}
+            activeStyle={styles(theme).linkActive}
         >
             <Card
                 onClick={onClick.bind(null, actionCreators)}
-                style={styles(muiTheme).card}
+                style={styles(theme).card}
             >
-                <TouchRipple>
+                <Button style={styles(theme).button}>
                     <CardHeader
-                        avatar={profile.photoURL}
-                        title={profile.displayName}
-                        subtitle='Profile'
+                        avatar={<Avatar src={profile.photoURL} />}
+                        title={name}
+                        subheader='Profile'
+                        style={styles(theme).cardHeader}
                     />
-                </TouchRipple>
+                </Button>
             </Card>
         </NavLink>
     );
 };
 
-export default muiThemeable()(
+export default withTheme(
     connect(mapStateToProps, mapDispatchToProps)(ProfileCard)
 );
