@@ -5,8 +5,8 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import { Link } from 'react-router-dom';
 
 import { sortObject } from '../../utils/ordering';
-import TermForm from './term-form';
-import AddTerm from './add-term';
+import AddTermForm from './add-form';
+import AddTermButton from './add-button';
 
 const mapStateToProps = (state) => {
     return {
@@ -29,8 +29,8 @@ const TermList = ({
     terms,
     addingTerm
 }) => {
-    const form = <TermForm initialValues={{id: uuid()}} />;
-    const button = <AddTerm />;
+    const form = <AddTermForm initialValues={{id: uuid()}} />;
+    const button = <AddTermButton />;
     return (
         <div>
             <List>

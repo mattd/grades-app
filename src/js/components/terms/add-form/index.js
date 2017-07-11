@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
-import { setTerm, stopAddingTerm } from '../../actions/creators/terms';
-import { MuiTextField } from '../forms/fields';
+import { setTerm, stopAddingTerm } from '../../../actions/creators/terms';
+import { MuiTextField } from '../../forms/fields';
 
 const mapDispatchToProps = (dispatch) => {
     return {

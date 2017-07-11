@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Feature } from '../containers';
-import TermList from '../terms/term-list'
+import TermList from '../terms/list'
 
 const TermListController = () => {
     return (
