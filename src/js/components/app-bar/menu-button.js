@@ -14,15 +14,17 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(
-    ({ actionCreators }) => {
-        return (
-            <IconButton
-                color="contrast"
-                onClick={actionCreators.toggleDrawer}
-            >
-                <MenuIcon />
-            </IconButton>
-        );
-    }
-);
+const MenuButton = ({
+    actionCreators
+}) => {
+    return (
+        <IconButton
+            color="contrast"
+            onClick={actionCreators.toggleDrawer}
+        >
+            <MenuIcon />
+        </IconButton>
+    );
+};
+
+export default connect(null, mapDispatchToProps)(MenuButton);
