@@ -5,8 +5,8 @@ import { Field, reduxForm } from 'redux-form';
 import Button from 'material-ui/button';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
-import { setTerm, stopAddingTerm } from '../../../actions/creators/terms';
-import { MuiTextField } from '../../forms/fields';
+import { setTerm, stopAddingTerm } from '../../actions/creators/terms';
+import { MuiTextField } from '../forms/fields';
 
 
 const styleSheet = createStyleSheet('TermForm', theme => {
@@ -43,7 +43,7 @@ const onSubmit = (actionCreators, values) => {
     actionCreators.stopAddingTerm();
 };
 
-const TermForm = ({
+const AddTermForm = ({
     classes,
     handleSubmit,
     actionCreators
@@ -84,6 +84,6 @@ export default withStyles(styleSheet)(
         reduxForm({
             form: 'term',
             validate
-        })(TermForm)
+        })(AddTermForm)
     )
 );
