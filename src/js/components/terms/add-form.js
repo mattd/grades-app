@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import Button from 'material-ui/button';
+import Button from 'material-ui/Button';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
 import { setTerm, stopAddingTerm } from '../../actions/creators/terms';
