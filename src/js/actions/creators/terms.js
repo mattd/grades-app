@@ -3,7 +3,7 @@ import Mousetrap from 'mousetrap';
 import { TERMS_UPDATED, TERMS_FLUSH } from '../types/terms';
 import { getTermsRef, getTermRef, getTermsPath } from '../../services/terms';
 import { dbListenerAdded, dbListenerRemoved } from './db';
-import { toggleAddingTerm } from './ui';
+import { setAddingTerm } from './ui';
 import { nextOrder } from '../../utils/ordering';
 
 export const termsUpdated = (terms) => {
@@ -45,7 +45,7 @@ export const setTerm = (values) => {
 
 export const startAddingTerm = () => {
     return (dispatch) => {
-        dispatch(toggleAddingTerm());
+        dispatch(setAddingTerm(true));
         Mousetrap.bind('esc', () => {
             dispatch(stopAddingTerm());
         });
@@ -54,7 +54,7 @@ export const startAddingTerm = () => {
 
 export const stopAddingTerm = () => {
     return (dispatch) => {
-        dispatch(toggleAddingTerm());
+        dispatch(setAddingTerm(false));
         Mousetrap.unbind('esc');
     };
 };

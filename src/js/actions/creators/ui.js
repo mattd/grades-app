@@ -1,16 +1,17 @@
-import { UI_TOGGLE, UI_RESET } from '../types/ui';
+import { UI_TOGGLE, UI_SET, UI_RESET } from '../types/ui';
 
 export const toggleDrawer = () => {
     return {
         type: UI_TOGGLE,
-        value: 'drawerOpen'
+        key: 'drawerOpen'
     };
 };
 
-export const toggleAddingTerm = () => {
+export const setAddingTerm = (value) => {
     return {
-        type: UI_TOGGLE,
-        value: 'addingTerm'
+        type: UI_SET,
+        key: 'addingTerm',
+        value
     };
 };
 
