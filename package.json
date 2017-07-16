@@ -58,7 +58,7 @@
     "build:production": "FIREBASE_ENV=production npm run build && npm run package",
     "build:staging": "FIREBASE_ENV=staging npm run build && npm run package",
     "clean": "rm -rf ./src/static ./public ./src/index.html",
-    "html": "ejs-cli src/index.ejs > src/index.html",
+    "html": "ejs-cli --options \"{\\\"BUILD_COMMIT\\\": \\\"$BUILD_COMMIT\\\"}\" src/index.ejs > src/index.html",
     "lint": "./node_modules/.bin/eslint src/js",
     "package": "mkdir public && cp -R src/index.html src/static public",
     "preflight": "npm run lint && npm test",
