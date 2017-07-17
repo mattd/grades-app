@@ -28,7 +28,8 @@ const getTerm = (term) => {
 
 class TermList extends React.Component {
     componentWillUnmount() {
-        this.props.dispatch(stopAddingTerm());
+        const { dispatch, addingTerm } = this.props;
+        if (addingTerm) dispatch(stopAddingTerm());
     }
     render() {
         const { terms, addingTerm } = this.props;
