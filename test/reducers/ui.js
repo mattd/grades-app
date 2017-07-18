@@ -1,9 +1,8 @@
 import test from 'ava';
 import deepFreeze from 'deep-freeze';
 
-import ui from 'reducers/ui';
-//import { UI_TOGGLE, UI_SET, UI_RESET } from '../actions/types/ui';
-import { UI_TOGGLE, UI_SET } from 'actions/types/ui';
+import ui, { initialState } from 'reducers/ui';
+import { UI_TOGGLE, UI_SET, UI_RESET } from 'actions/types/ui';
 
 test(
     'drawerOpen defaults to false',
@@ -69,3 +68,13 @@ test(
     }
 );
 
+test(
+    'resetting returns state to initial values',
+    t => {
+        const action = {
+            type: UI_RESET
+        };
+
+        t.deepEqual(ui({}, action), initialState);
+    }
+);

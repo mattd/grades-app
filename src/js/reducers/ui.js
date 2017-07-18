@@ -1,6 +1,6 @@
 import { UI_TOGGLE, UI_SET, UI_RESET } from '../actions/types/ui';
 
-const initialState = {
+export const initialState = {
     drawerOpen: false,
     addingTerm: false
 };

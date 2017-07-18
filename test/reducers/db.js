@@ -9,13 +9,13 @@ import {
 } from 'actions/types/db';
 
 test(
-    'initial state is empty',
+    'default state is empty',
     t => {
         const action = {
             type: 'TEST'
         };
 
-        t.deepEqual({}, db(undefined, action));
+        t.deepEqual(db(undefined, action), {});
     }
 );
 

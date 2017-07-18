@@ -1,6 +1,6 @@
 import { TERMS_UPDATED, TERMS_FLUSH } from '../actions/types/terms';
 
-const initialState = {};
+export const initialState = {};
 
 const terms = (state = initialState, action) => {
     switch (action.type) {

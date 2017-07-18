@@ -1,6 +1,6 @@
 import { PROFILE_UPDATED, PROFILE_FLUSH } from '../actions/types/profile';
 
-const initialState = {
+export const initialState = {
     displayName: null,
     uid: null,
     photoURL: null,

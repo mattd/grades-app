@@ -4,7 +4,7 @@ import {
     DB_LISTENERS_FLUSH
 } from '../actions/types/db';
 
-const initialState = {};
+export const initialState = {};
 
 const db = (state = initialState, action) => {
     switch (action.type) {
