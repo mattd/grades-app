@@ -5,9 +5,8 @@ import { Field, reduxForm } from 'redux-form';
 import Button from 'material-ui/Button';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 
-import { setTerm, stopAddingTerm } from '../../actions/creators/terms';
-import { MuiTextField } from '../forms/fields';
-
+import { setTerm, stopAddingTerm } from '../../../actions/creators/terms';
+import { MuiTextField } from '../../forms/fields';
 
 const styleSheet = createStyleSheet('TermForm', theme => {
     const unit = `${theme.spacing.unit}px`;

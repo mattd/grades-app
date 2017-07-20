@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
-import { Feature } from '../containers';
-import Loading from '../loading';
+import { Feature } from '../../containers';
+import Loading from '../../loading';
 
 const mapStateToProps = (state) => {
     return {
@@ -22,7 +22,7 @@ const MoreVertButton = () => {
     );
 };
 
-const TermDetailController = ({
+const TermDetail = ({
     terms,
     match
 }) => {
@@ -41,4 +41,4 @@ const TermDetailController = ({
     }
 };
 
-export default connect(mapStateToProps)(TermDetailController);
+export default connect(mapStateToProps)(TermDetail);

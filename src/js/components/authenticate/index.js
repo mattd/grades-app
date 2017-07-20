@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Feature } from '../containers';
 
-const AuthenticateController = () => {
+const Authenticate = () => {
     return (
         <Feature title="Authenticate" />
     );
 };
 
-export default AuthenticateController;
+export default Authenticate;

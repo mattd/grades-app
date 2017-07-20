@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import { Link } from 'react-router-dom';
 
-import { stopAddingTerm } from '../../actions/creators/terms';
-import { sortObject } from '../../utils/ordering';
+import { stopAddingTerm } from '../../../actions/creators/terms';
+import { sortObject } from '../../../utils/ordering';
+import { Feature } from '../../containers';
 import AddTermForm from './add-form';
 import AddTermButton from './add-button';
 
@@ -37,12 +38,12 @@ class TermList extends React.Component {
         const button = <AddTermButton />;
 
         return (
-            <div>
+            <Feature title="Terms">
                 <List>
                     {sortObject(terms).map(getTerm)}
                 </List>
                 {addingTerm ? form : button}
-            </div>
+            </Feature>
         );
     }
 }
