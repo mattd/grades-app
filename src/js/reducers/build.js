@@ -1,5 +1,5 @@
-import { BUILD_TIMESTAMP, BUILD_COMMIT, BUILD_VERSION } from '../utils/build';
-import { BUILD_UPDATED } from '../actions/types/build';
+import { BUILD_TIMESTAMP, BUILD_COMMIT, BUILD_VERSION } from 'utils/build';
+import { BUILD_UPDATED } from 'actions/types/build';
 
 export const initialState = {
     timestamp: BUILD_TIMESTAMP,

@@ -1,10 +1,10 @@
 import Mousetrap from 'mousetrap';
 
-import { TERMS_UPDATED, TERMS_FLUSH } from '../types/terms';
-import { getTermsRef, getTermRef, getTermsPath } from '../../services/terms';
-import { dbListenerAdded, dbListenerRemoved } from './db';
-import { setAddingTerm } from './ui';
-import { nextOrder } from '../../utils/ordering';
+import { TERMS_UPDATED, TERMS_FLUSH } from 'actions/types/terms';
+import { getTermsRef, getTermRef, getTermsPath } from 'services/terms';
+import { dbListenerAdded, dbListenerRemoved } from 'actions/creators/db';
+import { setAddingTerm } from 'actions/creators/ui';
+import { nextOrder } from 'utils/ordering';
 
 export const termsUpdated = (terms) => {
     return {

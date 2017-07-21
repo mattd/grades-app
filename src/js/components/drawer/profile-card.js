@@ -8,7 +8,7 @@ import Card, { CardHeader } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import { withTheme } from 'material-ui/styles';
 
-import { toggleDrawer } from '../../actions/creators/ui';
+import { toggleDrawer } from 'actions/creators/ui';
 
 const mapStateToProps = (state) => {
     return {

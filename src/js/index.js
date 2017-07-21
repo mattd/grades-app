@@ -7,7 +7,7 @@ import { AppContainer } from 'react-hot-loader';
 import { ConnectedRouter } from 'react-router-redux';
 import { MuiThemeProvider } from 'material-ui/styles';
 
-import { start } from './firebase';
+import start from './start';
 import StoreFactory from './factories/store';
 import history from './history';
 import { isDev } from './utils/environment';

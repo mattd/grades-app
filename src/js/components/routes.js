@@ -1,12 +1,12 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import Authenticate from './authenticate';
-import Profile from './profile';
-import TermList from './terms/list';
-import TermDetail from './terms/detail';
-import CourseList from './courses/list';
-import StudentList from './students/list';
+import AuthenticateFeature from './features/authenticate';
+import ProfileFeature from './features/profile';
+import TermListFeature from './features/terms/list';
+import TermDetailFeature from './features/terms/detail';
+import CourseListFeature from './features/courses/list';
+import StudentListFeature from './features/students/list';
 
 const NoMatch = () => {
     return <h2>404</h2>;
@@ -18,7 +18,7 @@ export const UnauthenticatedRoutes = ({location}) => {
             <Route
                 path="/authenticate"
                 exact
-                component={Authenticate} />
+                component={AuthenticateFeature} />
             <Redirect to={{
                 pathname: "/authenticate",
                 state: {next: location.pathname}
@@ -33,27 +33,27 @@ export const AuthenticatedRoutes = () => {
             <Route
                 exact
                 path="/authenticate"
-                component={Authenticate} />
+                component={AuthenticateFeature} />
             <Route
                 exact
                 path="/profile"
-                component={Profile} />
+                component={ProfileFeature} />
             <Route
                 exact
                 path="/terms"
-                component={TermList} />
+                component={TermListFeature} />
             <Route
                 exact
                 path="/terms/:id"
-                component={TermDetail} />
+                component={TermDetailFeature} />
             <Route
                 exact
                 path="/courses"
-                component={CourseList} />
+                component={CourseListFeature} />
             <Route
                 exact
                 path="/students"
-                component={StudentList} />
+                component={StudentListFeature} />
             <Redirect exact from="/" to="/terms" />
             <Route component={NoMatch} />
         </Switch>

@@ -1,4 +1,4 @@
-import { PROFILE_UPDATED, PROFILE_FLUSH } from '../actions/types/profile';
+import { PROFILE_UPDATED, PROFILE_FLUSH } from 'actions/types/profile';
 
 export const initialState = {
     displayName: null,

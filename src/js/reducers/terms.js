@@ -1,4 +1,4 @@
-import { TERMS_UPDATED, TERMS_FLUSH } from '../actions/types/terms';
+import { TERMS_UPDATED, TERMS_FLUSH } from 'actions/types/terms';
 
 export const initialState = {};
 

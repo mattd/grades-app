@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 
-import { toggleDrawer } from '../../actions/creators/ui';
+import { toggleDrawer } from 'actions/creators/ui';
 
 import ProfileCard from './profile-card';
 import NavList from './nav-list';

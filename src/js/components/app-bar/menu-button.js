@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-import { toggleDrawer } from '../../actions/creators/ui';
+import { toggleDrawer } from 'actions/creators/ui';
 
 const mapDispatchToProps = (dispatch) => {
     return {

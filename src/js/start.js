@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { respondToAuthChange } from './actions/creators/auth';
 
-export const start = (store) => {
+export default (store) => {
     const config = {
         apiKey: process.env.FIREBASE_API_KEY,
         authDomain: process.env.FIREBASE_AUTH_DOMAIN,

@@ -23,9 +23,10 @@ module.exports = {
         publicPath: '/static/'
     },
     resolve: {
-        extensions: ['.jsx', '.js']
+        extensions: ['.jsx', '.js'],
+        modules: ['src/js', 'node_modules']
     },
     performance: {
         hints: false
     }
-}
+};

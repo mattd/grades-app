@@ -1,4 +1,4 @@
-import { UI_TOGGLE, UI_SET, UI_RESET } from '../types/ui';
+import { UI_TOGGLE, UI_SET, UI_RESET } from 'actions/types/ui';
 
 export const toggleDrawer = () => {
     return {

@@ -1,7 +1,7 @@
 import {
     AUTH_STATUS_UPDATED,
     AUTH_STATUS_READY
-} from '../actions/types/auth';
+} from 'actions/types/auth';
 
 export const initialState = {
     isAuthenticated: false,

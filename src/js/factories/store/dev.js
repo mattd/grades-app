@@ -3,9 +3,9 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { routerMiddleware as router } from 'react-router-redux';
 
-import history from '../../history';
-import DevTools from '../../components/dev-tools';
-import { root } from '../../reducers';
+import history from 'history';
+import DevTools from 'components/dev-tools';
+import { root } from 'reducers';
 
 const enhancer = compose(
     applyMiddleware(thunk, logger, router(history)),
@@ -20,8 +20,8 @@ const StoreFactory = (initialState) => {
     );
 
     if (module.hot) {
-        module.hot.accept('../../reducers', () => {
-            store.replaceReducer(require('../../reducers').root)
+        module.hot.accept('reducers', () => {
+            store.replaceReducer(require('reducers').root)
         });
     }
 
