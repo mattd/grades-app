@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import { ConnectedRouter } from 'react-router-redux';
-import { MuiThemeProvider } from 'material-ui/styles';
 
 import start from './start';
 import StoreFactory from './factories/store';
@@ -22,9 +21,7 @@ const render = (App) => {
         <AppContainer>
             <Provider store={store}>
                 <ConnectedRouter history={history}>
-                    <MuiThemeProvider>
-                        <App />
-                    </MuiThemeProvider>
+                    <App />
                 </ConnectedRouter>
             </Provider>
         </AppContainer>,
