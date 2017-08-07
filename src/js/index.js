@@ -2,8 +2,8 @@ require('../scss/style.scss');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 
 import start from './start';

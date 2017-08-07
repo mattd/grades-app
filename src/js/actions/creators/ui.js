@@ -7,6 +7,13 @@ export const toggleDrawer = () => {
     };
 };
 
+export const toggleTermDetailMenu = () => {
+    return {
+        type: UI_TOGGLE,
+        key: 'termDetailMenuOpen'
+    };
+};
+
 export const setAddingTerm = (value) => {
     return {
         type: UI_SET,

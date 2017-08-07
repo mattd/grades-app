@@ -2,7 +2,8 @@ import { UI_TOGGLE, UI_SET, UI_RESET } from 'actions/types/ui';
 
 export const initialState = {
     drawerOpen: false,
-    addingTerm: false
+    addingTerm: false,
+    termDetailMenuOpen: false
 };
 
 const ui = (state = initialState, action) => {
