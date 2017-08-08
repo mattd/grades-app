@@ -25,13 +25,13 @@ class TermDetailMenu extends React.Component {
     componentDidMount() {
         const { termDetailMenuOpen } = this.props;
 
-        if (!this.menuReady && termDetailMenuOpen) {
+        if (!this.readyToOpen && termDetailMenuOpen) {
             this.forceUpdate();
         }
     }
     render() {
         const { termDetailMenuOpen, actionCreators } = this.props;
-        this.menuReady = this.anchorEl && termDetailMenuOpen;
+        this.readyToOpen = this.anchorEl && termDetailMenuOpen;
         return (
             <div>
                 <div
@@ -44,7 +44,7 @@ class TermDetailMenu extends React.Component {
                 </div>
                 <Menu
                     anchorEl={this.anchorEl}
-                    open={this.menuReady}
+                    open={this.readyToOpen}
                     onRequestClose={actionCreators.toggleTermDetailMenu}
                 >
                     <MenuItem onClick={actionCreators.toggleTermDetailMenu}>
