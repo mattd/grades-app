@@ -22,8 +22,16 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class TermDetailMenu extends React.Component {
+    componentDidMount() {
+        const { termDetailMenuOpen } = this.props;
+
+        if (!this.menuReady && termDetailMenuOpen) {
+            this.forceUpdate();
+        }
+    }
     render() {
         const { termDetailMenuOpen, actionCreators } = this.props;
+        this.menuReady = this.anchorEl && termDetailMenuOpen;
         return (
             <div>
                 <div
@@ -36,7 +44,7 @@ class TermDetailMenu extends React.Component {
                 </div>
                 <Menu
                     anchorEl={this.anchorEl}
-                    open={this.anchorEl && termDetailMenuOpen}
+                    open={this.menuReady}
                     onRequestClose={actionCreators.toggleTermDetailMenu}
                 >
                     <MenuItem onClick={actionCreators.toggleTermDetailMenu}>
