@@ -43,6 +43,12 @@ export const setTerm = (values) => {
     };
 };
 
+export const removeTerm = (uid, termId, callback) => {
+    return () => {
+        getTermRef(uid, termId).remove(callback)
+    };
+};
+
 export const startAddingTerm = () => {
     return (dispatch) => {
         dispatch(setAddingTerm(true));

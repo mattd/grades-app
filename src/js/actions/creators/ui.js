@@ -14,6 +14,14 @@ export const toggleTermDetailMenu = () => {
     };
 };
 
+export const setTermDetailMenuOpen = (value) => {
+    return {
+        type: UI_SET,
+        key: 'termDetailMenuOpen',
+        value
+    };
+}
+
 export const setAddingTerm = (value) => {
     return {
         type: UI_SET,
