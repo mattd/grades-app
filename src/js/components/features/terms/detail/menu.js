@@ -7,6 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 import { removeTerm } from 'actions/creators/terms';
+import { updateInfo } from 'actions/creators/info';
 import {
     toggleTermDetailMenu,
     setTermDetailMenuOpen
@@ -25,16 +26,18 @@ const mapDispatchToProps = (dispatch) => {
             push,
             removeTerm,
             toggleTermDetailMenu,
-            setTermDetailMenuOpen
+            setTermDetailMenuOpen,
+            updateInfo
         }, dispatch)
     };
 };
 
 class TermDetailMenu extends React.Component {
     handleDeleteClick() {
-        const { actionCreators, uid, termId } = this.props;
+        const { actionCreators, uid, id, name } = this.props;
         actionCreators.push('/terms');
-        actionCreators.removeTerm(uid, termId);
+        actionCreators.updateInfo(`Term "${name}" deleted.`)
+        actionCreators.removeTerm(uid, id);
     }
     componentDidMount() {
         const { termDetailMenuOpen } = this.props;

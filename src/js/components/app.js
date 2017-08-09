@@ -7,6 +7,7 @@ import Loading from './loading';
 import AppBar from './app-bar';
 import Drawer from './drawer';
 import { Page } from './containers';
+import InfoNotification from './notifications/info';
 import BuildNotification from './notifications/build';
 
 const mapStateToProps = (state) => {
@@ -38,6 +39,7 @@ const App = ({
                 <Page>
                     <Routes location={location} />
                 </Page>
+                <InfoNotification />
                 <BuildNotification />
             </div>
         );

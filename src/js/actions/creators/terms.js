@@ -43,9 +43,9 @@ export const setTerm = (values) => {
     };
 };
 
-export const removeTerm = (uid, termId, callback) => {
+export const removeTerm = (uid, id, callback) => {
     return () => {
-        getTermRef(uid, termId).remove(callback)
+        getTermRef(uid, id).remove(callback)
     };
 };
 

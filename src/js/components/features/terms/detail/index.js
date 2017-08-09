@@ -24,11 +24,12 @@ const TermDetailFeature = ({
     } else if (!terms[id]) {
         return <h2>404</h2>;
     } else {
+        const name = terms[id].name;
         return (
             <Feature
                 title={<Link to="/terms">Terms</Link>}
-                subtitle={`${terms[id].name}`}
-                menu={<TermDetailMenu termId={id} />}
+                subtitle={name}
+                menu={<TermDetailMenu id={id} name={name} />}
             >
                 <p>ID: {match.params.id}</p>
             </Feature>
