@@ -12,7 +12,7 @@ import AddTermButton from './add-button';
 
 const mapStateToProps = (state) => {
     return {
-        terms: state.terms,
+        terms: state.terms.data,
         addingTerm: state.ui.addingTerm
     };
 };

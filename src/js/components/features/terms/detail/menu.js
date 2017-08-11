@@ -15,7 +15,7 @@ import {
 
 const mapStateToProps = (state) => {
     return {
-        uid: state.profile.uid,
+        uid: state.profile.data.uid,
         termDetailMenuOpen: state.ui.termDetailMenuOpen
     };
 };

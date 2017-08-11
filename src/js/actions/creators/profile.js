@@ -29,7 +29,7 @@ export const subscribeToProfile = (uid) => {
 export const setAndSubscribeToProfile = (user) => {
     return (dispatch, getState) => {
         const profile = {
-            ...getState().profile,
+            ...getState().profile.data,
             ...R.pick([
                 'email',
                 'displayName',

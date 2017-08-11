@@ -7,7 +7,7 @@ import { BUILD_TIMESTAMP } from 'utils/build';
 
 const mapStateToProps = (state) => {
     return {
-        build: state.build
+        build: state.build.data
     };
 };
 

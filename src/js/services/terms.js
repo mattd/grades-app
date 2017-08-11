@@ -10,6 +10,6 @@ export const getTermsRef = (uid) => {
     return firebase.database().ref(getTermsPath(uid));
 };
 
-export const getTermRef = (uid, termId) => {
-    return firebase.database().ref(`${getTermsPath(uid)}/${termId}`);
+export const getTermRef = (uid, id) => {
+    return firebase.database().ref(`${getTermsPath(uid)}/${id}`);
 };

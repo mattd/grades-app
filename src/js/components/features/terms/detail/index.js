@@ -1,4 +1,3 @@
-import * as R from 'ramda';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,17 +8,19 @@ import TermDetailMenu from './menu';
 
 const mapStateToProps = (state) => {
     return {
-        terms: state.terms
+        terms: state.terms.data,
+        ready: state.terms.meta.updated
     };
 };
 
 const TermDetailFeature = ({
     terms,
+    ready,
     match
 }) => {
     const id = match.params.id;
 
-    if (R.isEmpty(terms)) {
+    if (!ready) {
         return <Loading />;
     } else if (!terms[id]) {
         return <h2>404</h2>;
@@ -31,7 +32,7 @@ const TermDetailFeature = ({
                 subtitle={name}
                 menu={<TermDetailMenu id={id} name={name} />}
             >
-                <p>ID: {match.params.id}</p>
+                <p>ID: {id}</p>
             </Feature>
         );
     }

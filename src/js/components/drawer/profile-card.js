@@ -12,7 +12,7 @@ import { toggleDrawer } from 'actions/creators/ui';
 
 const mapStateToProps = (state) => {
     return {
-        profile: state.profile
+        profile: state.profile.data
     };
 };
 
