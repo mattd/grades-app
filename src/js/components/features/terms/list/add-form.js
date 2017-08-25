@@ -3,19 +3,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import Button from 'material-ui/Button';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 import { setTerm, stopAddingTerm } from 'actions/creators/terms';
 import { MuiTextField } from 'components/forms/fields';
 
-const styleSheet = createStyleSheet('TermForm', theme => {
+const styleSheet = theme => {
     const unit = `${theme.spacing.unit}px`;
     return {
         button: {
             margin: `${unit} ${unit} ${unit} 0`,
         }
     };
-});
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -78,7 +78,7 @@ const AddTermForm = ({
     );
 };
 
-export default withStyles(styleSheet)(
+export default withStyles(styleSheet, {name: 'TermForm'})(
     connect(null, mapDispatchToProps)(
         reduxForm({
             form: 'term',

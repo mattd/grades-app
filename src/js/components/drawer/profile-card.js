@@ -28,7 +28,7 @@ const onClick = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
-// TODO: Figure out how to use createStyleSheet here instead.
+// TODO: Figure out how to use withStyles here instead.
 const styles = (theme) => {
     return {
         linkActive: {

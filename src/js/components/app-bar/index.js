@@ -2,12 +2,12 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 import AuthButton from './auth-button';
 import MenuButton from './menu-button';
 
-const styleSheet = createStyleSheet('ButtonAppBar', {
+const styleSheet = {
       root: {
           marginTop: 30,
           width: '100%'
@@ -15,9 +15,9 @@ const styleSheet = createStyleSheet('ButtonAppBar', {
       flex: {
           flex: 1
       }
-});
+};
 
-export default withStyles(styleSheet)(
+export default withStyles(styleSheet, {name: 'AppBar'})(
     ({ classes }) => {
         return (
             <AppBar>

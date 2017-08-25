@@ -2,9 +2,9 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('Feature', theme => {
+const styleSheet = theme => {
     return {
         root: {
             display: 'flex',
@@ -37,7 +37,7 @@ const styleSheet = createStyleSheet('Feature', theme => {
             right: 0
         }
     };
-});
+};
 
 const Feature = ({
     classes,
@@ -68,4 +68,4 @@ const Feature = ({
     );
 };
 
-export default withStyles(styleSheet)(Feature);
+export default withStyles(styleSheet, {name: 'Feature'})(Feature);
