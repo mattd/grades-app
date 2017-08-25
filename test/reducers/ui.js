@@ -23,6 +23,15 @@ test(
 );
 
 test(
+    'termDetailMenuOpen defaults to false',
+    t => {
+        const action = {type: 'TEST'};
+
+        t.false(ui(undefined, action).termDetailMenuOpen);
+    }
+);
+
+test(
     'toggling can make false values true',
     t => {
         const action = {
