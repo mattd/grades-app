@@ -35,4 +35,7 @@ const InfoNotification = ({
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoNotification);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(InfoNotification);

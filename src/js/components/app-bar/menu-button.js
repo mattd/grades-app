@@ -27,4 +27,7 @@ const MenuButton = ({
     );
 };
 
-export default connect(null, mapDispatchToProps)(MenuButton);
+export default connect(
+    null,
+    mapDispatchToProps
+)(MenuButton);

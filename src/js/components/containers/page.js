@@ -29,4 +29,7 @@ const Page = ({
     );
 };
 
-export default withStyles(styleSheet, {name: 'Page'})(Page);
+export default withStyles(
+    styleSheet,
+    {name: 'Page'}
+)(Page);

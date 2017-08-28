@@ -68,4 +68,7 @@ const Feature = ({
     );
 };
 
-export default withStyles(styleSheet, {name: 'Feature'})(Feature);
+export default withStyles(
+    styleSheet,
+    {name: 'Feature'}
+)(Feature);

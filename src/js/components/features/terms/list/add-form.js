@@ -78,8 +78,14 @@ const AddTermForm = ({
     );
 };
 
-export default withStyles(styleSheet, {name: 'TermForm'})(
-    connect(null, mapDispatchToProps)(
+export default withStyles(
+    styleSheet,
+    {name: 'TermForm'}
+)(
+    connect(
+        null,
+        mapDispatchToProps
+    )(
         reduxForm({
             form: 'term',
             validate

@@ -86,5 +86,8 @@ const ProfileCard = ({
 };
 
 export default withTheme(
-    connect(mapStateToProps, mapDispatchToProps)(ProfileCard)
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(ProfileCard)
 );

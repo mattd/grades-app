@@ -17,7 +17,10 @@ const styleSheet = {
       }
 };
 
-export default withStyles(styleSheet, {name: 'AppBar'})(
+export default withStyles(
+    styleSheet,
+    {name: 'AppBar'}
+)(
     ({ classes }) => {
         return (
             <AppBar>

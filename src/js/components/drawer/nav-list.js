@@ -68,5 +68,8 @@ const NavList = ({
 }
 
 export default withTheme(
-    connect(mapStateToProps, mapDispatchToProps)(NavList)
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(NavList)
 );
