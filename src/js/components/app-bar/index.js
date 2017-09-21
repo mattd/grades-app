@@ -8,11 +8,7 @@ import AuthButton from './auth-button';
 import MenuButton from './menu-button';
 
 const styleSheet = {
-      root: {
-          marginTop: 30,
-          width: '100%'
-      },
-      flex: {
+      typography: {
           flex: 1
       }
 };
@@ -29,7 +25,7 @@ export default withStyles(
                     <Typography
                         type="title"
                         color="inherit"
-                        className={classes.flex}>
+                        className={classes.typography}>
                         Grades App
                     </Typography>
                     <AuthButton />
