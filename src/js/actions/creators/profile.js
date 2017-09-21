@@ -1,8 +1,8 @@
 import * as R from 'ramda';
 
-import { PROFILE_UPDATED, PROFILE_FLUSH } from '../types/profile';
-import { getProfileRef, getProfilePath } from '../../services/profile';
-import { dbListenerAdded } from './db';
+import { PROFILE_UPDATED, PROFILE_FLUSH } from 'actions/types/profile';
+import { getProfileRef, getProfilePath } from 'services/profile';
+import { dbListenerAdded } from 'actions/creators/db';
 
 export const profileUpdated = (profile) => {
     return {
@@ -29,7 +29,7 @@ export const subscribeToProfile = (uid) => {
 export const setAndSubscribeToProfile = (user) => {
     return (dispatch, getState) => {
         const profile = {
-            ...getState().profile,
+            ...getState().profile.data,
             ...R.pick([
                 'email',
                 'displayName',

@@ -1,6 +1,6 @@
-import { BUILD_UPDATED } from '../types/build';
-import { getBuildRef, getBuildPath } from '../../services/build';
-import { dbListenerAdded } from './db';
+import { BUILD_UPDATED } from 'actions/types/build';
+import { getBuildRef, getBuildPath } from 'services/build';
+import { dbListenerAdded } from 'actions/creators/db';
 
 export const buildUpdated = (build) => {
     return {

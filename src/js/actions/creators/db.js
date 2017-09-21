@@ -4,7 +4,7 @@ import {
     DB_LISTENER_ADDED,
     DB_LISTENER_REMOVED,
     DB_LISTENERS_FLUSH
-} from '../types/db';
+} from 'actions/types/db';
 
 export const dbListenerAdded = (path) => {
     return {

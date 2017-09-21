@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
 
-import { signIn, signOut } from '../../actions/creators/auth';
+import { signIn, signOut } from 'actions/creators/auth';
 
 const mapStateToProps = (state) => {
     return {

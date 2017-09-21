@@ -1,14 +1,14 @@
 import firebase from 'firebase';
 import { push } from 'react-router-redux';
 
-import { AUTH_STATUS_UPDATED, AUTH_STATUS_READY } from '../types/auth';
+import { AUTH_STATUS_UPDATED, AUTH_STATUS_READY } from 'actions/types/auth';
 
-import { flushProfile } from '../creators/profile';
-import { resetUi } from '../creators/ui';
-import { removeDbListeners } from '../creators/db';
-import { setAndSubscribeToProfile } from '../creators/profile';
-import { subscribeToTerms, flushTerms } from '../creators/terms';
-import { subscribeToBuild } from '../creators/build';
+import { flushProfile } from 'actions/creators/profile';
+import { resetUi } from 'actions/creators/ui';
+import { removeDbListeners } from 'actions/creators/db';
+import { setAndSubscribeToProfile } from 'actions/creators/profile';
+import { subscribeToTerms, flushTerms } from 'actions/creators/terms';
+import { subscribeToBuild } from 'actions/creators/build';
 
 export const authStatusUpdated = (user) => {
     return {

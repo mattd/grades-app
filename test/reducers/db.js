@@ -5,21 +5,17 @@ import db from 'reducers/db';
 import {
     DB_LISTENER_ADDED,
     DB_LISTENER_REMOVED,
-    DB_LISTENER_FLUSH
+    DB_LISTENERS_FLUSH
 } from 'actions/types/db';
 
 test(
-    'initial state is empty',
+    'default state is empty',
     t => {
         const action = {
             type: 'TEST'
         };
-        const stateBefore = {};
 
-        deepFreeze(stateBefore);
-
-        db(undefined, action);
-        t.deepEqual(stateBefore, {});
+        t.deepEqual(db(undefined, action), {});
     }
 );
 
@@ -30,13 +26,9 @@ test(
             type: DB_LISTENER_ADDED,
             path: '/foobar'
         };
-        const stateBefore = {};
-        const stateAfter = {'/foobar': true};
+        const stateBefore = deepFreeze({});
 
-        deepFreeze(stateBefore);
-
-        db(stateBefore, action);
-        t.deepEqual(stateAfter, {'/foobar': true});
+        t.deepEqual(db(stateBefore, action), {'/foobar': true});
     }
 );
 
@@ -48,12 +40,10 @@ test(
             path: '/foobar'
         };
         const stateBefore = {'/foobar': true};
-        const stateAfter = {'/foobar': false};
 
         deepFreeze(stateBefore);
 
-        db(stateBefore, action);
-        t.deepEqual(stateAfter, {'/foobar': false});
+        t.deepEqual(db(stateBefore, action), {'/foobar': false});
     }
 );
 
@@ -61,14 +51,12 @@ test(
     'listeners can be flushed',
     t => {
         const action = {
-            type: DB_LISTENER_FLUSH
+            type: DB_LISTENERS_FLUSH
         };
         const stateBefore = {'/foo': true, '/bar': false};
-        const stateAfter = {};
 
         deepFreeze(stateBefore);
 
-        db(stateBefore, action);
-        t.deepEqual(stateAfter, {});
+        t.deepEqual(db(stateBefore, action), {});
     }
 );

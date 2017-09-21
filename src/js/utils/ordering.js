@@ -1,7 +1,16 @@
 import * as R from 'ramda';
 
 export const nextOrder = (obj) => {
-    return Object.values(obj).length;
+    return (
+        (
+            R.last(
+                R.sort(
+                    R.gt,
+                    R.pluck('order')(R.values(obj))
+                )
+            ) + 1
+        ) || 0
+    );
 };
 
 export const sortObject = (obj) => {

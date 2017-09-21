@@ -2,9 +2,9 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('Feature', theme => {
+const styleSheet = theme => {
     return {
         root: {
             display: 'flex',
@@ -31,24 +31,19 @@ const styleSheet = createStyleSheet('Feature', theme => {
         subtitle: {
             color: theme.palette.grey[500],
             marginLeft: '24px'
+        },
+        menu: {
+            position: 'absolute',
+            right: 0
         }
     };
-});
-
-const maybeGetSubtitle = (subtitle, classes) => {
-    if (subtitle) {
-        return (
-            <Typography type='title' className={classes.subtitle}>
-                {subtitle}
-            </Typography>
-        );
-    }
 };
 
 const Feature = ({
     classes,
     title,
     subtitle,
+    menu,
     children
 }) => {
     return (
@@ -58,7 +53,12 @@ const Feature = ({
                     <Typography type='title'>
                         {title}
                     </Typography>
-                    {maybeGetSubtitle(subtitle, classes)}
+                    <Typography type='title' className={classes.subtitle}>
+                        {subtitle}
+                    </Typography>
+                    <div className={classes.menu}>
+                        {menu}
+                    </div>
                 </Toolbar>
                 <div className={classes.content}>
                     {children}
@@ -68,4 +68,7 @@ const Feature = ({
     );
 };
 
-export default withStyles(styleSheet)(Feature);
+export default withStyles(
+    styleSheet,
+    {name: 'Feature'}
+)(Feature);

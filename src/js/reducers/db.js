@@ -2,9 +2,9 @@ import {
     DB_LISTENER_ADDED,
     DB_LISTENER_REMOVED,
     DB_LISTENERS_FLUSH
-} from '../actions/types/db';
+} from 'actions/types/db';
 
-const initialState = {};
+export const initialState = {};
 
 const db = (state = initialState, action) => {
     switch (action.type) {

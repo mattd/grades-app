@@ -8,11 +8,11 @@ import Card, { CardHeader } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import { withTheme } from 'material-ui/styles';
 
-import { toggleDrawer } from '../../actions/creators/ui';
+import { toggleDrawer } from 'actions/creators/ui';
 
 const mapStateToProps = (state) => {
     return {
-        profile: state.profile
+        profile: state.profile.data
     };
 };
 
@@ -28,7 +28,7 @@ const onClick = (actionCreators) => {
     actionCreators.toggleDrawer();
 };
 
-// TODO: Figure out how to use createStyleSheet here instead.
+// TODO: Figure out how to use withStyles here instead.
 const styles = (theme) => {
     return {
         linkActive: {
@@ -86,5 +86,8 @@ const ProfileCard = ({
 };
 
 export default withTheme(
-    connect(mapStateToProps, mapDispatchToProps)(ProfileCard)
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(ProfileCard)
 );

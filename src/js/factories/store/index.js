@@ -1,4 +1,4 @@
-import { isDev } from '../../utils/environment';
+import { isDev } from 'utils/environment';
 
 if (isDev()) {
     module.exports = require('./dev');

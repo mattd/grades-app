@@ -1,6 +1,6 @@
 {
   "name": "grades-app",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "main": "server.js",
   "dependencies": {
@@ -34,6 +34,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.4",
     "deep-freeze": "^0.0.1",
+    "ejs-cli": "^2.0.0",
     "eslint": "^4.1.1",
     "eslint-loader": "^1.8.0",
     "eslint-plugin-react": "^7.1.0",
@@ -52,15 +53,16 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "scripts": {
-    "build": "npm run clean && NODE_ENV=production webpack --config config/webpack/production.js",
+    "build": "npm run clean && npm run html && NODE_ENV=production webpack --config config/webpack/production.js",
     "build:integration": "FIREBASE_ENV=integration npm run build && npm run package",
     "build:production": "FIREBASE_ENV=production npm run build && npm run package",
     "build:staging": "FIREBASE_ENV=staging npm run build && npm run package",
-    "clean": "rm -rf ./src/static ./public",
+    "clean": "rm -rf ./src/static ./public ./src/index.html",
+    "html": "ejs-cli --options \"{\\\"BUILD_COMMIT\\\": \\\"$BUILD_COMMIT\\\"}\" src/index.ejs > src/index.html",
     "lint": "./node_modules/.bin/eslint src/js",
     "package": "mkdir public && cp -R src/index.html src/static public",
-    "preflight": "npm run lint && npm run test",
-    "start": "source scripts/set-timestamp.sh && source scripts/set-commit.sh && PORT=3000 node server.js",
+    "preflight": "npm run lint && npm test",
+    "start": "source scripts/set-timestamp.sh && source scripts/set-commit.sh && npm run html && PORT=3000 node server.js",
     "test": "NODE_PATH=src/js ava",
     "test:watch": "npm test -- --watch"
   },

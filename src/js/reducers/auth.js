@@ -1,15 +1,14 @@
 import {
     AUTH_STATUS_UPDATED,
     AUTH_STATUS_READY
-} from '../actions/types/auth';
+} from 'actions/types/auth';
 
-const auth = (
-    state = {
-        isAuthenticated: false,
-        ready: false
-    },
-    action
-) => {
+export const initialState = {
+    isAuthenticated: false,
+    ready: false
+};
+
+const auth = (state = initialState, action) => {
     switch (action.type) {
         case AUTH_STATUS_UPDATED:
             return {

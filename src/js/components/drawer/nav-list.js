@@ -6,7 +6,7 @@ import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { Person, DateRange, Book, People } from 'material-ui-icons';
 import { withTheme } from 'material-ui/styles';
 
-import { toggleDrawer } from '../../actions/creators/ui';
+import { toggleDrawer } from 'actions/creators/ui';
 
 const mapStateToProps = (state) => {
     return {
@@ -68,5 +68,8 @@ const NavList = ({
 }
 
 export default withTheme(
-    connect(mapStateToProps, mapDispatchToProps)(NavList)
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(NavList)
 );

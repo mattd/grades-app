@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Mousetrap from 'mousetrap';
 
-import DevTools from '../components/dev-tools';
+import DevTools from 'components/dev-tools';
 
 const launch = (store) => {
     const popup = window.open(

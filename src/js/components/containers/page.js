@@ -1,7 +1,7 @@
 import React from 'react';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('Page', theme => {
+const styleSheet = theme => {
     const whenSmall = '56px';
     const whenBig = '64px';
     return {
@@ -16,7 +16,7 @@ const styleSheet = createStyleSheet('Page', theme => {
             }
         }
     };
-});
+};
 
 const Page = ({
     classes,
@@ -29,4 +29,7 @@ const Page = ({
     );
 };
 
-export default withStyles(styleSheet)(Page);
+export default withStyles(
+    styleSheet,
+    {name: 'Page'}
+)(Page);

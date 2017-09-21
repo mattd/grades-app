@@ -5,6 +5,7 @@ config/firebase/production.js
 config/firebase/staging.js
 config/firebase/service-keys
 config/firebase/secrets.tar
+src/index.html
 src/static
 public
 .DS_Store

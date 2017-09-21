@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
 
-import { startAddingTerm } from '../../actions/creators/terms';
+import { startAddingTerm } from 'actions/creators/terms';
 
 const mapDispatchToProps = (dispatch) => {
     return {

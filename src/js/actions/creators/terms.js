@@ -1,10 +1,10 @@
 import Mousetrap from 'mousetrap';
 
-import { TERMS_UPDATED, TERMS_FLUSH } from '../types/terms';
-import { getTermsRef, getTermRef, getTermsPath } from '../../services/terms';
-import { dbListenerAdded, dbListenerRemoved } from './db';
-import { toggleAddingTerm } from './ui';
-import { nextOrder } from '../../utils/ordering';
+import { TERMS_UPDATED, TERMS_FLUSH } from 'actions/types/terms';
+import { getTermsRef, getTermRef, getTermsPath } from 'services/terms';
+import { dbListenerAdded, dbListenerRemoved } from 'actions/creators/db';
+import { setAddingTerm } from 'actions/creators/ui';
+import { nextOrder } from 'utils/ordering';
 
 export const termsUpdated = (terms) => {
     return {
@@ -37,15 +37,21 @@ export const unsubscribeFromTerms = (uid) => {
 
 export const setTerm = (values) => {
     return (dispatch, getState) => {
-        const { uid } = getState().profile;
-        values.order = nextOrder(getState().terms);
+        const { uid } = getState().profile.data;
+        values.order = nextOrder(getState().terms.data);
         getTermRef(uid, values.id).set(values);
+    };
+};
+
+export const removeTerm = (uid, id, callback) => {
+    return () => {
+        getTermRef(uid, id).remove(callback)
     };
 };
 
 export const startAddingTerm = () => {
     return (dispatch) => {
-        dispatch(toggleAddingTerm());
+        dispatch(setAddingTerm(true));
         Mousetrap.bind('esc', () => {
             dispatch(stopAddingTerm());
         });
@@ -54,7 +60,7 @@ export const startAddingTerm = () => {
 
 export const stopAddingTerm = () => {
     return (dispatch) => {
-        dispatch(toggleAddingTerm());
+        dispatch(setAddingTerm(false));
         Mousetrap.unbind('esc');
     };
 };
