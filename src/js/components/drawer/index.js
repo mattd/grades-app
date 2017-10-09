@@ -34,7 +34,6 @@ export default connect(
     }) => {
         return (
             <Drawer
-                docked={false}
                 open={drawerOpen}
                 onRequestClose={actionCreators.toggleDrawer}
             >

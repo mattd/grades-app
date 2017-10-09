@@ -85,7 +85,7 @@ const ProfileCard = ({
     );
 };
 
-export default withTheme(
+export default withTheme()(
     connect(
         mapStateToProps,
         mapDispatchToProps
