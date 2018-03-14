@@ -23,7 +23,7 @@ export default withStyles(
                 <Toolbar>
                     <MenuButton />
                     <Typography
-                        type="title"
+                        variant="title"
                         color="inherit"
                         className={classes.typography}>
                         Grades App

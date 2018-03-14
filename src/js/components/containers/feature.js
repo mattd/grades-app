@@ -50,10 +50,10 @@ const Feature = ({
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 <Toolbar className={classes.toolbar}>
-                    <Typography type='title'>
+                    <Typography variant='title'>
                         {title}
                     </Typography>
-                    <Typography type='title' className={classes.subtitle}>
+                    <Typography variant='title' className={classes.subtitle}>
                         {subtitle}
                     </Typography>
                     <div className={classes.menu}>

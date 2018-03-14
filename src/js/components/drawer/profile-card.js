@@ -59,7 +59,7 @@ const ProfileCard = ({
     actionCreators
 }) => {
     const name = (
-        <Typography type='subheading'>
+        <Typography variant='subheading'>
             {profile.displayName}
         </Typography>
     );

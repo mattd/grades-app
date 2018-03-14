@@ -51,7 +51,7 @@ class TermDetailMenu extends React.Component {
     }
     render() {
         const { termDetailMenuOpen, actionCreators } = this.props;
-        this.readyToOpen = this.anchorEl && termDetailMenuOpen;
+        this.readyToOpen = !!(this.anchorEl && termDetailMenuOpen);
         return (
             <div>
                 <div
@@ -65,7 +65,7 @@ class TermDetailMenu extends React.Component {
                 <Menu
                     anchorEl={this.anchorEl}
                     open={this.readyToOpen}
-                    onRequestClose={actionCreators.toggleTermDetailMenu}
+                    onClose={actionCreators.toggleTermDetailMenu}
                 >
                     <MenuItem onClick={this.handleDeleteClick.bind(this)}>
                         Delete

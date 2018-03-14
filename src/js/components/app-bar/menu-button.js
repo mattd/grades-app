@@ -19,7 +19,7 @@ const MenuButton = ({
 }) => {
     return (
         <IconButton
-            color="contrast"
+            color="inherit"
             onClick={actionCreators.toggleDrawer}
         >
             <MenuIcon />

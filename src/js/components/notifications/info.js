@@ -29,7 +29,7 @@ const InfoNotification = ({
             open={info.open}
             message={info.message}
             autoHideDuration={4000}
-            onRequestClose={actionCreators.closeInfo}
+            onClose={actionCreators.closeInfo}
             onExited={actionCreators.clearInfo}
         />
     );

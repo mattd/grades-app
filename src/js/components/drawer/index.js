@@ -35,7 +35,7 @@ export default connect(
         return (
             <Drawer
                 open={drawerOpen}
-                onRequestClose={actionCreators.toggleDrawer}
+                onClose={actionCreators.toggleDrawer}
             >
                 {isAuthenticated && <ProfileCard />}
                 <NavList />
