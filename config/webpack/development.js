@@ -5,7 +5,10 @@ const webpack = require('webpack');
 
 const base = require('./base');
 const version = require('../../package').version;
-const development = Object.assign({}, base);
+const development = Object.assign({
+    mode: 'development',
+    devtool: 'eval'
+}, base);
 
 const env = Object.assign(
     require('../firebase/integration'),
@@ -17,7 +20,6 @@ const env = Object.assign(
     }
 );
 
-development.devtool = 'eval';
 development.entry.unshift(
     'webpack-hot-middleware/client',
     'react-hot-loader/patch'

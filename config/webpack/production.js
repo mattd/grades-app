@@ -2,7 +2,10 @@ const webpack = require('webpack');
 
 const base = require('./base');
 const version = require('../../package').version;
-const production = Object.assign({}, base);
+const production = Object.assign({
+    mode: 'production',
+    devtool: 'source-map'
+}, base);
 
 const env = Object.assign(
     require('../firebase/' + process.env['FIREBASE_ENV']),
@@ -14,7 +17,6 @@ const env = Object.assign(
     }
 );
 
-production.devtool = 'source-map';
 production.plugins = [
     new webpack.DefinePlugin({'process.env': env}),
     new webpack.optimize.UglifyJsPlugin({
