@@ -21,10 +21,7 @@ const env = Object.assign(
 );
 
 production.plugins = [
-    new webpack.DefinePlugin({'process.env': env}),
-    new webpack.SourceMapDevToolPlugin({
-        filename: '../../public/static/bundle.js.map'
-    })
+    new webpack.DefinePlugin({'process.env': env})
 ];
 
 module.exports = production;
