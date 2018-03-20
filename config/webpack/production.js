@@ -4,7 +4,10 @@ const base = require('./base');
 const version = require('../../package').version;
 const production = Object.assign({
     mode: 'production',
-    devtool: 'source-map'
+    devtool: 'source-map',
+    optimizations: {
+        minimize: true
+    }
 }, base);
 
 const env = Object.assign(
@@ -18,16 +21,10 @@ const env = Object.assign(
 );
 
 production.plugins = [
-    new webpack.DefinePlugin({'process.env': env})
-];
-production.optimization = {
-    minimize: true,
-    minimizer: new webpack.optimize.UglifyJsPlugin({
-        sourceMap: true,
-        compressor: {
-            warnings: false
-        }
+    new webpack.DefinePlugin({'process.env': env}),
+    new webpack.SourceMapDevToolPlugin({
+        filename: '../../public/static/bundle.js.map'
     })
-};
+];
 
 module.exports = production;
