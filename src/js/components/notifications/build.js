@@ -16,7 +16,7 @@ const BuildNotification = ({
 }) => {
     const action = (
         <Button
-            color='accent'
+            color='secondary'
             onClick={() => window.location.reload(true)}
         >
             Refresh
