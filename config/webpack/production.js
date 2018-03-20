@@ -5,7 +5,7 @@ const version = require('../../package').version;
 const production = Object.assign({
     mode: 'production',
     devtool: 'source-map',
-    optimizations: {
+    optimization: {
         minimize: true
     }
 }, base);
