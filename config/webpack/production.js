@@ -18,13 +18,16 @@ const env = Object.assign(
 );
 
 production.plugins = [
-    new webpack.DefinePlugin({'process.env': env}),
-    new webpack.optimize.UglifyJsPlugin({
+    new webpack.DefinePlugin({'process.env': env})
+];
+production.optimization = {
+    minimize: true,
+    minimizer: new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
         compressor: {
             warnings: false
         }
     })
-];
+};
 
 module.exports = production;
