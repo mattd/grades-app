@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
-import { Person, DateRange, Book, People } from 'material-ui-icons';
+import { Person, DateRange, Book, People } from '@material-ui/icons';
 import { withTheme } from 'material-ui/styles';
 
 import { toggleDrawer } from 'actions/creators/ui';
