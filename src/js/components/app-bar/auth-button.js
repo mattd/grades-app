@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
 import { signIn, signOut } from 'actions/creators/auth';
 
@@ -25,7 +25,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         ...ownProps,
         children: stateProps.children,
-        color: 'contrast',
+        color: 'inherit',
         onClick: () => {
             if (stateProps.isAuthenticated) {
                 actionCreators.signOut();

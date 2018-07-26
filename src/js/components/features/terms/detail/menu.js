@@ -2,9 +2,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import Menu, { MenuItem } from 'material-ui/Menu';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { removeTerm } from 'actions/creators/terms';
 import { updateInfo } from 'actions/creators/info';
@@ -51,7 +52,7 @@ class TermDetailMenu extends React.Component {
     }
     render() {
         const { termDetailMenuOpen, actionCreators } = this.props;
-        this.readyToOpen = this.anchorEl && termDetailMenuOpen;
+        this.readyToOpen = !!(this.anchorEl && termDetailMenuOpen);
         return (
             <div>
                 <div
@@ -65,7 +66,7 @@ class TermDetailMenu extends React.Component {
                 <Menu
                     anchorEl={this.anchorEl}
                     open={this.readyToOpen}
-                    onRequestClose={actionCreators.toggleTermDetailMenu}
+                    onClose={actionCreators.toggleTermDetailMenu}
                 >
                     <MenuItem onClick={this.handleDeleteClick.bind(this)}>
                         Delete

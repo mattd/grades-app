@@ -2,8 +2,8 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import Button from 'material-ui/Button';
-import { withStyles } from 'material-ui/styles';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 
 import { setTerm, stopAddingTerm } from 'actions/creators/terms';
 import { MuiTextField } from 'components/forms/fields';
@@ -59,7 +59,7 @@ const AddTermForm = ({
             />
             <div>
                 <Button
-                    raised
+                    variant='raised'
                     color='primary'
                     onClick={handleSubmit(handler)}
                     className={classes.button}
@@ -67,7 +67,7 @@ const AddTermForm = ({
                     Submit
                 </Button>
                 <Button
-                    raised
+                    variant='raised'
                     onClick={actionCreators.stopAddingTerm}
                     className={classes.button}
                 >

@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Drawer from 'material-ui/Drawer';
+import Drawer from '@material-ui/core/Drawer';
 
 import { toggleDrawer } from 'actions/creators/ui';
 
@@ -35,7 +35,7 @@ export default connect(
         return (
             <Drawer
                 open={drawerOpen}
-                onRequestClose={actionCreators.toggleDrawer}
+                onClose={actionCreators.toggleDrawer}
             >
                 {isAuthenticated && <ProfileCard />}
                 <NavList />

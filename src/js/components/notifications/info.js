@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Snackbar from 'material-ui/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import { closeInfo, clearInfo } from 'actions/creators/info';
 
@@ -29,7 +29,7 @@ const InfoNotification = ({
             open={info.open}
             message={info.message}
             autoHideDuration={4000}
-            onRequestClose={actionCreators.closeInfo}
+            onClose={actionCreators.closeInfo}
             onExited={actionCreators.clearInfo}
         />
     );

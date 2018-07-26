@@ -1,8 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { toggleDrawer } from 'actions/creators/ui';
 
@@ -19,7 +19,7 @@ const MenuButton = ({
 }) => {
     return (
         <IconButton
-            color="contrast"
+            color="inherit"
             onClick={actionCreators.toggleDrawer}
         >
             <MenuIcon />

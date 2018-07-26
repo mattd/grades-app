@@ -1,7 +1,10 @@
 import uuid from 'uuid';
 import React from 'react';
 import { connect } from 'react-redux';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
 import { Link } from 'react-router-dom';
 
 import { stopAddingTerm } from 'actions/creators/terms';

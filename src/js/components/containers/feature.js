@@ -1,8 +1,8 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import { withStyles } from 'material-ui/styles';
+import Paper from '@material-ui/core/Paper';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
 const styleSheet = theme => {
     return {
@@ -50,10 +50,10 @@ const Feature = ({
         <div className={classes.root}>
             <Paper className={classes.paper}>
                 <Toolbar className={classes.toolbar}>
-                    <Typography type='title'>
+                    <Typography variant='title'>
                         {title}
                     </Typography>
-                    <Typography type='title' className={classes.subtitle}>
+                    <Typography variant='title' className={classes.subtitle}>
                         {subtitle}
                     </Typography>
                     <div className={classes.menu}>
