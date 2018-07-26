@@ -2,11 +2,13 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Avatar from 'material-ui/Avatar';
-import Button from 'material-ui/Button';
-import Card, { CardHeader } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
-import { withTheme } from 'material-ui/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+
+import Typography from '@material-ui/core/Typography';
+import { withTheme } from '@material-ui/core/styles';
 
 import { toggleDrawer } from 'actions/creators/ui';
 
