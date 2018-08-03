@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,7 +24,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actionCreators: bindActionCreators({
-            push,
             removeTerm,
             toggleTermDetailMenu,
             setTermDetailMenuOpen,
@@ -36,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 class TermDetailMenu extends React.Component {
     handleDeleteClick() {
         const { actionCreators, uid, id, name } = this.props;
-        actionCreators.push('/terms');
+        push('/terms');
         actionCreators.updateInfo(`Term "${name}" deleted.`)
         actionCreators.removeTerm(uid, id);
     }
