@@ -24,6 +24,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actionCreators: bindActionCreators({
+            push,
             removeTerm,
             toggleTermDetailMenu,
             setTermDetailMenuOpen,
@@ -35,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
 class TermDetailMenu extends React.Component {
     handleDeleteClick() {
         const { actionCreators, uid, id, name } = this.props;
-        push('/terms');
+        actionCreators.push('/terms');
         actionCreators.updateInfo(`Term "${name}" deleted.`)
         actionCreators.removeTerm(uid, id);
     }
