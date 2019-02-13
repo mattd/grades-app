@@ -59,7 +59,7 @@ const AddTermForm = ({
             />
             <div>
                 <Button
-                    variant='raised'
+                    variant='contained'
                     color='primary'
                     onClick={handleSubmit(handler)}
                     className={classes.button}
@@ -67,7 +67,7 @@ const AddTermForm = ({
                     Submit
                 </Button>
                 <Button
-                    variant='raised'
+                    variant='contained'
                     onClick={actionCreators.stopAddingTerm}
                     className={classes.button}
                 >

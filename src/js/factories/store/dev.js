@@ -1,11 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import {
-    connectRouter,
-    routerMiddleware as router
-} from 'connected-react-router';
-
+import { routerMiddleware as router } from 'connected-react-router';
 
 import history from 'history';
 import DevTools from 'components/dev-tools';
@@ -18,7 +14,7 @@ const enhancer = compose(
 
 const StoreFactory = (initialState) => {
     const store = createStore(
-        connectRouter(history)(root),
+        root,
         initialState,
         enhancer
     );

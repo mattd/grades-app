@@ -17,7 +17,7 @@ const mergeProps = (stateProps, dispatchProps) => {
     return {
         children: 'Add Term',
         color: 'primary',
-        variant: 'raised',
+        variant: 'contained',
         onClick: actionCreators.startAddingTerm
     };
 };
