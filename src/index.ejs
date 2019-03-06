@@ -8,7 +8,7 @@
 
         <title>
             Grades App
-            <% if (typeof FIREBASE_ENV == 'undefined') { %>
+            <% if (!FIREBASE_ENV) { %>
                 <%= '(development)' %>
             <% } else if (FIREBASE_ENV != 'production') { %>
                 <%= '(' + FIREBASE_ENV + ')' %>
