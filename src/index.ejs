@@ -6,7 +6,14 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1">
 
-        <title>grades-app</title>
+        <title>
+            Grades App
+            <% if (typeof FIREBASE_ENV == 'undefined') { %>
+                <%= '(development)' %>
+            <% } else if (FIREBASE_ENV != 'production') { %>
+                <%= '(' + FIREBASE_ENV + ')' %>
+            <% } %>
+        </title>
     </head>
     <body>
         <div id="root"></div>
