@@ -9,9 +9,9 @@
         <title>
             Grades App
             <% if (!FIREBASE_ENV) { %>
-                <%= '(development)' %>
+                <%= '- Development' %>
             <% } else if (FIREBASE_ENV != 'production') { %>
-                <%= '(' + FIREBASE_ENV + ')' %>
+                <%= '- ' + FIREBASE_ENV.charAt(0).toUpperCase() + FIREBASE_ENV.slice(1) %>
             <% } %>
         </title>
     </head>
