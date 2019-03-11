@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 
 import { AUTH_STATUS_UPDATED, AUTH_STATUS_READY } from 'actions/types/auth';
 

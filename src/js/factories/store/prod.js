@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { routerMiddleware as router } from 'react-router-redux';
+import { routerMiddleware as router } from 'connected-react-router';
 
 import { root } from 'reducers';
 import history from 'history';

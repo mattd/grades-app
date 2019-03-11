@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 import { reducer as form } from 'redux-form';
-import { routerReducer as router } from 'react-router-redux';
+
+import history from '../history';
 
 import auth from './auth';
 import build from './build';
@@ -9,6 +11,8 @@ import info from './info';
 import profile from './profile';
 import terms from './terms';
 import ui from './ui';
+
+const router = connectRouter(history);
 
 export const root = combineReducers({
     auth,
