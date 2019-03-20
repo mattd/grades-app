@@ -10,3 +10,4 @@ src/static
 public
 .DS_Store
 .screenrc
+.vscode
